@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CLIL Alkene Test</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 900px; margin: 30px auto; line-height: 1.5; padding: 0 16px; }
+.q { margin-bottom: 18px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+button { padding: 10px 24px; font-size: 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; }
+button:hover { background: #45a049; }
+#result { margin-top: 20px; font-size: 22px; font-weight: bold; }
+#name-section { background: #f0f4ff; padding: 16px; border-radius: 8px; margin-bottom: 24px; border: 1px solid #c0d0ff; }
+#name-section input { padding: 8px 12px; font-size: 16px; width: 300px; border: 1px solid #aaa; border-radius: 4px; margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<h1>Alkenes (CLIL) — 20-question test</h1>
+
+<div id="name-section">
+  <label><b>Аты-жөніңізді енгізіңіз / Введите имя и фамилию:</b></label><br><br>
+  <input type="text" id="studentName" placeholder="Мысалы: Айгерим Сейткали" />
+</div>
+
+<form id="quiz">
+
+<div class='q'><p><b>1. What is the general formula of alkenes?</b></p>
+<label><input type="radio" name="q1" value="0"> CnH2n+2</label><br>
+<label><input type="radio" name="q1" value="1"> CnH2n</label><br>
+<label><input type="radio" name="q1" value="2"> CnH2n-2</label><br>
+<label><input type="radio" name="q1" value="3"> CnHn</label><br></div>
+
+<div class='q'><p><b>2. Алкендер қандай байланысқа ие?</b></p>
+<label><input type="radio" name="q2" value="0"> Жай</label><br>
+<label><input type="radio" name="q2" value="1"> Қос</label><br>
+<label><input type="radio" name="q2" value="2"> Үш</label><br>
+<label><input type="radio" name="q2" value="3"> Иондық</label><br></div>
+
+<div class='q'><p><b>3. The simplest alkene is:</b></p>
+<label><input type="radio" name="q3" value="0"> Methane</label><br>
+<label><input type="radio" name="q3" value="1"> Ethene</label><br>
+<label><input type="radio" name="q3" value="2"> Ethane</label><br>
+<label><input type="radio" name="q3" value="3"> Propane</label><br></div>
+
+<div class='q'><p><b>4. Этеннің формуласы:</b></p>
+<label><input type="radio" name="q4" value="0"> C2H6</label><br>
+<label><input type="radio" name="q4" value="1"> C2H4</label><br>
+<label><input type="radio" name="q4" value="2"> C2H2</label><br>
+<label><input type="radio" name="q4" value="3"> C2H8</label><br></div>
+
+<div class='q'><p><b>5. Alkenes are ___ hydrocarbons.</b></p>
+<label><input type="radio" name="q5" value="0"> saturated</label><br>
+<label><input type="radio" name="q5" value="1"> unsaturated</label><br>
+<label><input type="radio" name="q5" value="2"> aromatic</label><br>
+<label><input type="radio" name="q5" value="3"> cyclic</label><br></div>
+
+<div class='q'><p><b>6. Пропеннің формуласы:</b></p>
+<label><input type="radio" name="q6" value="0"> C3H8</label><br>
+<label><input type="radio" name="q6" value="1"> C3H6</label><br>
+<label><input type="radio" name="q6" value="2"> C3H4</label><br>
+<label><input type="radio" name="q6" value="3"> C3H2</label><br></div>
+
+<div class='q'><p><b>7. Typical reaction of alkenes is:</b></p>
+<label><input type="radio" name="q7" value="0"> substitution</label><br>
+<label><input type="radio" name="q7" value="1"> addition</label><br>
+<label><input type="radio" name="q7" value="2"> oxidation</label><br>
+<label><input type="radio" name="q7" value="3"> decomposition</label><br></div>
+
+<div class='q'><p><b>8. Алкендер бром суын...</b></p>
+<label><input type="radio" name="q8" value="0"> өзгертпейді</label><br>
+<label><input type="radio" name="q8" value="1"> түссіздендіреді</label><br>
+<label><input type="radio" name="q8" value="2"> қызыл етеді</label><br>
+<label><input type="radio" name="q8" value="3"> буландырады</label><br></div>
+
+<div class='q'><p><b>9. Ethene contains how many hydrogen atoms?</b></p>
+<label><input type="radio" name="q9" value="0"> 2</label><br>
+<label><input type="radio" name="q9" value="1"> 4</label><br>
+<label><input type="radio" name="q9" value="2"> 6</label><br>
+<label><input type="radio" name="q9" value="3"> 8</label><br></div>
+
+<div class='q'><p><b>10. Алкендердің изомериясы қай көміртектен басталады?</b></p>
+<label><input type="radio" name="q10" value="0"> 2</label><br>
+<label><input type="radio" name="q10" value="1"> 3</label><br>
+<label><input type="radio" name="q10" value="2"> 4</label><br>
+<label><input type="radio" name="q10" value="3"> 5</label><br></div>
+
+<div class='q'><p><b>11. Hydrogenation of ethene gives:</b></p>
+<label><input type="radio" name="q11" value="0"> ethane</label><br>
+<label><input type="radio" name="q11" value="1"> ethyne</label><br>
+<label><input type="radio" name="q11" value="2"> methane</label><br>
+<label><input type="radio" name="q11" value="3"> propane</label><br></div>
+
+<div class='q'><p><b>12. Алкендер суда...</b></p>
+<label><input type="radio" name="q12" value="0"> жақсы ериді</label><br>
+<label><input type="radio" name="q12" value="1"> нашар ериді</label><br>
+<label><input type="radio" name="q12" value="2"> толық ериді</label><br>
+<label><input type="radio" name="q12" value="3"> иондарға ыдырайды</label><br></div>
+
+<div class='q'><p><b>13. Which is an alkene?</b></p>
+<label><input type="radio" name="q13" value="0"> Ethane</label><br>
+<label><input type="radio" name="q13" value="1"> Propene</label><br>
+<label><input type="radio" name="q13" value="2"> Butane</label><br>
+<label><input type="radio" name="q13" value="3"> Methane</label><br></div>
+
+<div class='q'><p><b>14. Бутен формуласы:</b></p>
+<label><input type="radio" name="q14" value="0"> C4H10</label><br>
+<label><input type="radio" name="q14" value="1"> C4H8</label><br>
+<label><input type="radio" name="q14" value="2"> C4H6</label><br>
+<label><input type="radio" name="q14" value="3"> C4H12</label><br></div>
+
+<div class='q'><p><b>15. Alkenes can form ___ reactions.</b></p>
+<label><input type="radio" name="q15" value="0"> addition</label><br>
+<label><input type="radio" name="q15" value="1"> substitution</label><br>
+<label><input type="radio" name="q15" value="2"> neutralization</label><br>
+<label><input type="radio" name="q15" value="3"> precipitation</label><br></div>
+
+<div class='q'><p><b>16. Этеннің полимерлену өнімі:</b></p>
+<label><input type="radio" name="q16" value="0"> этан</label><br>
+<label><input type="radio" name="q16" value="1"> полиэтилен</label><br>
+<label><input type="radio" name="q16" value="2"> пропан</label><br>
+<label><input type="radio" name="q16" value="3"> бензол</label><br></div>
+
+<div class='q'><p><b>17. CLIL: double bond means:</b></p>
+<label><input type="radio" name="q17" value="0"> жай байланыс</label><br>
+<label><input type="radio" name="q17" value="1"> қос байланыс</label><br>
+<label><input type="radio" name="q17" value="2"> үш байланыс</label><br>
+<label><input type="radio" name="q17" value="3"> сутектік байланыс</label><br></div>
+
+<div class='q'><p><b>18. Propene contains how many carbon atoms?</b></p>
+<label><input type="radio" name="q18" value="0"> 2</label><br>
+<label><input type="radio" name="q18" value="1"> 3</label><br>
+<label><input type="radio" name="q18" value="2"> 4</label><br>
+<label><input type="radio" name="q18" value="3"> 5</label><br></div>
+
+<div class='q'><p><b>19. Алкендер қай класқа жатады?</b></p>
+<label><input type="radio" name="q19" value="0"> қаныққан</label><br>
+<label><input type="radio" name="q19" value="1"> қанықпаған</label><br>
+<label><input type="radio" name="q19" value="2"> ароматты</label><br>
+<label><input type="radio" name="q19" value="3"> спирттер</label><br></div>
+
+<div class='q'><p><b>20. Which English word means 'қосылу реакциясы'?</b></p>
+<label><input type="radio" name="q20" value="0"> substitution</label><br>
+<label><input type="radio" name="q20" value="1"> addition</label><br>
+<label><input type="radio" name="q20" value="2"> combustion</label><br>
+<label><input type="radio" name="q20" value="3"> reduction</label><br></div>
+
+<button type="button" onclick="gradeQuiz()">Аяқтау / Завершить</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
+
+const testMeta = {
+  subject: "Organic Chemistry",
+  topic: "Alkenes",
+  test_id: "ORG-ALKE-01"
+};
+
+const answers = {
+  q1:1,q2:1,q3:1,q4:1,q5:1,
+  q6:1,q7:1,q8:1,q9:1,q10:1,
+  q11:0,q12:1,q13:1,q14:1,q15:0,
+  q16:1,q17:1,q18:1,q19:1,q20:1
+};
+
+function gradeQuiz() {
+  const name = document.getElementById('studentName').value.trim();
+
+  if (!name) {
+    alert('Алдымен аты-жөніңізді енгізіңіз! / Сначала введите имя и фамилию!');
+    return;
+  }
+
+  let score = 0;
+
+  for (const [q, correct] of Object.entries(answers)) {
+    const checked = document.querySelector(`input[name="${q}"]:checked`);
+    if (checked && Number(checked.value) === correct) {
+      score++;
+    }
+  }
+
+  document.getElementById('result').innerHTML =
+    `<p>✅ Нәтиже / Результат: <b>${score} / 20</b></p>
+     <p id="status">Жіберілуде... / Отправка...</p>`;
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      subject: testMeta.subject,
+      topic: testMeta.topic,
+      test_id: testMeta.test_id,
+      score: score,
+      total: 20
+    })
+  })
+  .then(() => {
+    document.getElementById('status').innerHTML =
+      '<span style="color:green">✅ Нәтиже жіберілді! / Результат отправлен учителю!</span>';
+  })
+  .catch(() => {
+    document.getElementById('status').innerHTML =
+      '<span style="color:red">❌ Қате. Интернетті тексеріңіз. / Ошибка. Проверьте интернет.</span>';
+  });
+}
+</script>
+
+</body>
+</html>
