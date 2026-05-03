@@ -173,15 +173,135 @@ header {
 <div id="test-view" class="container"></div>
 
 <script>
-// ОСЫ ЖЕРГЕ ЖАҢА DEPLOYMENT URL-ДІ ҚОЙЫҢЫЗ
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
 
 const quizData = {
-  'alkandap': { title: 'Алкандар (Alkanes)', questions: [/* Сұрақтар сол қалпында */] },
-  // ... қалған тест деректері ...
+  'alkandap': {
+    title: 'Алкандар (Alkanes)',
+    questions: [
+      { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "Methane has a ______ molecular geometry.", a: ["Linear", "Trigonal", "Tetrahedral", "Square planar"], c: 2 },
+      { q: "What is the hybridization of carbon in methane?", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
+      { q: "The bond angle in methane is ______ degrees.", a: ["90°", "109.5°", "120°", "180°"], c: 1 },
+      { q: "Which reaction is typical for alkanes?", a: ["Addition", "Substitution", "Elimination", "Polymerization"], c: 1 },
+      { q: "Paraffins is another name for ______.", a: ["Alkenes", "Alkynes", "Alkanes", "Arenes"], c: 2 },
+      { q: "What is the suffix for alkanes?", a: ["-ene", "-yne", "-ane", "-ol"], c: 2 },
+      { q: "Алкандардың гомологтық қатары неден басталады?", a: ["Ethane", "Propane", "Methane", "Butane"], c: 2 },
+      { q: "Isomerism in alkanes starts from ______.", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
+      { q: "Which alkane is a gas at room temperature?", a: ["Pentane", "Hexane", "Ethane", "Octane"], c: 2 },
+      { q: "The C-C bond in alkanes is a ______ bond.", a: ["Double", "Triple", "Sigma (σ)", "Pi (π)"], c: 2 },
+      { q: "What is the common name for CH4?", a: ["Ethane", "Marsh gas", "Water gas", "Ozone"], c: 1 },
+      { q: "Wurtz reaction is used to produce ______.", a: ["Alcohols", "Alkanes", "Alkenes", "Acids"], c: 1 },
+      { q: "What is produced in complete combustion of alkanes?", a: ["CO + H2O", "CO2 + H2O", "C + H2", "CO2 + H2"], c: 1 },
+      { q: "In substitution reactions, hydrogen is replaced by ______.", a: ["Oxygen", "Halogens", "Water", "Carbon"], c: 1 },
+      { q: "The boiling point of alkanes ______ with increasing chain length.", a: ["Decreases", "Increases", "Stays same", "Becomes zero"], c: 1 },
+      { q: "Cycloalkanes have the general formula ______.", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "Алкандардағы көміртек атомының валенттілігі қандай?", a: ["II", "III", "IV", "I"], c: 2 },
+      { q: "Natural gas consists mainly of ______.", a: ["Butane", "Propane", "Methane", "Hexane"], c: 2 },
+      { q: "Octane number measures the quality of ______.", a: ["Water", "Oil", "Gasoline (petrol)", "Alcohol"], c: 2 }
+    ]
+  },
+  'alkender': {
+    title: 'Алкендер (Alkenes)',
+    questions: [
+      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "Alkenes are also known as ______.", a: ["Paraffins", "Olefins", "Acetylenes", "Arenes"], c: 1 },
+      { q: "The hybridization of carbon in ethene is ______.", a: ["sp", "sp2", "sp3", "dsp2"], c: 1 },
+      { q: "What type of bond is unique to alkenes?", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
+      { q: "The geometry of ethene is ______.", a: ["Linear", "Tetrahedral", "Trigonal planar", "Octahedral"], c: 2 },
+      { q: "The bond angle in ethene is ______.", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
+      { q: "What is the IUPAC name for ethylene?", a: ["Ethane", "Ethene", "Ethyne", "Ethanol"], c: 1 },
+      { q: "Which reaction is characteristic for alkenes?", a: ["Substitution", "Addition", "Elimination", "Redox"], c: 1 },
+      { q: "Hydrogenation of alkenes produces ______.", a: ["Alkynes", "Alcohols", "Alkanes", "Aldehydes"], c: 2 },
+      { q: "Bromine water test for alkenes results in ______.", a: ["Blue color", "Decolorization", "Red color", "No change"], c: 1 },
+      { q: "What is the suffix for alkenes?", a: ["-ane", "-ene", "-yne", "-al"], c: 1 },
+      { q: "Markovnikov's rule is used in ______ reactions.", a: ["Substitution", "Addition", "Cracking", "Combustion"], c: 1 },
+      { q: "Polymerization of ethene produces ______.", a: ["PVC", "Polyethylene", "Teflon", "Rubber"], c: 1 },
+      { q: "Dehydration of alcohols gives ______.", a: ["Alkanes", "Alkenes", "Acids", "Ethers"], c: 1 },
+      { q: "The double bond consists of ______.", a: ["2 sigma bonds", "2 pi bonds", "1 sigma and 1 pi bond", "Ionic bonds"], c: 2 },
+      { q: "Geometric isomerism is also called ______.", a: ["Chain isomerism", "Optical isomerism", "Cis-trans isomerism", "Tautomerism"], c: 2 },
+      { q: "Hydration of ethene produces ______.", a: ["Acetic acid", "Ethanol", "Ethane", "Ethene"], c: 1 },
+      { q: "The catalyst used in hydrogenation is often ______.", a: ["H2SO4", "NaCl", "Ni or Pt", "NaOH"], c: 2 },
+      { q: "Алкендер гомологтық қатары неден басталады?", a: ["Methene", "Ethene", "Propene", "Butene"], c: 1 },
+      { q: "Cis-isomers have groups on the ______ side.", a: ["Opposite", "Same", "Diagonal", "Outer"], c: 1 }
+    ]
+  },
+  'massalar': {
+    title: 'Әрекеттесуші массалар заңы (Law of Mass Action)',
+    questions: [
+      { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Mendeleev"], c: 1 },
+      { q: "The rate of reaction is proportional to the ______ of reactants.", a: ["Volume", "Mass", "Concentration", "Density"], c: 2 },
+      { q: "Chemical equilibrium is a ______ state.", a: ["Static", "Dynamic", "Passive", "Irreversible"], c: 1 },
+      { q: "The symbol [A] denotes ______.", a: ["Mass of A", "Molar concentration of A", "Volume of A", "Temperature of A"], c: 1 },
+      { q: "Rate constant (k) depends on ______.", a: ["Concentration", "Pressure", "Temperature", "Container size"], c: 2 },
+      { q: "Unit of reaction rate is ______.", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
+      { q: "Homogeneous reaction occurs in ______ phase.", a: ["One", "Two", "Three", "Multiple"], c: 0 },
+      { q: "Қайтымды реакция белгісін көрсетіңіз:", a: ["═", "→", "⇌", "↑"], c: 2 },
+      { q: "What happens to the rate if concentration of reactants increases?", a: ["Decreases", "Increases", "Stays same", "Stops"], c: 1 },
+      { q: "Catalyst ______ the rate of reaction.", a: ["Decreases", "Increases", "Does not change", "Slows"], c: 1 },
+      { q: "Vant Hoff's rule describes the effect of ______ on rate.", a: ["Pressure", "Concentration", "Temperature", "Catalyst"], c: 2 },
+      { q: "For a reaction A+B → C, the rate law is v = ______.", a: ["k[A][B]", "k[A]/[B]", "k[C]", "[A]+[B]"], c: 0 },
+      { q: "In a closed system, equilibrium is ______.", a: ["Impossible", "Possible", "Always static", "Never reached"], c: 1 },
+      { q: "Activation energy is the ______ energy needed for reaction.", a: ["Maximum", "Minimum", "Total", "Potential"], c: 1 },
+      { q: "Heterogeneous reaction occurs at the ______.", a: ["Center", "Gas phase", "Interface (бөліну беті)", "Liquid phase"], c: 2 },
+      { q: "Irreversible reactions proceed to ______.", a: ["Half", "Completion", "Beginning", "Equilibrium"], c: 1 },
+      { q: "Equilibrium constant Kc depends on ______.", a: ["Initial concentration", "Pressure", "Temperature", "Volume"], c: 2 },
+      { q: "Le Chatelier's principle predicts shifts in ______.", a: ["Mass", "Equilibrium", "Atomic number", "Gravity"], c: 1 },
+      { q: "If the temperature increases, the rate constant (k) ______.", a: ["Decreases", "Increases", "Stays same", "Becomes zero"], c: 1 },
+      { q: "Molecularity of a reaction can be ______.", a: ["0", "1, 2, or 3", "Fractional", "Negative"], c: 1 }
+    ]
+  },
+  'eritindi': {
+    title: 'Иондық күш және активтілік (Ionic Strength & Activity)',
+    questions: [
+      { q: "Ionic strength (I) was introduced by ______.", a: ["Lewis and Randall", "Arrhenius", "Faraday", "Dalton"], c: 0 },
+      { q: "The formula for ionic strength is I = ______.", a: ["Σ cz", "½ Σ cz²", "Σ c/z", "c²z"], c: 1 },
+      { q: "Activity (a) is defined as a = ______.", a: ["f + c", "f / c", "f * c", "c / f"], c: 2 },
+      { q: "Activity coefficient (f) for ideal solutions is ______.", a: ["0", "0.5", "1", "10"], c: 2 },
+      { q: "Ionic strength depends on ______ of ions.", a: ["Size", "Charge and concentration", "Color", "Mass"], c: 1 },
+      { q: "Debye-Hückel theory describes ______ electrolytes.", a: ["Strong", "Weak", "Non-", "Gaseous"], c: 0 },
+      { q: "Effective concentration of an ion is called ______.", a: ["Molarity", "Activity", "Normality", "Molality"], c: 1 },
+      { q: "As ionic strength increases, the activity coefficient ______.", a: ["Increases", "Decreases", "Stays same", "Becomes 1"], c: 1 },
+      { q: "For very dilute solutions, activity is ______ concentration.", a: ["Greater than", "Less than", "Equal to", "Zero"], c: 2 },
+      { q: "The charge of the ion in the I formula is ______.", a: ["Linear", "Squared", "Cubed", "Rooted"], c: 1 },
+      { q: "Ionic strength of 0.1 M NaCl solution is ______.", a: ["0.05", "0.1", "0.2", "1.0"], c: 1 },
+      { q: "Strong electrolytes ______ completely in water.", a: ["Dissolve", "Dissociate", "Evaporate", "Freeze"], c: 1 },
+      { q: "Activity is used instead of concentration in ______ solutions.", a: ["Ideal", "Real", "Dilute", "Pure"], c: 1 },
+      { q: "The unit of ionic strength is ______.", a: ["mol/L", "L/mol", "Dimensionless", "g/L"], c: 0 },
+      { q: "Multivalent ions have a ______ effect on ionic strength.", a: ["Small", "Greater", "Zero", "Negative"], c: 1 },
+      { q: "Activity coefficient is ______ for non-electrolytes.", a: ["0", "0.5", "Approximately 1", "Infinite"], c: 2 },
+      { q: "Standard state activity is defined as ______.", a: ["0", "1", "10", "100"], c: 1 },
+      { q: "Coulombic forces are responsible for ______ interactions.", a: ["Neutral", "Inter-ionic", "Atomic", "Covalent"], c: 1 },
+      { q: "The 'f' value decreases as ion charge ______.", a: ["Decreases", "Increases", "Disappears", "Stays same"], c: 1 },
+      { q: "Ionic strength of 0.1 M Na2SO4 is ______.", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 }
+    ]
+  },
+  'gylymi': {
+    title: 'Ғылыми мақала жазу негіздері (Scientific Writing)',
+    questions: [
+      { q: "What does IMRAD stand for?", a: ["Intro, Method, Results, And, Discussion", "Idea, Main, Research, Art, Data", "Index, Map, Rule, Aim, Draft", "Info, Mode, Read, Author, Date"], c: 0 },
+      { q: "A brief summary of a scientific paper is called ______.", a: ["Index", "Abstract", "Preface", "Appendix"], c: 1 },
+      { q: "Where do you state the goal of the research?", a: ["Methods", "Introduction", "Results", "References"], c: 1 },
+      { q: "Keywords are used for ______.", a: ["Translation", "Indexing and searching", "Decoration", "Plagiarism"], c: 1 },
+      { q: "In 'Methods' section, you explain ______ the work was done.", a: ["Why", "When", "How", "Who"], c: 2 },
+      { q: "Where do you present raw data and findings?", a: ["Discussion", "Results", "Abstract", "Conclusion"], c: 1 },
+      { q: "The list of sources at the end is called ______.", a: ["Content", "References / Bibliography", "Footnotes", "Glossary"], c: 1 },
+      { q: "What is 'Peer Review'?", a: ["Grammar check", "Expert evaluation", "Public talk", "Self-reading"], c: 1 },
+      { q: "DOI stands for ______.", a: ["Data Online Index", "Digital Object Identifier", "Daily Original Info", "Document Order Id"], c: 1 },
+      { q: "Using someone else's work without citation is ______.", a: ["Editing", "Plagiarism", "Collaboration", "Reviewing"], c: 1 },
+      { q: "Which section interprets the results?", a: ["Introduction", "Discussion", "Methods", "Title"], c: 1 },
+      { q: "A good scientific title should be ______.", a: ["Funny", "Very long", "Concise and descriptive", "Vague"], c: 2 },
+      { q: "Scopus and Web of Science are ______.", a: ["Journals", "Databases", "Software", "Countries"], c: 1 },
+      { q: "Impact Factor measures a journal's ______.", a: ["Price", "Influence / Prestige", "Size", "Age"], c: 1 },
+      { q: "The 'Conclusion' should summarize ______.", a: ["New sources", "Main findings", "Budget", "History"], c: 1 },
+      { q: "Which tense is usually used for 'Methods'?", a: ["Future", "Present", "Past", "Conditional"], c: 2 },
+      { q: "A primary source is ______.", a: ["Textbook", "Original research article", "Encyclopedia", "Blog post"], c: 1 },
+      { q: "Citation styles include ______.", a: ["Excel, Word", "APA, MLA, Harvard", "Arial, Times", "PDF, JPG"], c: 1 },
+      { q: "Open Access means the article is ______.", a: ["Hidden", "Free to read", "Unpublished", "Draft"], c: 1 },
+      { q: "The main goal of scientific writing is ______.", a: ["To be famous", "To share knowledge", "To earn money", "To write a story"], c: 1 }
+    ]
+  }
 };
-
-/* Сұрақтарды қысқаша қалдырдым, сіздің кодыңыздағы сұрақтарды осы нысанға толық қосыңыз */
 
 function startTest(id) {
   const name = document.getElementById('userName').value;
@@ -218,13 +338,8 @@ function finishTest(id) {
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('status-text');
   const form = document.getElementById('quiz-form');
-  
-  // Барлық сұраққа жауап берілгенін тексеру
-  if (!form.checkValidity()) {
-    return alert("Барлық сұраққа жауап беріңіз!");
-  }
-
   const test = quizData[id];
+  
   let score = 0;
   test.questions.forEach((q, i) => {
     const sel = form.querySelector(`input[name="q${i}"]:checked`);
@@ -235,7 +350,7 @@ function finishTest(id) {
   btn.innerText = "Жіберілуде...";
   status.style.display = "block";
   status.className = "loading";
-  status.innerText = "Деректер базасына жіберілуде...";
+  status.innerText = "Деректер базасына жіберілуде, күте тұрыңыз...";
 
   const data = {
     name: document.getElementById('userName').value,
@@ -251,17 +366,17 @@ function finishTest(id) {
     body: JSON.stringify(data)
   }).then(() => {
     status.className = "success";
-    status.innerText = "Нәтиже сәтті жіберілді!";
+    status.innerText = "Нәтиже мұғалімге жіберілді!";
     btn.style.display = "none"; 
     
     setTimeout(() => {
-      alert(`Тест аяқталды! Нәтижеңіз: ${score}/${test.questions.length}`);
+      alert(`Тест аяқталды! Сіздің нәтижеңіз: ${score}/${test.questions.length}`);
       location.reload();
     }, 2000);
   }).catch(err => {
     btn.disabled = false;
     btn.innerText = "Қайта жіберу";
-    status.innerText = "Қате: " + err;
+    status.innerText = "Қате кетті. Интернетті тексеріп, қайта көріңіз.";
     status.style.color = "red";
   });
 }
