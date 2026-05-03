@@ -53,6 +53,12 @@ button:hover { background: #45a049; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyd6ZWI74tal0oFdYddMUdATketj16HWgYOWxURHNbnef1bmzY5hathcZiG2wT74u1vGw/exec';
 
+  const testMeta = {
+  subject: "Organic chemistry",
+  topic: "Alkanes",
+  test_id: "ALK-01"
+};
+  
 const answers = {q1:1,q2:1,q3:2,q4:2,q5:0,q6:1,q7:1,q8:2,q9:0,q10:1,q11:2,q12:1,q13:0,q14:0,q15:1,q16:3,q17:1,q18:1,q19:2,q20:1};
 
 function gradeQuiz() {
@@ -75,7 +81,14 @@ function gradeQuiz() {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name, score: score, total: 20 })
+    body: JSON.stringify({
+  name: name,
+  subject: testMeta.subject,
+  topic: testMeta.topic,
+  test_id: testMeta.test_id,
+  score: score,
+  total: 20
+})
   }).then(() => {
     document.getElementById('status').innerHTML =
       '<span style="color:green">✅ Нәтиже жіберілді! / Результат отправлен учителю!</span>';
