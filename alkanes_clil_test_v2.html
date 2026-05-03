@@ -78,24 +78,28 @@ function gradeQuiz() {
     `<p>✅ Нәтиже / Результат: <b>${score} / 20</b></p><p id="status">Жіберілуде... / Отправка...</p>`;
 
   fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-  name: name,
-  subject: testMeta.subject,
-  topic: testMeta.topic,
-  test_id: testMeta.test_id,
-  score: score,
-  total: 20
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    name: name,
+    subject: testMeta.subject,
+    topic: testMeta.topic,
+    test_id: testMeta.test_id,
+    score: score,
+    total: 20
+  })
 })
-  }).then(() => {
-    document.getElementById('status').innerHTML =
-      '<span style="color:green">✅ Нәтиже жіберілді! / Результат отправлен учителю!</span>';
-  }).catch(() => {
-    document.getElementById('status').innerHTML =
-      '<span style="color:red">❌ Қате. Интернетті тексеріңіз. / Ошибка. Проверьте интернет.</span>';
-  });
+.then(r => r.text())
+.then(() => {
+  document.getElementById('status').innerHTML =
+    '<span style="color:green">✅ Нәтиже жіберілді! / Результат отправлен учителю!</span>';
+})
+.catch(() => {
+  document.getElementById('status').innerHTML =
+    '<span style="color:red">❌ Қате. Интернетті тексеріңіз.</span>';
+});
 }
 </script>
 </body>
