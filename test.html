@@ -2,113 +2,51 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>CLIL Chemistry Tests / Химия тесттері</title>
+<title>CLIL Chemistry Tests</title>
 <style>
 * { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; max-width: 960px; margin: 0 auto; padding: 20px 16px; background: #f0f4ff; }
-h1 { text-align: center; color: #1a3c6e; margin-bottom: 6px; }
-.subtitle { text-align:center; color:#555; margin-bottom: 24px; font-size: 15px; }
-.menu { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-.menu-btn { padding: 20px 14px; background: #1a3c6e; color: white; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; line-height: 1.5; }
-.menu-btn:hover { background: #2a5298; }
-.menu-btn small { font-size: 12px; opacity: 0.85; display: block; margin-top: 4px; }
-.test-page { display: none; }
-.test-page.active { display: block; }
-.back-btn { padding: 8px 18px; background: #888; color: white; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 18px; font-size: 14px; }
-.back-btn:hover { background: #555; }
-.name-box { background: #e8f0fe; padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #b0c4f8; }
-.name-box input { padding: 8px 12px; font-size: 16px; width: 320px; border: 1px solid #aaa; border-radius: 4px; margin-top: 8px; }
-.name-box label { font-size: 15px; }
-.q { margin-bottom: 14px; padding: 12px 14px; border: 1px solid #ddd; border-radius: 6px; background: white; }
-.q p { margin: 0 0 8px; font-weight: bold; font-size: 15px; color: #333; }
-.q p span.eng { color: #0056b3; font-weight: normal; font-size: 14px; display: block; margin-top: 4px; }
-label { display: block; margin: 4px 0; cursor: pointer; font-size: 14px; }
-.submit-btn { padding: 11px 30px; font-size: 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 12px; }
-.submit-btn:hover { background: #45a049; }
-.result-box { margin-top: 20px; font-size: 20px; font-weight: bold; }
-h2 { color: #1a3c6e; border-bottom: 2px solid #1a3c6e; padding-bottom: 6px; margin-bottom: 20px; }
-.tag { display: inline-block; font-size: 12px; background: #1a3c6e; color: white; padding: 2px 8px; border-radius: 4px; margin-bottom: 14px; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; background: #f4f7f9; }
+h1 { text-align: center; color: #2c3e50; }
+.menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+.menu-btn { padding: 25px; background: #34495e; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+.menu-btn:hover { background: #1abc9c; transform: translateY(-2px); }
+.test-page { display: none; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.active { display: block; }
+.q { margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+.q p { font-weight: 600; color: #2c3e50; margin-bottom: 10px; }
+.name-box { margin-bottom: 25px; padding: 20px; background: #fff; border-radius: 10px; border: 1px solid #dcdde1; }
+input[type="text"] { width: 100%; padding: 10px; margin-top: 8px; border: 1px solid #ccc; border-radius: 5px; }
+.submit-btn { background: #27ae60; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+.back-btn { background: #7f8c8d; color: white; padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; margin-bottom: 20px; }
 </style>
 </head>
 <body>
 
-<!-- MAIN MENU -->
 <div id="main-menu">
-  <h1>🧪 CLIL Химия тесттері</h1>
-  <p class="subtitle">Тақырыпты таңдамас бұрын аты-жөніңізді және тобыңызды енгізіңіз<br><i>Please enter your name and group before selecting a topic</i></p>
-
+  <h1>🧪 Химия: CLIL Тесттер жүйесі</h1>
   <div class="name-box">
-    <label><b>Аты-жөніңіз / Full Name:</b></label><br>
-    <input type="text" id="studentName" placeholder="Мысалы: Сыдыков Асетбек" />
+    <label>Аты-жөніңіз / Full Name:</label>
+    <input type="text" id="studentName" placeholder="Мысалы: Сыдыков Асетбек">
     <br><br>
-    <label><b>Тобыңыз / Group:</b></label><br>
-    <input type="text" id="studentGroup" placeholder="Мысалы: ХПМ111" />
+    <label>Тобыңыз / Group:</label>
+    <input type="text" id="studentGroup" placeholder="Мысалы: ХПМ111">
   </div>
 
-  <p style="text-align:center;color:#444;font-weight:bold;">Тақырыпты таңдаңыз / Select a topic:</p>
   <div class="menu">
-    <button class="menu-btn" onclick="openTest('alkandар')">Органикалық химия<small>Алкандар / Alkanes</small></button>
-    <button class="menu-btn" onclick="openTest('alkender')">Органикалық химия<small>Алкендер / Alkenes</small></button>
-    <button class="menu-btn" onclick="openTest('massalar')">Аналитикалық химия<small>Әрекеттесуші массалар заңы / Law of Mass Action</small></button>
-    <button class="menu-btn" onclick="openTest('eritindi')">Аналитикалық химия<small>Иондық күш және активтілік / Ionic Strength and Activity</small></button>
-    <button class="menu-btn" onclick="openTest('gylymi')" style="grid-column: span 2;">Ғылыми-зерттеу жұмысын ұйымдастыру<small>Ғылыми мақала / Scientific Article</small></button>
+    <button class="menu-btn" onclick="openTest('alkandар')">Органикалық химия<br><b>Алкандар</b></button>
+    <button class="menu-btn" onclick="openTest('alkender')">Органикалық химия<br><b>Алкендер</b></button>
+    <button class="menu-btn" onclick="openTest('massalar')">Аналитикалық химия<br><b>Әрекеттесуші массалар заңы</b></button>
+    <button class="menu-btn" onclick="openTest('eritindi')">Аналитикалық химия<br><b>Иондық күш және активтілік</b></button>
+    <button class="menu-btn" onclick="openTest('gylymi')" style="grid-column: span 2;"><b>Ғылыми мақала жазу негіздері</b></button>
   </div>
 </div>
 
-<!-- TEST 1: АЛКАНДАР -->
-<div id="test-alkandар" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
-  <span class="tag">Органикалық химия</span>
-  <h2>Алкандар / Alkanes — 20 сұрақ</h2>
-  <form id="form-alkandар"></form>
-  <button class="submit-btn" onclick="gradeTest('alkandар','Органикалық химия','Алкандар')">Аяқтау / Finish</button>
-  <div class="result-box" id="result-alkandар"></div>
-</div>
-
-<!-- TEST 2: АЛКЕНДЕР -->
-<div id="test-alkender" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
-  <span class="tag">Органикалық химия</span>
-  <h2>Алкендер / Alkenes — 20 сұрақ</h2>
-  <form id="form-alkender"></form>
-  <button class="submit-btn" onclick="gradeTest('alkender','Органикалық химия','Алкендер')">Аяқтау / Finish</button>
-  <div class="result-box" id="result-alkender"></div>
-</div>
-
-<!-- TEST 3: МАССАЛАР ЗАҢЫ -->
-<div id="test-massalar" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
-  <span class="tag">Аналитикалық химия</span>
-  <h2>Әрекеттесуші массалар заңы / Law of Mass Action — 20 сұрақ</h2>
-  <form id="form-massalar"></form>
-  <button class="submit-btn" onclick="gradeTest('massalar','Аналитикалық химия','Әрекеттесуші массалар заңы')">Аяқтау / Finish</button>
-  <div class="result-box" id="result-massalar"></div>
-</div>
-
-<!-- TEST 4: ЕРІТІНДІ -->
-<div id="test-eritindi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
-  <span class="tag">Аналитикалық химия</span>
-  <h2>Ерітіндінің иондық күші және активтілігі / Ionic Strength and Activity — 20 сұрақ</h2>
-  <form id="form-eritindi"></form>
-  <button class="submit-btn" onclick="gradeTest('eritindi','Аналитикалық химия','Иондық күш және активтілік')">Аяқтау / Finish</button>
-  <div class="result-box" id="result-eritindi"></div>
-</div>
-
-<!-- TEST 5: ҒЫЛЫМИ МАҚАЛА -->
-<div id="test-gylymi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
-  <span class="tag">Ғылыми-зерттеу жұмысы</span>
-  <h2>Ғылыми мақала / Scientific Article — 20 сұрақ</h2>
-  <form id="form-gylymi"></form>
-  <button class="submit-btn" onclick="gradeTest('gylymi','Ғылыми-зерттеу жұмысы','Ғылыми мақала')">Аяқтау / Finish</button>
-  <div class="result-box" id="result-gylymi"></div>
+<div id="test-container">
+  <!-- Тесттер осында динамикалы түрде ашылады -->
 </div>
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
-
-// ========== СҰРАҚТАР (CLIL ФОРМАТЫ) ==========
 
 const tests = {
   'alkandар': {
@@ -224,5 +162,4 @@ function sendResult(id) {
 }
 </script>
 </body>
-</html>
 </html>
