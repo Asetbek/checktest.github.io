@@ -256,7 +256,7 @@ function finishTest(id) {
   name: document.getElementById('userName').value.trim(),
   group: document.getElementById('userGroup').value.trim(),
   discipline: test.discipline,
-  topic: test.title,
+  topic: id,
   score: score,
   total: test.questions.length
 };
