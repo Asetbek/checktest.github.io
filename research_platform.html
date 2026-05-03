@@ -57,8 +57,8 @@ header { background: white; border-bottom: 4px solid var(--zu-gold); padding: 30
 
 <div id="main-view">
   <section class="hero">
-    <h2>Chemistry CLIL Tests</h2>
-    <p> Констатациялау кезеңі </p>
+    <h2>Chemistry CLIL tests</h2>
+    <p> Education platform </p>
   </section>
 
   <div class="container">
@@ -69,21 +69,21 @@ header { background: white; border-bottom: 4px solid var(--zu-gold); padding: 30
     <!-- Секция Органики -->
       <h3 style="color: var(--zu-blue); margin-top: 20px; border-bottom: 2px solid var(--zu-gold); text-align: center;">Органикалық химия</h3>
       <div class="menu-grid" style="margin-top: 10px;">
-        <button class="menu-btn" onclick="startTest('alkandap')">Алкандар (Alkanes)</button>
-        <button class="menu-btn" onclick="startTest('alkender')">Алкендер (Alkenes)</button>
+        <button class="menu-btn" onclick="startTest('alkandap')">Алкандар</button>
+        <button class="menu-btn" onclick="startTest('alkender')">Алкендер</button>
       </div>
 
       <!-- Секция Аналитики -->
       <h3 style="color: var(--zu-blue); margin-top: 20px; border-bottom: 2px solid var(--zu-gold); text-align: center;">Аналитикалық химия</h3>
       <div class="menu-grid" style="margin-top: 10px;">
-        <button class="menu-btn" onclick="startTest('massalar')">Әрекеттесуші массалар заңы</button>
-        <button class="menu-btn" onclick="startTest('eritindi')">Иондық күш және активтілік</button>
+        <button class="menu-btn" onclick="startTest('massalar')">Әрекеттесуші массалар заңы және гетерогенді жүйелер</button>
+        <button class="menu-btn" onclick="startTest('eritindi')">Ерітіндінің иондық күші мен активтілігі</button>
       </div>
 
       <!-- Секция Науки -->
-      <h3 style="color: var(--zu-blue); margin-top: 20px; border-bottom: 2px solid var(--zu-gold); text-align: center;">Ғылыми жұмыс</h3>
+      <h3 style="color: var(--zu-blue); margin-top: 20px; border-bottom: 2px solid var(--zu-gold); text-align: center;">Ғылыми-зерттеу жұмысын ұйымдастыру</h3>
       <div class="menu-grid" style="margin-top: 10px;">
-        <button class="menu-btn full-width" onclick="startTest('gylymi')">Ғылыми мақала жазу негіздері</button>
+        <button class="menu-btn full-width" onclick="startTest('gylymi')">Ғылыми мақала</button>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bm
 const quizData = {
   'alkandap': { 
   discipline: 'Органикалық химия',
-  title: 'Алкандар (Alkanes)',
+  title: 'Алкандар',
     questions: [
       { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
       { q: "The hybrid state of carbon atoms in alkanes is:", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
@@ -123,7 +123,7 @@ const quizData = {
   },
   'alkender': { 
     discipline: 'Органикалық химия',
-  title: 'Алкендер (Alkenes)',
+  title: 'Алкендер',
     questions: [
       { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n-6"], c: 1 },
       { q: "Alkenes contain at least one ______ bond.", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
@@ -149,7 +149,7 @@ const quizData = {
   },
   'massalar': { 
     discipline: 'Аналитикалық химия',
-  title: 'Әрекеттесуші массалар заңы', 
+  title: 'Әрекеттесуші массалар заңы және гетерогенді жүйелер', 
     questions: [
       { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Ostwald"], c: 1 },
       { q: "Reaction rate is proportional to the product of ______ of reactants.", a: ["Mass", "Volume", "Active masses (concentrations)", "Temperature"], c: 2 },
@@ -175,7 +175,7 @@ const quizData = {
   },
   'eritindi': { 
     discipline: 'Аналитикалық химия',
-  title: 'Иондық күш және активтілік', 
+  title: 'Ерітіндінің иондық күші мен активтілігі', 
     questions: [
       { q: "Ionic strength (mu) was introduced by:", a: ["Arrhenius", "Lewis and Randall", "Debye", "Hückel"], c: 1 },
       { q: "Formula for ionic strength is $\mu = \frac{1}{2} \sum$ ______.", a: ["ci zi", "ci zi^2", "ci^2 zi", "ci / zi"], c: 1 },
@@ -201,7 +201,7 @@ const quizData = {
   },
   'gylymi': { 
     discipline: 'Ғылыми-зерттеу жұмысын ұйымдастыру',
-  title: 'Ғылыми мақала жазу негіздері', 
+  title: 'Ғылыми мақала', 
     questions: [
       { q: "What is the standard structure of a research article?", a: ["IMRAD", "ABCC", "H-index", "DOI"], c: 0 },
       { q: "IMRaD stands for Introduction, Methods, Results, and ______.", a: ["Data", "Diagram", "Discussion", "Description"], c: 2 },
