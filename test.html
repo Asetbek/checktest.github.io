@@ -1,9 +1,8 @@
-
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>CLIL Химия тесттері</title>
+<title>CLIL Chemistry Tests / Химия тесттері</title>
 <style>
 * { box-sizing: border-box; }
 body { font-family: Arial, sans-serif; max-width: 960px; margin: 0 auto; padding: 20px 16px; background: #f0f4ff; }
@@ -19,8 +18,10 @@ h1 { text-align: center; color: #1a3c6e; margin-bottom: 6px; }
 .back-btn:hover { background: #555; }
 .name-box { background: #e8f0fe; padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #b0c4f8; }
 .name-box input { padding: 8px 12px; font-size: 16px; width: 320px; border: 1px solid #aaa; border-radius: 4px; margin-top: 8px; }
+.name-box label { font-size: 15px; }
 .q { margin-bottom: 14px; padding: 12px 14px; border: 1px solid #ddd; border-radius: 6px; background: white; }
-.q p { margin: 0 0 8px; font-weight: bold; font-size: 15px; }
+.q p { margin: 0 0 8px; font-weight: bold; font-size: 15px; color: #333; }
+.q p span.eng { color: #0056b3; font-weight: normal; font-size: 14px; display: block; margin-top: 4px; }
 label { display: block; margin: 4px 0; cursor: pointer; font-size: 14px; }
 .submit-btn { padding: 11px 30px; font-size: 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 12px; }
 .submit-btn:hover { background: #45a049; }
@@ -34,207 +35,205 @@ h2 { color: #1a3c6e; border-bottom: 2px solid #1a3c6e; padding-bottom: 6px; marg
 <!-- MAIN MENU -->
 <div id="main-menu">
   <h1>🧪 CLIL Химия тесттері</h1>
-  <p class="subtitle">Тақырыпты таңдамас бұрын аты-жөніңізді енгізіңіз</p>
+  <p class="subtitle">Тақырыпты таңдамас бұрын аты-жөніңізді және тобыңызды енгізіңіз<br><i>Please enter your name and group before selecting a topic</i></p>
 
   <div class="name-box">
-    <label><b>Аты-жөніңіз / Имя и фамилия:</b></label><br>
+    <label><b>Аты-жөніңіз / Full Name:</b></label><br>
     <input type="text" id="studentName" placeholder="Мысалы: Айгерим Сейткали" />
+    <br><br>
+    <label><b>Тобыңыз / Group:</b></label><br>
+    <input type="text" id="studentGroup" placeholder="Мысалы: ХИМ-21" />
   </div>
-  
- <div class="name-box">
-    <label><b>Топ / Группа :</b></label><br>
-    <input type="text" id="studentName" placeholder="Мысалы: ХПМ111" />
-  </div>
-  
-  <p style="text-align:center;color:#444;font-weight:bold;">Тақырыпты таңдаңыз:</p>
+
+  <p style="text-align:center;color:#444;font-weight:bold;">Тақырыпты таңдаңыз / Select a topic:</p>
   <div class="menu">
-    <button class="menu-btn" onclick="openTest('alkandар')">Органикалық химия<small>Алкандар</small></button>
-    <button class="menu-btn" onclick="openTest('alkender')">Органикалық химия<small>Алкендер</small></button>
-    <button class="menu-btn" onclick="openTest('massalar')">Аналитикалық химия<small>Әрекеттесуші массалар заңы және гетерогенді жүйелер</small></button>
-    <button class="menu-btn" onclick="openTest('eritindi')">Аналитикалық химия<small>Ерітіндінің иондық күші және ионның активтілігі</small></button>
-    <button class="menu-btn" onclick="openTest('gylymi')" style="grid-column: span 2;">Ғылыми-зерттеу жұмысын ұйымдастыру<small>Ғылыми мақала</small></button>
+    <button class="menu-btn" onclick="openTest('alkandар')">Органикалық химия<small>Алкандар / Alkanes</small></button>
+    <button class="menu-btn" onclick="openTest('alkender')">Органикалық химия<small>Алкендер / Alkenes</small></button>
+    <button class="menu-btn" onclick="openTest('massalar')">Аналитикалық химия<small>Әрекеттесуші массалар заңы / Law of Mass Action</small></button>
+    <button class="menu-btn" onclick="openTest('eritindi')">Аналитикалық химия<small>Иондық күш және активтілік / Ionic Strength and Activity</small></button>
+    <button class="menu-btn" onclick="openTest('gylymi')" style="grid-column: span 2;">Ғылыми-зерттеу жұмысын ұйымдастыру<small>Ғылыми мақала / Scientific Article</small></button>
   </div>
 </div>
 
 <!-- TEST 1: АЛКАНДАР -->
 <div id="test-alkandар" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
+  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
   <span class="tag">Органикалық химия</span>
-  <h2>Алкандар — 20 сұрақ</h2>
+  <h2>Алкандар / Alkanes — 20 сұрақ</h2>
   <form id="form-alkandар"></form>
-  <button class="submit-btn" onclick="gradeTest('alkandар','Органикалық химия','Алкандар')">Аяқтау</button>
+  <button class="submit-btn" onclick="gradeTest('alkandар','Органикалық химия','Алкандар')">Аяқтау / Finish</button>
   <div class="result-box" id="result-alkandар"></div>
 </div>
 
 <!-- TEST 2: АЛКЕНДЕР -->
 <div id="test-alkender" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
+  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
   <span class="tag">Органикалық химия</span>
-  <h2>Алкендер — 20 сұрақ</h2>
+  <h2>Алкендер / Alkenes — 20 сұрақ</h2>
   <form id="form-alkender"></form>
-  <button class="submit-btn" onclick="gradeTest('alkender','Органикалық химия','Алкендер')">Аяқтау</button>
+  <button class="submit-btn" onclick="gradeTest('alkender','Органикалық химия','Алкендер')">Аяқтау / Finish</button>
   <div class="result-box" id="result-alkender"></div>
 </div>
 
 <!-- TEST 3: МАССАЛАР ЗАҢЫ -->
 <div id="test-massalar" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
+  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
   <span class="tag">Аналитикалық химия</span>
-  <h2>Әрекеттесуші массалар заңы және гетерогенді жүйелер — 20 сұрақ</h2>
+  <h2>Әрекеттесуші массалар заңы / Law of Mass Action — 20 сұрақ</h2>
   <form id="form-massalar"></form>
-  <button class="submit-btn" onclick="gradeTest('massalar','Аналитикалық химия','Әрекеттесуші массалар заңы')">Аяқтау</button>
+  <button class="submit-btn" onclick="gradeTest('massalar','Аналитикалық химия','Әрекеттесуші массалар заңы')">Аяқтау / Finish</button>
   <div class="result-box" id="result-massalar"></div>
 </div>
 
 <!-- TEST 4: ЕРІТІНДІ -->
 <div id="test-eritindi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
+  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
   <span class="tag">Аналитикалық химия</span>
-  <h2>Ерітіндінің иондық күші және ионның активтілігі — 20 сұрақ</h2>
+  <h2>Ерітіндінің иондық күші және активтілігі / Ionic Strength and Activity — 20 сұрақ</h2>
   <form id="form-eritindi"></form>
-  <button class="submit-btn" onclick="gradeTest('eritindi','Аналитикалық химия','Иондық күш және активтілік')">Аяқтау</button>
+  <button class="submit-btn" onclick="gradeTest('eritindi','Аналитикалық химия','Иондық күш және активтілік')">Аяқтау / Finish</button>
   <div class="result-box" id="result-eritindi"></div>
 </div>
 
 <!-- TEST 5: ҒЫЛЫМИ МАҚАЛА -->
 <div id="test-gylymi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
+  <button class="back-btn" onclick="goBack()">← Артқа / Back</button>
   <span class="tag">Ғылыми-зерттеу жұмысы</span>
-  <h2>Ғылыми мақала — 20 сұрақ</h2>
+  <h2>Ғылыми мақала / Scientific Article — 20 сұрақ</h2>
   <form id="form-gylymi"></form>
-  <button class="submit-btn" onclick="gradeTest('gylymi','Ғылыми-зерттеу жұмысы','Ғылыми мақала')">Аяқтау</button>
+  <button class="submit-btn" onclick="gradeTest('gylymi','Ғылыми-зерттеу жұмысы','Ғылыми мақала')">Аяқтау / Finish</button>
   <div class="result-box" id="result-gylymi"></div>
 </div>
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
 
-// ========== СҰРАҚТАР ==========
+// ========== СҰРАҚТАР (CLIL ФОРМАТЫ) ==========
 
 const tests = {
 
 'alkandар': {
   questions: [
-    { q: '1. Алкандардың жалпы формуласы қандай?', opts: ['CₙH₂ₙ', 'CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
-    { q: '2. Метан молекуласындағы сутек атомдарының саны:', opts: ['2', '4', '6', '8'], ans: 1 },
-    { q: '3. Алкандарға тән реакция түрі:', opts: ['Қосылу', 'Орынбасу', 'Полимерлену', 'Сусызсыздандыру'], ans: 1 },
-    { q: '4. Алкандардағы көміртек-көміртек байланысы:', opts: ['Қос байланыс', 'Үш байланыс', 'Жай (бір) байланыс', 'Ароматты байланыс'], ans: 2 },
-    { q: '5. Алкан қатарының бірінші мүшесі:', opts: ['Метан', 'Этан', 'Пропан', 'Бутан'], ans: 0 },
-    { q: '6. Пропанның молекулалық формуласы:', opts: ['C₃H₆', 'C₃H₈', 'C₃H₄', 'C₃H₁₀'], ans: 1 },
-    { q: '7. Бутан молекуласындағы көміртек атомдарының саны:', opts: ['2', '3', '4', '5'], ans: 2 },
-    { q: '8. Табиғи газдың негізгі құрамы:', opts: ['Метан', 'Пропан', 'Гексан', 'Октан'], ans: 0 },
-    { q: '9. Алкандар суда:', opts: ['Жақсы ериді', 'Нашар ериді', 'Толық иондарға ыдырайды', 'Қышқыл түзеді'], ans: 1 },
-    { q: '10. Көміртек атомдары саны өскен сайын алкандардың қайнау температурасы:', opts: ['Төмендейді', 'Өзгермейді', 'Жоғарылайды', 'Жоқ болады'], ans: 2 },
-    { q: '11. Пентанның молекулалық формуласы:', opts: ['C₅H₁₀', 'C₅H₁₂', 'C₅H₈', 'C₅H₁₄'], ans: 1 },
-    { q: '12. Метанның гомологы:', opts: ['Этан', 'Этен', 'Этанол', 'Этаналь'], ans: 0 },
-    { q: '13. Алкандардың жану өнімдері:', opts: ['CO₂ және H₂O', 'HCl және H₂', 'O₂ және H₂', 'Тек CO₂'], ans: 0 },
-    { q: '14. Гексан молекуласындағы сутек атомдарының саны:', opts: ['12', '14', '10', '16'], ans: 1 },
-    { q: '15. Изомерия қай алканнан басталады?', opts: ['Метан', 'Этан', 'Пропан', 'Бутан'], ans: 3 },
-    { q: '16. C₄H₁₀ формуласына сәйкес алкан:', opts: ['Пропан', 'Бутан', 'Пентан', 'Гексан'], ans: 1 },
-    { q: '17. Алкандар қай класқа жатады?', opts: ['Қанықпаған', 'Қаныққан', 'Ароматты', 'Спирттер'], ans: 1 },
-    { q: '18. Октан молекуласындағы көміртек атомдарының саны:', opts: ['6', '7', '8', '9'], ans: 2 },
-    { q: '19. Алкандардың хлорлану реакциясы қандай жағдайда жүреді?', opts: ['Қараңғыда', 'Жарықта немесе қыздырғанда', 'Суда', 'Катализатор болмаса'], ans: 1 },
-    { q: '20. Алкандардың физикалық қасиеті — олар:', opts: ['Полярлы еріткіштерде жақсы ериді', 'Бейполярлы еріткіштерде ериді', 'Электр тогын өткізеді', 'Суда жақсы ериді'], ans: 1 },
+    { q: '1. Алкандардың жалпы формуласы қандай? <span class="eng">What is the general formula of alkanes?</span>', opts: ['CₙH₂ₙ', 'CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
+    { q: '2. Метан молекуласындағы сутек атомдарының саны: <span class="eng">Number of hydrogen atoms in a methane molecule:</span>', opts: ['2', '4', '6', '8'], ans: 1 },
+    { q: '3. Алкандарға тән реакция түрі: <span class="eng">Typical reaction type for alkanes:</span>', opts: ['Қосылу / Addition', 'Орынбасу / Substitution', 'Полимерлену / Polymerization', 'Сусызсыздандыру / Dehydration'], ans: 1 },
+    { q: '4. Алкандардағы көміртек-көміртек байланысы: <span class="eng">Carbon-carbon bond in alkanes:</span>', opts: ['Қос байланыс / Double bond', 'Үш байланыс / Triple bond', 'Жай (бір) байланыс / Single bond', 'Ароматты байланыс / Aromatic bond'], ans: 2 },
+    { q: '5. Алкан қатарының бірінші мүшесі: <span class="eng">The first member of the alkane series:</span>', opts: ['Метан / Methane', 'Этан / Ethane', 'Пропан / Propane', 'Бутан / Butane'], ans: 0 },
+    { q: '6. Пропанның молекулалық формуласы: <span class="eng">Molecular formula of propane:</span>', opts: ['C₃H₆', 'C₃H₈', 'C₃H₄', 'C₃H₁₀'], ans: 1 },
+    { q: '7. Бутан молекуласындағы көміртек атомдарының саны: <span class="eng">Number of carbon atoms in a butane molecule:</span>', opts: ['2', '3', '4', '5'], ans: 2 },
+    { q: '8. Табиғи газдың негізгі құрамы: <span class="eng">The main component of natural gas:</span>', opts: ['Метан / Methane', 'Пропан / Propane', 'Гексан / Hexane', 'Октан / Octane'], ans: 0 },
+    { q: '9. Алкандар суда: <span class="eng">Alkanes in water:</span>', opts: ['Жақсы ериді / Dissolve well', 'Нашар ериді / Dissolve poorly', 'Иондарға ыдырайды / Dissociate into ions', 'Қышқыл түзеді / Form acid'], ans: 1 },
+    { q: '10. Көміртек атомдары саны өскен сайын алкандардың қайнау температурасы: <span class="eng">As the number of carbon atoms increases, the boiling point of alkanes:</span>', opts: ['Төмендейді / Decreases', 'Өзгермейді / Does not change', 'Жоғарылайды / Increases', 'Жоқ болады / Disappears'], ans: 2 },
+    { q: '11. Пентанның молекулалық формуласы: <span class="eng">Molecular formula of pentane:</span>', opts: ['C₅H₁₀', 'C₅H₁₂', 'C₅H₈', 'C₅H₁₄'], ans: 1 },
+    { q: '12. Метанның гомологы: <span class="eng">Homologue of methane:</span>', opts: ['Этан / Ethane', 'Этен / Ethene', 'Этанол / Ethanol', 'Этаналь / Ethanal'], ans: 0 },
+    { q: '13. Алкандардың жану өнімдері: <span class="eng">Combustion products of alkanes:</span>', opts: ['CO₂ және H₂O', 'HCl және H₂', 'O₂ және H₂', 'Тек CO₂ / Only CO₂'], ans: 0 },
+    { q: '14. Гексан молекуласындағы сутек атомдарының саны: <span class="eng">Number of hydrogen atoms in a hexane molecule:</span>', opts: ['12', '14', '10', '16'], ans: 1 },
+    { q: '15. Изомерия қай алканнан басталады? <span class="eng">Isomerism starts from which alkane?</span>', opts: ['Метан / Methane', 'Этан / Ethane', 'Пропан / Propane', 'Бутан / Butane'], ans: 3 },
+    { q: '16. C₄H₁₀ формуласына сәйкес алкан: <span class="eng">Alkane corresponding to the formula C₄H₁₀:</span>', opts: ['Пропан / Propane', 'Бутан / Butane', 'Пентан / Pentane', 'Гексан / Hexane'], ans: 1 },
+    { q: '17. Алкандар қай класқа жатады? <span class="eng">Which class do alkanes belong to?</span>', opts: ['Қанықпаған / Unsaturated', 'Қаныққан / Saturated', 'Ароматты / Aromatic', 'Спирттер / Alcohols'], ans: 1 },
+    { q: '18. Октан молекуласындағы көміртек атомдарының саны: <span class="eng">Number of carbon atoms in an octane molecule:</span>', opts: ['6', '7', '8', '9'], ans: 2 },
+    { q: '19. Алкандардың хлорлану реакциясы қандай жағдайда жүреді? <span class="eng">Under what conditions does the chlorination of alkanes occur?</span>', opts: ['Қараңғыда / In the dark', 'Жарықта немесе қыздырғанда / In light or when heated', 'Суда / In water', 'Катализаторсыз / Without catalyst'], ans: 1 },
+    { q: '20. Алкандардың физикалық қасиеті: <span class="eng">Physical property of alkanes:</span>', opts: ['Полярлы еріткіштерде ериді / Soluble in polar solvents', 'Бейполярлы еріткіштерде ериді / Soluble in non-polar solvents', 'Электр тогын өткізеді / Conduct electricity', 'Суда жақсы ериді / Highly soluble in water'], ans: 1 },
   ]
 },
 
 'alkender': {
   questions: [
-    { q: '1. Алкендердің жалпы формуласы:', opts: ['CₙH₂ₙ₊₂', 'CₙH₂ₙ', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
-    { q: '2. Алкендерге тән байланыс түрі:', opts: ['Жай байланыс', 'Үш байланыс', 'Қос байланыс', 'Ароматты байланыс'], ans: 2 },
-    { q: '3. Алкендер қатарының бірінші мүшесі:', opts: ['Метан', 'Этен (этилен)', 'Пропен', 'Бутен'], ans: 1 },
-    { q: '4. Этиленнің молекулалық формуласы:', opts: ['C₂H₆', 'C₂H₄', 'C₂H₂', 'C₂H₅'], ans: 1 },
-    { q: '5. Алкендерге тән реакция түрі:', opts: ['Орынбасу', 'Қосылу', 'Ыдырау', 'Полимерлену'], ans: 1 },
-    { q: '6. Алкендер бром суын:', opts: ['Тотықтырады', 'Түссіздендіреді', 'Ерітпейді', 'Бояйды'], ans: 1 },
-    { q: '7. Пропеннің молекулалық формуласы:', opts: ['C₃H₈', 'C₃H₄', 'C₃H₆', 'C₃H₁₀'], ans: 2 },
-    { q: '8. Марковников ережесі қандай реакцияға қатысты?', opts: ['Жану', 'Галогенсутек қосылу', 'Орынбасу', 'Полимерлену'], ans: 1 },
-    { q: '9. Этиленнің полимерлену өнімі:', opts: ['Полипропилен', 'Полиэтилен', 'Полистирол', 'Полибутилен'], ans: 1 },
-    { q: '10. Алкендердің гидраттану өнімі:', opts: ['Альдегид', 'Спирт', 'Қышқыл', 'Эфир'], ans: 1 },
-    { q: '11. Алкендердегі қос байланыс нені білдіреді?', opts: ['Бір σ-байланыс', 'Екі π-байланыс', 'Бір σ және бір π байланыс', 'Екі σ-байланыс'], ans: 2 },
-    { q: '12. Бутен-1 мен бутен-2 бір-біріне қатысты:', opts: ['Гомологтар', 'Изомерлер', 'Бір зат', 'Аллотропты түрлер'], ans: 1 },
-    { q: '13. Алкендерді алудың негізгі өнеркәсіптік тәсілі:', opts: ['Алкандарды синтездеу', 'Алкандарды крекингілеу', 'Тотықтыру', 'Гидрлеу'], ans: 1 },
-    { q: '14. Этиленнің жану теңдеуіндегі CO₂ коэффициенті:', opts: ['1', '2', '3', '4'], ans: 1 },
-    { q: '15. Алкендер калий перманганатын (KMnO₄):', opts: ['Тотықтырмайды', 'Түссіздендіреді', 'Тұндырады', 'Ерітеді'], ans: 1 },
-    { q: '16. Пентен молекуласындағы сутек атомдарының саны:', opts: ['8', '10', '12', '14'], ans: 1 },
-    { q: '17. Алкендердің алкандардан айырмашылығы:', opts: ['Жалпы формуласы', 'Қос байланыстың болуы', 'Жану реакциясы', 'Барлығы дұрыс'], ans: 3 },
-    { q: '18. Цис- және транс-изомерия қай алкеннен басталады?', opts: ['Этен', 'Пропен', 'Бутен-2', 'Пентен'], ans: 2 },
-    { q: '19. Алкендердің су қосып алу реакциясы нені береді?', opts: ['Альдегид', 'Спирт', 'Кетон', 'Қышқыл'], ans: 1 },
-    { q: '20. HBr-ді пропенге қосқанда негізгі өнім (Марковников бойынша):', opts: ['1-бромпропан', '2-бромпропан', '1,2-дибромпропан', '3-бромпропан'], ans: 1 },
+    { q: '1. Алкендердің жалпы формуласы: <span class="eng">General formula of alkenes:</span>', opts: ['CₙH₂ₙ₊₂', 'CₙH₂ₙ', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
+    { q: '2. Алкендерге тән байланыс түрі: <span class="eng">Type of bond typical for alkenes:</span>', opts: ['Жай байланыс / Single bond', 'Үш байланыс / Triple bond', 'Қос байланыс / Double bond', 'Ароматты байланыс / Aromatic bond'], ans: 2 },
+    { q: '3. Алкендер қатарының бірінші мүшесі: <span class="eng">First member of the alkene series:</span>', opts: ['Метан / Methane', 'Этен (этилен) / Ethene (ethylene)', 'Пропен / Propene', 'Бутен / Butene'], ans: 1 },
+    { q: '4. Этиленнің молекулалық формуласы: <span class="eng">Molecular formula of ethylene:</span>', opts: ['C₂H₆', 'C₂H₄', 'C₂H₂', 'C₂H₅'], ans: 1 },
+    { q: '5. Алкендерге тән реакция түрі: <span class="eng">Typical reaction type for alkenes:</span>', opts: ['Орынбасу / Substitution', 'Қосылу / Addition', 'Ыдырау / Decomposition', 'Полимерлену / Polymerization'], ans: 1 },
+    { q: '6. Алкендер бром суын: <span class="eng">Alkenes act on bromine water by:</span>', opts: ['Тотықтырады / Oxidizing it', 'Түссіздендіреді / Decolorizing it', 'Ерітпейді / Not dissolving it', 'Бояйды / Coloring it'], ans: 1 },
+    { q: '7. Пропеннің молекулалық формуласы: <span class="eng">Molecular formula of propene:</span>', opts: ['C₃H₈', 'C₃H₄', 'C₃H₆', 'C₃H₁₀'], ans: 2 },
+    { q: '8. Марковников ережесі қандай реакцияға қатысты? <span class="eng">Markovnikov\'s rule applies to which reaction?</span>', opts: ['Жану / Combustion', 'Галогенсутек қосылу / Hydrohalogenation', 'Орынбасу / Substitution', 'Полимерлену / Polymerization'], ans: 1 },
+    { q: '9. Этиленнің полимерлену өнімі: <span class="eng">Polymerization product of ethylene:</span>', opts: ['Полипропилен / Polypropylene', 'Полиэтилен / Polyethylene', 'Полистирол / Polystyrene', 'Полибутилен / Polybutylene'], ans: 1 },
+    { q: '10. Алкендердің гидраттану өнімі: <span class="eng">Hydration product of alkenes:</span>', opts: ['Альдегид / Aldehyde', 'Спирт / Alcohol', 'Қышқыл / Acid', 'Эфир / Ether'], ans: 1 },
+    { q: '11. Алкендердегі қос байланыс нені білдіреді? <span class="eng">What does the double bond in alkenes consist of?</span>', opts: ['Бір σ-байланыс / One σ-bond', 'Екі π-байланыс / Two π-bonds', 'Бір σ және бір π байланыс / One σ and one π bond', 'Екі σ-байланыс / Two σ-bonds'], ans: 2 },
+    { q: '12. Бутен-1 мен бутен-2 бір-біріне қатысты: <span class="eng">Butene-1 and butene-2 in relation to each other are:</span>', opts: ['Гомологтар / Homologues', 'Изомерлер / Isomers', 'Бір зат / The same substance', 'Аллотроптар / Allotropes'], ans: 1 },
+    { q: '13. Алкендерді алудың өнеркәсіптік тәсілі: <span class="eng">Industrial method for obtaining alkenes:</span>', opts: ['Синтез / Synthesis', 'Алкандарды крекингілеу / Cracking of alkanes', 'Тотықтыру / Oxidation', 'Гидрлеу / Hydrogenation'], ans: 1 },
+    { q: '14. Этиленнің жану теңдеуіндегі CO₂ коэффициенті: <span class="eng">Coefficient of CO₂ in the combustion equation of ethylene:</span>', opts: ['1', '2', '3', '4'], ans: 1 },
+    { q: '15. Алкендер калий перманганатын (KMnO₄): <span class="eng">Alkenes act on potassium permanganate (KMnO₄) by:</span>', opts: ['Тотықтырмайды / Not oxidizing', 'Түссіздендіреді / Decolorizing it', 'Тұндырады / Precipitating', 'Ерітеді / Dissolving'], ans: 1 },
+    { q: '16. Пентен молекуласындағы сутек атомдарының саны: <span class="eng">Number of hydrogen atoms in a pentene molecule:</span>', opts: ['8', '10', '12', '14'], ans: 1 },
+    { q: '17. Алкендердің алкандардан айырмашылығы: <span class="eng">Difference between alkenes and alkanes:</span>', opts: ['Жалпы формуласы / General formula', 'Қос байланысы / Presence of a double bond', 'Жану реакциясы / Combustion reaction', 'Барлығы дұрыс / All are correct'], ans: 3 },
+    { q: '18. Цис- және транс-изомерия қай алкеннен басталады? <span class="eng">Cis- and trans-isomerism starts from which alkene?</span>', opts: ['Этен / Ethene', 'Пропен / Propene', 'Бутен-2 / Butene-2', 'Пентен / Pentene'], ans: 2 },
+    { q: '19. Алкендердің су қосып алу реакциясы нені береді? <span class="eng">Addition of water to alkenes produces:</span>', opts: ['Альдегид / Aldehyde', 'Спирт / Alcohol', 'Кетон / Ketone', 'Қышқыл / Acid'], ans: 1 },
+    { q: '20. HBr-ді пропенге қосқанда негізгі өнім: <span class="eng">Main product of adding HBr to propene:</span>', opts: ['1-бромпропан / 1-bromopropane', '2-бромпропан / 2-bromopropane', '1,2-дибромпропан / 1,2-dibromopropane', '3-бромпропан / 3-bromopropane'], ans: 1 },
   ]
 },
 
 'massalar': {
   questions: [
-    { q: '1. Әрекеттесуші массалар заңын кім ашты?', opts: ['Менделеев және Мейер', 'Гульдберг және Вааге', 'Аррениус және Оствальд', 'Лавуазье және Дальтон'], ans: 1 },
-    { q: '2. Химиялық тепе-теңдік константасы К нені сипаттайды?', opts: ['Реакция жылдамдығын', 'Өнімдер мен реагенттер концентрацияларының қатынасын', 'Температура әсерін', 'Катализатор әсерін'], ans: 1 },
-    { q: '3. Гомогенді жүйе дегеніміз:', opts: ['Бірнеше фазадан тұратын жүйе', 'Бір фазадан тұратын жүйе', 'Екі сұйықтан тұратын жүйе', 'Қатты және газ фазасы'], ans: 1 },
-    { q: '4. Гетерогенді жүйеде тепе-теңдік константасына қатты заттардың концентрациясы:', opts: ['Кіреді', 'Кірмейді', 'Кейде кіреді', 'Температураға байланысты'], ans: 1 },
-    { q: '5. aA + bB ⇌ cC + dD реакциясы үшін К өрнегі:', opts: ['K = [A]ᵃ[B]ᵇ / [C]ᶜ[D]ᵈ', 'K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ', 'K = [C][D] / [A][B]', 'K = [A][B] / [C][D]'], ans: 1 },
-    { q: '6. Тепе-теңдік константасы К > 1 болса:', opts: ['Реакция солға қарай жылжиды', 'Реакция өнімдері басым болады', 'Реагенттер басым болады', 'Реакция жүрмейді'], ans: 1 },
-    { q: '7. Ле Шателье принципі нені сипаттайды?', opts: ['Реакция жылдамдығын', 'Жүйенің сыртқы әсерге қарсы іс-әрекетін', 'Тепе-теңдік константасының мәнін', 'Температура тәуелділігін'], ans: 1 },
-    { q: '8. Температура жоғарыласа, эндотермиялық реакция үшін тепе-теңдік:', opts: ['Солға жылжиды', 'Оңға жылжиды', 'Өзгермейді', 'Жойылады'], ans: 1 },
-    { q: '9. Қысым өссе, газдар үшін тепе-теңдік қай жаққа жылжиды?', opts: ['Газ молі аз жаққа', 'Газ молі көп жаққа', 'Өзгермейді', 'Температураға байланысты'], ans: 0 },
-    { q: '10. Гетерогенді жүйеге мысал:', opts: ['NaCl ерітіндісі', 'Мұз бен су', 'HCl газы', 'Этанол ерітіндісі'], ans: 1 },
-    { q: '11. Концентрация өссе реакция жылдамдығы:', opts: ['Төмендейді', 'Өзгермейді', 'Жоғарылайды', 'Жойылады'], ans: 2 },
-    { q: '12. Гетерогенді реакцияда беткі аудан ұлғайса реакция жылдамдығы:', opts: ['Төмендейді', 'Жоғарылайды', 'Өзгермейді', 'Белгісіз'], ans: 1 },
-    { q: '13. Тепе-теңдікте тура және кері реакция жылдамдықтары:', opts: ['Тура жылдамдық жоғары', 'Тең', 'Кері жылдамдық жоғары', 'Нөлге тең'], ans: 1 },
-    { q: '14. Катализатор тепе-теңдік константасын:', opts: ['Жоғарылатады', 'Төмендетеді', 'Өзгертпейді', 'Жояды'], ans: 2 },
-    { q: '15. CaCO₃(қ) ⇌ CaO(қ) + CO₂(г) үшін К өрнегі:', opts: ['K = [CaO][CO₂]/[CaCO₃]', 'K = [CO₂]', 'K = [CaCO₃]/[CaO]', 'K = 1/[CO₂]'], ans: 1 },
-    { q: '16. Реакция дәрежесі дегеніміз:', opts: ['Стехиометриялық коэффициенттер қосындысы', 'Концентрация дәрежелерінің қосындысы', 'Тепе-теңдік константасы', 'Жылдамдық константасы'], ans: 1 },
-    { q: '17. Экзотермиялық реакцияда температура жоғарыласа тепе-теңдік:', opts: ['Оңға жылжиды', 'Солға жылжиды', 'Өзгермейді', 'Катализаторға байланысты'], ans: 1 },
-    { q: '18. Аррениус теңдеуі не сипаттайды?', opts: ['Концентрация тәуелділігін', 'Температураның жылдамдыққа әсерін', 'Тепе-теңдік константасын', 'Қысым әсерін'], ans: 1 },
-    { q: '19. Ван-Гофф ережесіне сәйкес температура 10°C өссе реакция жылдамдығы:', opts: ['2 есе азаяды', '2-4 есе өседі', '10 есе өседі', 'Өзгермейді'], ans: 1 },
-    { q: '20. Фаза дегеніміз:', opts: ['Химиялық реакция', 'Физикалық қасиеттері біртекті жүйенің бөлігі', 'Концентрация өлшемі', 'Температура интервалы'], ans: 1 },
+    { q: '1. Әрекеттесуші массалар заңын кім ашты? <span class="eng">Who discovered the Law of Mass Action?</span>', opts: ['Менделеев және Мейер', 'Гульдберг және Вааге / Guldberg and Waage', 'Аррениус және Оствальд', 'Лавуазье және Дальтон'], ans: 1 },
+    { q: '2. Тепе-теңдік константасы К нені сипаттайды? <span class="eng">What does the equilibrium constant K characterize?</span>', opts: ['Реакция жылдамдығын / Reaction rate', 'Өнімдер мен реагенттер қатынасын / Ratio of products to reactants', 'Температура әсерін / Temperature effect', 'Катализатор әсерін / Catalyst effect'], ans: 1 },
+    { q: '3. Гомогенді жүйе дегеніміз: <span class="eng">A homogeneous system is:</span>', opts: ['Бірнеше фазадан тұратын / Consisting of several phases', 'Бір фазадан тұратын жүйе / System consisting of one phase', 'Екі сұйықтан тұратын / Consisting of two liquids', 'Қатты және газ / Solid and gas'], ans: 1 },
+    { q: '4. Гетерогенді жүйеде тепе-теңдік константасына қатты заттар: <span class="eng">In a heterogeneous system, solid substances in the equilibrium constant:</span>', opts: ['Кіреді / Are included', 'Кірмейді / Are not included', 'Кейде кіреді / Sometimes included', 'Температураға байланысты / Depends on temperature'], ans: 1 },
+    { q: '5. aA + bB ⇌ cC + dD реакциясы үшін К өрнегі: <span class="eng">The expression for K for the reaction aA + bB ⇌ cC + dD:</span>', opts: ['K = [A]ᵃ[B]ᵇ / [C]ᶜ[D]ᵈ', 'K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ', 'K = [C][D] / [A][B]', 'K = [A][B] / [C][D]'], ans: 1 },
+    { q: '6. Тепе-теңдік константасы К > 1 болса: <span class="eng">If the equilibrium constant K > 1:</span>', opts: ['Реакция солға жылжиды / Reaction shifts left', 'Реакция өнімдері басым болады / Products are favored', 'Реагенттер басым / Reactants are favored', 'Реакция жүрмейді / Reaction does not occur'], ans: 1 },
+    { q: '7. Ле Шателье принципі нені сипаттайды? <span class="eng">What does Le Chatelier\'s principle describe?</span>', opts: ['Реакция жылдамдығын / Reaction rate', 'Жүйенің сыртқы әсерге қарсы әрекетін / System\'s response to external stress', 'Константа мәнін / Value of the constant', 'Температура тәуелділігін / Temperature dependence'], ans: 1 },
+    { q: '8. Эндотермиялық реакция үшін температура жоғарыласа тепе-теңдік: <span class="eng">If temperature increases for an endothermic reaction, equilibrium:</span>', opts: ['Солға жылжиды / Shifts left', 'Оңға жылжиды / Shifts right', 'Өзгермейді / Does not change', 'Жойылады / Disappears'], ans: 1 },
+    { q: '9. Қысым өссе, газдар үшін тепе-теңдік: <span class="eng">If pressure increases, equilibrium for gases shifts:</span>', opts: ['Газ молі аз жаққа / Towards fewer moles of gas', 'Газ молі көп жаққа / Towards more moles of gas', 'Өзгермейді / Does not change', 'Температураға тәуелді / Depends on temperature'], ans: 0 },
+    { q: '10. Гетерогенді жүйеге мысал: <span class="eng">An example of a heterogeneous system:</span>', opts: ['NaCl ерітіндісі / NaCl solution', 'Мұз бен су / Ice and water', 'HCl газы / HCl gas', 'Этанол ерітіндісі / Ethanol solution'], ans: 1 },
+    { q: '11. Концентрация өссе реакция жылдамдығы: <span class="eng">If concentration increases, the reaction rate:</span>', opts: ['Төмендейді / Decreases', 'Өзгермейді / Does not change', 'Жоғарылайды / Increases', 'Жойылады / Disappears'], ans: 2 },
+    { q: '12. Гетерогенді реакцияда беткі аудан ұлғайса реакция жылдамдығы: <span class="eng">If surface area increases in a heterogeneous reaction, the rate:</span>', opts: ['Төмендейді / Decreases', 'Жоғарылайды / Increases', 'Өзгермейді / Does not change', 'Белгісіз / Unknown'], ans: 1 },
+    { q: '13. Тепе-теңдікте тура және кері реакция жылдамдықтары: <span class="eng">At equilibrium, the rates of forward and reverse reactions are:</span>', opts: ['Тура жылдамдық жоғары / Forward is higher', 'Тең / Equal', 'Кері жылдамдық жоғары / Reverse is higher', 'Нөлге тең / Equal to zero'], ans: 1 },
+    { q: '14. Катализатор тепе-теңдік константасын: <span class="eng">A catalyst changes the equilibrium constant:</span>', opts: ['Жоғарылатады / Increases', 'Төмендетеді / Decreases', 'Өзгертпейді / Does not change', 'Жояды / Eliminates'], ans: 2 },
+    { q: '15. CaCO₃(қ) ⇌ CaO(қ) + CO₂(г) үшін К өрнегі: <span class="eng">Expression of K for CaCO₃(s) ⇌ CaO(s) + CO₂(g):</span>', opts: ['K = [CaO][CO₂]/[CaCO₃]', 'K = [CO₂]', 'K = [CaCO₃]/[CaO]', 'K = 1/[CO₂]'], ans: 1 },
+    { q: '16. Реакция дәрежесі дегеніміз: <span class="eng">The order of reaction is:</span>', opts: ['Коэффициенттер қосындысы / Sum of coefficients', 'Концентрация дәрежелерінің қосындысы / Sum of concentration powers', 'Тепе-теңдік константасы / Equilibrium constant', 'Жылдамдық константасы / Rate constant'], ans: 1 },
+    { q: '17. Экзотермиялық реакцияда температура жоғарыласа тепе-теңдік: <span class="eng">If temperature increases in an exothermic reaction, equilibrium:</span>', opts: ['Оңға жылжиды / Shifts right', 'Солға жылжиды / Shifts left', 'Өзгермейді / Does not change', 'Катализаторға тәуелді / Depends on catalyst'], ans: 1 },
+    { q: '18. Аррениус теңдеуі не сипаттайды? <span class="eng">What does the Arrhenius equation describe?</span>', opts: ['Концентрацияны / Concentration', 'Температураның жылдамдыққа әсерін / Effect of temperature on rate', 'Тепе-теңдікті / Equilibrium', 'Қысымды / Pressure'], ans: 1 },
+    { q: '19. Ван-Гофф ережесі: температура 10°C өссе жылдамдық: <span class="eng">Van \'t Hoff rule: if temperature rises by 10°C, the rate:</span>', opts: ['2 есе азаяды / Decreases 2 times', '2-4 есе өседі / Increases 2-4 times', '10 есе өседі / Increases 10 times', 'Өзгермейді / Does not change'], ans: 1 },
+    { q: '20. Фаза дегеніміз: <span class="eng">A phase is:</span>', opts: ['Химиялық реакция / Chemical reaction', 'Физикалық қасиеттері біртекті жүйенің бөлігі / A physically uniform part of a system', 'Концентрация өлшемі / Measure of concentration', 'Температура / Temperature'], ans: 1 },
   ]
 },
 
 'eritindi': {
   questions: [
-    { q: '1. Иондық күш (I) дегеніміз:', opts: ['Иондар концентрациясының қосындысы', 'Иондар концентрациясы мен заряд квадратының жартылай қосындысы', 'Тек катиондар концентрациясы', 'Ерітінді тығыздығы'], ans: 1 },
-    { q: '2. Иондық күш формуласы:', opts: ['I = Σcᵢzᵢ', 'I = ½Σcᵢzᵢ²', 'I = Σcᵢzᵢ²', 'I = ½Σcᵢzᵢ'], ans: 1 },
-    { q: '3. Активтілік (a) мен концентрация (c) арасындағы байланыс:', opts: ['a = c + γ', 'a = c × γ', 'a = c / γ', 'a = c − γ'], ans: 1 },
-    { q: '4. Активтілік коэффициенті (γ) сұйытылған ерітінді үшін:', opts: ['0-ге тең', '1-ге жақын', '1-ден үлкен', 'Теріс'], ans: 1 },
-    { q: '5. Дебай-Хюккель шектік заңы қандай ерітінділерге қолданылады?', opts: ['Концентрлі ерітінділер', 'Өте сұйытылған ерітінділер', 'Бейэлектролиттер', 'Суспензиялар'], ans: 1 },
-    { q: '6. Иондық күш өскен сайын активтілік коэффициенті:', opts: ['Өседі', 'Кемиді', 'Өзгермейді', 'Бірге тең болады'], ans: 1 },
-    { q: '7. 0.1 М NaCl ерітіндісінің иондық күші шамамен:', opts: ['0.05', '0.1', '0.2', '1.0'], ans: 1 },
-    { q: '8. Иондық күшке иондардың заряды қалай әсер етеді?', opts: ['Заряд өскенде иондық күш кемиді', 'Заряд квадраты арқылы күшейтеді', 'Әсер етпейді', 'Тек катиондар есептеледі'], ans: 1 },
-    { q: '9. Орташа активтілік коэффициенті (γ±) нені сипаттайды?', opts: ['Тек катион активтілігін', 'Тек анион активтілігін', 'Катион мен анион коэффициенттерінің геометриялық ортасын', 'Ерітінді тұтқырлығын'], ans: 2 },
-    { q: '10. Термодинамикалық тепе-теңдік константасы активтілік арқылы өрнектелгенде:', opts: ['Температураға тәуелді емес', 'Концентрацияға тәуелді', 'Нақты мән береді', 'Иондық күшке тәуелді'], ans: 2 },
-    { q: '11. CaCl₂ ерітіндісінің иондық күшін есептегенде хлор ионының үлесі:', opts: ['c(Cl⁻)', '2c(Cl⁻)', '½ × c(Cl⁻) × 1²', '½ × 2c(Cl⁻) × 1²'], ans: 3 },
-    { q: '12. Дебай-Хюккель теориясы нені түсіндіреді?', opts: ['Бейэлектролиттер қасиетін', 'Иондар арасындағы электростатикалық өзара әрекетті', 'Беткі керілісті', 'Диффузия жылдамдығын'], ans: 1 },
-    { q: '13. Активтілік ерітінді концентрациясынан аз болады, себебі:', opts: ['Иондар бір-бірімен әрекеттеспейді', 'Иондар арасындағы өзара тартылыс активтілікті азайтады', 'Еріткіш иондарды байланыстырады', 'Температура жоғары'], ans: 1 },
-    { q: '14. рН есептеуде нақты нәтиже үшін не пайдаланылады?', opts: ['Молярлық концентрация', 'Активтілік', 'Моляльдік концентрация', 'Мольдік үлес'], ans: 1 },
-    { q: '15. Иондық күші жоғары ерітіндіде γ < 1 болса, бұл нені білдіреді?', opts: ['Иондар тәуелсіз', 'Иондар арасында өзара әрекет бар', 'Ерітінді таза', 'Концентрация нөлге тең'], ans: 1 },
-    { q: '16. 0.01 М MgSO₄ ерітіндісінің иондық күші:', opts: ['0.01', '0.02', '0.04', '0.08'], ans: 2 },
-    { q: '17. Активтілік коэффициентін есептеудің негізгі тәсілі:', opts: ['Тікелей өлшеу', 'Дебай-Хюккель теңдеуін пайдалану', 'Температура өлшеу', 'Тығыздық өлшеу'], ans: 1 },
-    { q: '18. Ерітіндінің иондық күші артқанда ерігіштік:', opts: ['Кемиді', 'Өзгермейді', 'Артады (тұздық эффект)', 'Нөлге дейін кемиді'], ans: 2 },
-    { q: '19. Буферлік ерітіндіде активтілікті ескерудің маңыздылығы:', opts: ['Маңызды емес', 'рН мәнін нақты есептеу үшін қажет', 'Тек температура жоғары болғанда қажет', 'Тек концентрлі ерітінділерде'], ans: 1 },
-    { q: '20. Иондық күш бірлігі:', opts: ['моль/л²', 'моль/л', 'л/моль', 'моль·л'], ans: 1 },
+    { q: '1. Иондық күш (I) дегеніміз: <span class="eng">Ionic strength (I) is:</span>', opts: ['Иондар концентрациясының қосындысы / Sum of concentrations', 'Концентрация мен заряд квадратының жартылай қосындысы / Half-sum of concentration and charge squared', 'Тек катиондар концентрациясы / Only cation concentration', 'Ерітінді тығыздығы / Solution density'], ans: 1 },
+    { q: '2. Иондық күш формуласы: <span class="eng">Formula for ionic strength:</span>', opts: ['I = Σcᵢzᵢ', 'I = ½Σcᵢzᵢ²', 'I = Σcᵢzᵢ²', 'I = ½Σcᵢzᵢ'], ans: 1 },
+    { q: '3. Активтілік (a) мен концентрация (c) байланысы: <span class="eng">Relationship between activity (a) and concentration (c):</span>', opts: ['a = c + γ', 'a = c × γ', 'a = c / γ', 'a = c − γ'], ans: 1 },
+    { q: '4. Активтілік коэффициенті (γ) сұйытылған ерітінді үшін: <span class="eng">Activity coefficient (γ) for a dilute solution is:</span>', opts: ['0-ге тең / Equal to 0', '1-ге жақын / Close to 1', '1-ден үлкен / Greater than 1', 'Теріс / Negative'], ans: 1 },
+    { q: '5. Дебай-Хюккель шектік заңы қандай ерітінділерге қолданылады? <span class="eng">Debye-Hückel limiting law applies to which solutions?</span>', opts: ['Концентрлі / Concentrated', 'Өте сұйытылған / Very dilute', 'Бейэлектролиттер / Nonelectrolytes', 'Суспензиялар / Suspensions'], ans: 1 },
+    { q: '6. Иондық күш өскен сайын активтілік коэффициенті: <span class="eng">As ionic strength increases, the activity coefficient:</span>', opts: ['Өседі / Increases', 'Кемиді / Decreases', 'Өзгермейді / Does not change', 'Бірге тең / Equals one'], ans: 1 },
+    { q: '7. 0.1 М NaCl ерітіндісінің иондық күші шамамен: <span class="eng">The ionic strength of a 0.1 M NaCl solution is approximately:</span>', opts: ['0.05', '0.1', '0.2', '1.0'], ans: 1 },
+    { q: '8. Иондық күшке иондардың заряды қалай әсер етеді? <span class="eng">How does ion charge affect ionic strength?</span>', opts: ['Кешіктіреді / Delays it', 'Заряд квадраты арқылы күшейтеді / Enhances via the square of the charge', 'Әсер етпейді / Does not affect', 'Тек катиондар есептеледі / Only cations are counted'], ans: 1 },
+    { q: '9. Орташа активтілік коэффициенті (γ±) нені сипаттайды? <span class="eng">What does the mean activity coefficient (γ±) describe?</span>', opts: ['Тек катионды / Only cations', 'Тек анионды / Only anions', 'Катион мен анион коэффициенттерінің геометриялық ортасын / Geometric mean of cation and anion coefficients', 'Ерітінді тұтқырлығын / Solution viscosity'], ans: 2 },
+    { q: '10. Термодинамикалық тепе-теңдік константасы активтілік арқылы өрнектелгенде: <span class="eng">When the thermodynamic equilibrium constant is expressed via activity:</span>', opts: ['Температураға тәуелді емес / Independent of temperature', 'Концентрацияға тәуелді / Dependent on concentration', 'Нақты (тұрақты) мән береді / Gives an exact (constant) value', 'Иондық күшке тәуелді / Dependent on ionic strength'], ans: 2 },
+    { q: '11. CaCl₂ ерітіндісінде хлор ионының иондық күшке үлесі: <span class="eng">Contribution of the chloride ion to ionic strength in a CaCl₂ solution:</span>', opts: ['c(Cl⁻)', '2c(Cl⁻)', '½ × c(Cl⁻) × 1²', '½ × 2c(Cl⁻) × 1²'], ans: 3 },
+    { q: '12. Дебай-Хюккель теориясы нені түсіндіреді? <span class="eng">What does the Debye-Hückel theory explain?</span>', opts: ['Бейэлектролиттерді / Nonelectrolytes', 'Иондар арасындағы электростатикалық өзара әрекетті / Electrostatic interaction between ions', 'Беткі керілісті / Surface tension', 'Диффузияны / Diffusion'], ans: 1 },
+    { q: '13. Активтілік ерітінді концентрациясынан аз болады, себебі: <span class="eng">Activity is less than concentration because:</span>', opts: ['Иондар әрекеттеспейді / Ions do not interact', 'Иондар арасындағы өзара тартылыс активтілікті азайтады / Mutual ion attraction reduces activity', 'Еріткіш иондарды байланыстырады / Solvent binds ions', 'Температура жоғары / High temperature'], ans: 1 },
+    { q: '14. рН есептеуде нақты нәтиже үшін не пайдаланылады? <span class="eng">What is used for precise pH calculation?</span>', opts: ['Молярлық концентрация / Molar concentration', 'Активтілік / Activity', 'Моляльдік концентрация / Molal concentration', 'Мольдік үлес / Mole fraction'], ans: 1 },
+    { q: '15. γ < 1 болса, бұл нені білдіреді? <span class="eng">If γ < 1, what does this mean?</span>', opts: ['Иондар тәуелсіз / Ions are independent', 'Иондар арасында өзара әрекет бар / There is interaction between ions', 'Ерітінді таза / Solution is pure', 'Концентрация нөлге тең / Concentration is zero'], ans: 1 },
+    { q: '16. 0.01 М MgSO₄ ерітіндісінің иондық күші: <span class="eng">Ionic strength of a 0.01 M MgSO₄ solution:</span>', opts: ['0.01', '0.02', '0.04', '0.08'], ans: 2 },
+    { q: '17. Активтілік коэффициентін есептеудің негізгі тәсілі: <span class="eng">Main method to calculate the activity coefficient:</span>', opts: ['Тікелей өлшеу / Direct measurement', 'Дебай-Хюккель теңдеуін пайдалану / Using the Debye-Hückel equation', 'Температура өлшеу / Temperature measurement', 'Тығыздық өлшеу / Density measurement'], ans: 1 },
+    { q: '18. Иондық күш артқанда ерігіштік: <span class="eng">When ionic strength increases, solubility:</span>', opts: ['Кемиді / Decreases', 'Өзгермейді / Does not change', 'Артады (тұздық эффект) / Increases (salting-in effect)', 'Нөлге дейін кемиді / Decreases to zero'], ans: 2 },
+    { q: '19. Буферлік ерітіндіде активтілікті ескерудің маңыздылығы: <span class="eng">Importance of considering activity in a buffer solution:</span>', opts: ['Маңызды емес / Not important', 'рН мәнін нақты есептеу үшін қажет / Necessary for precise pH calculation', 'Тек температура жоғары болғанда / Only at high temperatures', 'Тек концентрлі ерітіндіде / Only in concentrated solutions'], ans: 1 },
+    { q: '20. Иондық күш бірлігі: <span class="eng">Unit of ionic strength:</span>', opts: ['моль/л² / mol/L²', 'моль/л / mol/L', 'л/моль / L/mol', 'моль·л / mol·L'], ans: 1 },
   ]
 },
 
 'gylymi': {
   questions: [
-    { q: '1. Ғылыми мақаланың міндетті құрылымдық бөліктері:', opts: ['Тек кіріспе мен қорытынды', 'Аннотация, кіріспе, әдістер, нәтижелер, қорытынды, әдебиеттер', 'Тек нәтижелер мен графиктер', 'Кіріспе мен тізімдер'], ans: 1 },
-    { q: '2. IMRaD форматы нені білдіреді?', opts: ['Introduction, Methods, Results and Discussion', 'Index, Methodology, Research and Data', 'Information, Mapping, Results, Analysis', 'Introduction, Material, Review, Discussion'], ans: 0 },
-    { q: '3. Аннотация (Abstract) дегеніміз:', opts: ['Мақаланың толық мәтіні', 'Мақаланың қысқаша мазмұны', 'Пайдаланылған әдебиеттер тізімі', 'Кіріспе бөлімі'], ans: 1 },
-    { q: '4. Кіріспе (Introduction) бөлімінде не жазылады?', opts: ['Зерттеу нәтижелері', 'Зерттеу мәселесі, өзектілігі және мақсаты', 'Статистикалық есептеулер', 'Қорытындылар'], ans: 1 },
-    { q: '5. Peer review (рецензиялау) дегеніміз:', opts: ['Мақаланы автордың өзі тексеруі', 'Тәуелсіз сарапшылардың мақаланы бағалауы', 'Редактордың мақаланы өңдеуі', 'Мақаланы аударуы'], ans: 1 },
-    { q: '6. DOI (Digital Object Identifier) не үшін қолданылады?', opts: ['Мақала авторын анықтау', 'Ғылыми мақалаға тұрақты сілтеме беру', 'Журнал рейтингін анықтау', 'Плагиатты тексеру'], ans: 1 },
-    { q: '7. Impact Factor (импакт-фактор) нені өлшейді?', opts: ['Мақаланың бет санын', 'Журналдың дәйексөн алу жиілігін', 'Авторлар санын', 'Журнал бағасын'], ans: 1 },
-    { q: '8. Плагиат дегеніміз:', opts: ['Дұрыс дәйексөн беру', 'Басқа авторлардың идеясын рұқсатсыз пайдалану', 'Өз жұмысын қайта жариялау', 'Аударма жасау'], ans: 1 },
-    { q: '9. Scopus және Web of Science не болып табылады?', opts: ['Ашық қолжетімді журналдар', 'Халықаралық ғылыми дерекқорлар', 'Аударма бағдарламалары', 'Плагиат тексеру жүйелері'], ans: 1 },
-    { q: '10. Ғылыми мақалада "Әдістер" (Methods) бөлімінде не сипатталады?', opts: ['Зерттеу мақсаты', 'Зерттеу жүргізу тәсілдері мен материалдары', 'Ғылыми болжам', 'Дәйексөндер тізімі'], ans: 1 },
-    { q: '11. Ғылыми гипотеза дегеніміз:', opts: ['Дәлелденген теория', 'Тексеруге жататын болжам', 'Эксперимент нәтижесі', 'Зерттеу қорытындысы'], ans: 1 },
-    { q: '12. Ашық қолжетімді журнал (Open Access) дегеніміз:', opts: ['Тек ақылы журнал', 'Мақалалары ақысыз қолжетімді журнал', 'Тек университет ішінде қолданылатын журнал', 'Баспасөз журналы'], ans: 1 },
-    { q: '13. Ғылыми мақала жазудағы этиканың негізгі талабы:', opts: ['Көп бет жазу', 'Деректерді дұрыс және шынайы ұсыну', 'Импакт-факторы жоғары журналда жариялау', 'Көп автор болу'], ans: 1 },
-    { q: '14. Кілт сөздер (Keywords) не үшін қолданылады?', opts: ['Мақала форматы үшін', 'Іздеу жүйелерінде мақаланы табу үшін', 'Аннотацияны ауыстыру үшін', 'Автор санын көрсету үшін'], ans: 1 },
-    { q: '15. Ғылыми зерттеудің объективтілігі нені білдіреді?', opts: ['Тек оң нәтижелерді жариялау', 'Алынған деректерді бейтарап, шынайы талдау', 'Болжамды дәлелдеуге ұмтылу', 'Ескі зерттеулерді қайталау'], ans: 1 },
-    { q: '16. ORCID дегеніміз:', opts: ['Журнал рейтингі', 'Ғалымның бірегей сандық идентификаторы', 'Плагиат тексеру жүйесі', 'Аударма платформасы'], ans: 1 },
-    { q: '17. Мақалада нәтижелерді ұсынудың ең жақсы тәсілі:', opts: ['Тек мәтін арқылы', 'Кесте, график және мәтінмен бірге', 'Тек сандар арқылы', 'Сурет арқылы ғана'], ans: 1 },
-    { q: '18. Ғылыми мақаланың қорытынды бөлімінде не жазылады?', opts: ['Жаңа болжамдар', 'Негізгі нәтижелер мен олардың маңыздылығы', 'Толық эксперимент сипаттамасы', 'Пайдаланылған химиялық реагенттер'], ans: 1 },
-    { q: '19. Халықаралық журналда мақала жариялаудың негізгі тілі:', opts: ['Тек қазақ тілі', 'Тек орыс тілі', 'Ағылшын тілі', 'Автор тілі'], ans: 2 },
-    { q: '20. Ғылыми зерттеу жұмысының маңыздылығы (өзектілігі) дегеніміз:', opts: ['Зерттеудің бет саны', 'Зерттеудің ғылым мен қоғам үшін қажеттілігін негіздеу', 'Зерттеу ұзақтығы', 'Пайдаланылған әдебиет саны'], ans: 1 },
+    { q: '1. Ғылыми мақаланың міндетті құрылымдық бөліктері: <span class="eng">Mandatory structural parts of a scientific article:</span>', opts: ['Кіріспе мен қорытынды / Intro and conclusion', 'Аннотация, кіріспе, әдістер, нәтижелер, қорытынды, әдебиеттер / Abstract, Intro, Methods, Results, Conclusion, References', 'Тек нәтижелер мен графиктер / Only results and graphs', 'Кіріспе мен тізімдер / Intro and lists'], ans: 1 },
+    { q: '2. IMRaD форматы нені білдіреді? <span class="eng">What does the IMRaD format stand for?</span>', opts: ['Introduction, Methods, Results and Discussion', 'Index, Methodology, Research and Data', 'Information, Mapping, Results, Analysis', 'Introduction, Material, Review, Discussion'], ans: 0 },
+    { q: '3. Аннотация (Abstract) дегеніміз: <span class="eng">An Abstract is:</span>', opts: ['Мақаланың толық мәтіні / Full text of the article', 'Мақаланың қысқаша мазмұны / Brief summary of the article', 'Пайдаланылған әдебиеттер / References', 'Кіріспе бөлімі / Introduction section'], ans: 1 },
+    { q: '4. Кіріспе (Introduction) бөлімінде не жазылады? <span class="eng">What is written in the Introduction section?</span>', opts: ['Зерттеу нәтижелері / Research results', 'Зерттеу мәселесі, өзектілігі және мақсаты / Research problem, relevance, and objective', 'Статистикалық есептеулер / Statistical calculations', 'Қорытындылар / Conclusions'], ans: 1 },
+    { q: '5. Peer review (рецензиялау) дегеніміз: <span class="eng">Peer review is:</span>', opts: ['Автордың өзі тексеруі / Self-check by author', 'Тәуелсіз сарапшылардың мақаланы бағалауы / Evaluation of the article by independent experts', 'Редактордың өңдеуі / Editor\'s revision', 'Мақаланы аудару / Article translation'], ans: 1 },
+    { q: '6. DOI (Digital Object Identifier) не үшін қолданылады? <span class="eng">What is a DOI used for?</span>', opts: ['Мақала авторын анықтау / Identifying the author', 'Ғылыми мақалаға тұрақты сілтеме беру / Providing a persistent link to a scientific article', 'Журнал рейтингін анықтау / Determining journal rating', 'Плагиатты тексеру / Checking plagiarism'], ans: 1 },
+    { q: '7. Impact Factor (импакт-фактор) нені өлшейді? <span class="eng">What does the Impact Factor measure?</span>', opts: ['Мақаланың бет санын / Number of pages', 'Журналдың дәйексөз алу жиілігін / The citation frequency of the journal', 'Авторлар санын / Number of authors', 'Журнал бағасын / Journal price'], ans: 1 },
+    { q: '8. Плагиат дегеніміз: <span class="eng">Plagiarism is:</span>', opts: ['Дұрыс дәйексөз беру / Proper citation', 'Басқа авторлардың идеясын рұқсатсыз пайдалану / Unauthorized use of other authors\' ideas', 'Өз жұмысын қайта жариялау / Republishing own work', 'Аударма жасау / Translating'], ans: 1 },
+    { q: '9. Scopus және Web of Science не болып табылады? <span class="eng">What are Scopus and Web of Science?</span>', opts: ['Ашық қолжетімді журналдар / Open access journals', 'Халықаралық ғылыми дерекқорлар / International scientific databases', 'Аударма бағдарламалары / Translation programs', 'Плагиат тексеру жүйелері / Plagiarism checkers'], ans: 1 },
+    { q: '10. "Әдістер" (Methods) бөлімінде не сипатталады? <span class="eng">What is described in the "Methods" section?</span>', opts: ['Зерттеу мақсаты / Objective', 'Зерттеу жүргізу тәсілдері мен материалдары / Research techniques and materials', 'Ғылыми болжам / Hypothesis', 'Дәйексөндер / Citations'], ans: 1 },
+    { q: '11. Ғылыми гипотеза дегеніміз: <span class="eng">A scientific hypothesis is:</span>', opts: ['Дәлелденген теория / Proven theory', 'Тексеруге жататын болжам / A testable assumption', 'Эксперимент нәтижесі / Experiment result', 'Зерттеу қорытындысы / Research conclusion'], ans: 1 },
+    { q: '12. Ашық қолжетімді журнал (Open Access) дегеніміз: <span class="eng">An Open Access journal is:</span>', opts: ['Тек ақылы журнал / Only paid journal', 'Мақалалары ақысыз қолжетімді журнал / A journal with freely accessible articles', 'Жабық журнал / Closed journal', 'Баспасөз журналы / Print journal'], ans: 1 },
+    { q: '13. Ғылыми мақала жазудағы этиканың негізгі талабы: <span class="eng">A basic ethical requirement in scientific writing:</span>', opts: ['Көп бет жазу / Writing many pages', 'Деректерді дұрыс және шынайы ұсыну / Accurate and truthful presentation of data', 'Импакт-факторы жоғары журналда жариялау / Publishing in high IF journal', 'Көп автор болу / Having many authors'], ans: 1 },
+    { q: '14. Кілт сөздер (Keywords) не үшін қолданылады? <span class="eng">What are Keywords used for?</span>', opts: ['Мақала форматы үшін / For formatting', 'Іздеу жүйелерінде мақаланы табу үшін / To find the article in search engines', 'Аннотацияны ауыстыру үшін / To replace the abstract', 'Автор санын көрсету үшін / To show number of authors'], ans: 1 },
+    { q: '15. Ғылыми зерттеудің объективтілігі нені білдіреді? <span class="eng">What does objectivity in scientific research mean?</span>', opts: ['Тек оң нәтижелерді жариялау / Publishing only positive results', 'Алынған деректерді бейтарап, шынайы талдау / Neutral, truthful analysis of obtained data', 'Болжамды дәлелдеуге ұмтылу / Striving to prove the hypothesis', 'Ескі зерттеулерді қайталау / Repeating old studies'], ans: 1 },
+    { q: '16. ORCID дегеніміз: <span class="eng">ORCID is:</span>', opts: ['Журнал рейтингі / Journal ranking', 'Ғалымның бірегей сандық идентификаторы / A unique digital identifier for a researcher', 'Плагиат тексеру жүйесі / Plagiarism checker', 'Аударма платформасы / Translation platform'], ans: 1 },
+    { q: '17. Мақалада нәтижелерді ұсынудың ең жақсы тәсілі: <span class="eng">The best way to present results in an article:</span>', opts: ['Тек мәтін арқылы / Text only', 'Кесте, график және мәтінмен бірге / Together with tables, graphs, and text', 'Тек сандар арқылы / Numbers only', 'Сурет арқылы ғана / Images only'], ans: 1 },
+    { q: '18. Қорытынды (Conclusion) бөлімінде не жазылады? <span class="eng">What is written in the Conclusion section?</span>', opts: ['Жаңа болжамдар / New hypotheses', 'Негізгі нәтижелер мен олардың маңыздылығы / Main results and their significance', 'Толық эксперимент сипаттамасы / Full experiment description', 'Пайдаланылған реагенттер / Reagents used'], ans: 1 },
+    { q: '19. Халықаралық журналда мақала жариялаудың негізгі тілі: <span class="eng">The main language for publishing in an international journal:</span>', opts: ['Тек қазақ тілі / Kazakh only', 'Тек орыс тілі / Russian only', 'Ағылшын тілі / English language', 'Автор тілі / Author\'s language'], ans: 2 },
+    { q: '20. Зерттеу жұмысының өзектілігі дегеніміз: <span class="eng">The relevance of research work is:</span>', opts: ['Зерттеудің бет саны / Number of pages', 'Зерттеудің ғылым мен қоғам үшін қажеттілігін негіздеу / Justifying the necessity of the research for science and society', 'Зерттеу ұзақтығы / Research duration', 'Пайдаланылған әдебиет саны / Number of references'], ans: 1 },
   ]
 }
 
@@ -258,10 +257,13 @@ function buildForm(testId) {
 
 function openTest(testId) {
   const name = document.getElementById('studentName').value.trim();
-  if (!name) {
-    alert('Алдымен аты-жөніңізді енгізіңіз!');
+  const group = document.getElementById('studentGroup').value.trim();
+  
+  if (!name || !group) {
+    alert('Алдымен аты-жөніңізді және тобыңызды енгізіңіз! / Please enter your name and group first!');
     return;
   }
+  
   document.getElementById('main-menu').style.display = 'none';
   document.querySelectorAll('.test-page').forEach(p => p.classList.remove('active'));
   document.getElementById('test-' + testId).classList.add('active');
@@ -277,26 +279,29 @@ function goBack() {
 
 function gradeTest(testId, subject, topic) {
   const name = document.getElementById('studentName').value.trim();
+  const group = document.getElementById('studentGroup').value.trim();
   const qs = tests[testId].questions;
   let score = 0;
+  
   for (let i = 0; i < qs.length; i++) {
     const checked = document.querySelector(`input[name="${testId}_q${i}"]:checked`);
     if (checked && Number(checked.value) === qs[i].ans) score++;
   }
+  
   const resultEl = document.getElementById('result-' + testId);
-  resultEl.innerHTML = `<p>✅ Нәтиже: <b>${score} / 20</b></p><p id="status-${testId}">Жіберілуде...</p>`;
+  resultEl.innerHTML = `<p>✅ Нәтиже / Result: <b>${score} / 20</b></p><p id="status-${testId}">Жіберілуде... / Sending...</p>`;
 
   fetch(SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, subject, topic, score, total: 20 })
+    body: JSON.stringify({ name: name, group: group, subject: subject, topic: topic, score: score, total: 20 })
   }).then(() => {
     document.getElementById('status-' + testId).innerHTML =
-      '<span style="color:green">✅ Нәтиже мұғалімге жіберілді!</span>';
+      '<span style="color:green">✅ Нәтиже мұғалімге жіберілді! / Result sent to teacher!</span>';
   }).catch(() => {
     document.getElementById('status-' + testId).innerHTML =
-      '<span style="color:red">❌ Қате. Интернетті тексеріңіз.</span>';
+      '<span style="color:red">❌ Қате. Интернетті тексеріңіз. / Error. Check your connection.</span>';
   });
 }
 </script>
