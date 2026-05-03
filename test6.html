@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zhetysu University - Chemistry CLIL</title>
 <style>
-/* Стильдер өзгеріссіз қалады */
 :root { --zu-blue: #003366; --zu-gold: #C5A059; --zu-bg: #f0f2f5; --success-green: #27ae60; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Times New Roman', Times, serif; font-size: 14pt; background-color: var(--zu-bg); color: #333; line-height: 1.5; }
@@ -45,6 +44,7 @@ header { background: white; border-bottom: 4px solid var(--zu-gold); padding: 30
 <div id="main-view">
   <section class="hero">
     <h2>Chemistry CLIL Tests</h2>
+    <p>Аналитикалық және Органикалық химия курстары</p>
   </section>
 
   <div class="container">
@@ -53,8 +53,8 @@ header { background: white; border-bottom: 4px solid var(--zu-gold); padding: 30
       <input type="text" id="userGroup" placeholder="Тобыңыз / Group">
       
       <div class="menu-grid">
-        <button class="menu-btn" onclick="startTest('alkandap')">Органикалық химия<small>Алкандар</small></button>
-        <button class="menu-btn" onclick="startTest('alkender')">Органикалық химия<small>Алкендер</small></button>
+        <button class="menu-btn" onclick="startTest('alkandap')">Органикалық химия<small>Алкандар (Alkanes)</small></button>
+        <button class="menu-btn" onclick="startTest('alkender')">Органикалық химия<small>Алкендер (Alkenes)</small></button>
         <button class="menu-btn" onclick="startTest('massalar')">Аналитикалық химия<small>Әрекеттесуші массалар заңы</small></button>
         <button class="menu-btn" onclick="startTest('eritindi')">Аналитикалық химия<small>Иондық күш және активтілік</small></button>
         <button class="menu-btn full-width" onclick="startTest('gylymi')">Ғылыми-зерттеу жұмысы<small>Ғылыми мақала жазу негіздері</small></button>
@@ -69,138 +69,138 @@ header { background: white; border-bottom: 4px solid var(--zu-gold); padding: 30
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
 
 const quizData = {
-  'alkandap': { title: 'Алкандар (Alkanes)', discipline: 'Органикалық химия', questions: [/* 20 сұрақ */] },
-  'alkender': { title: 'Алкендер (Alkenes)', discipline: 'Органикалық химия', questions: [/* 20 сұрақ */] },
-  'massalar': { title: 'Әрекеттесуші массалар заңы', discipline: 'Аналитикалық химия', questions: [/* 20 сұрақ */] },
-  'eritindi': { title: 'Иондық күш және активтілік', discipline: 'Аналитикалық химия', questions: [/* 20 сұрақ */] },
-  'gylymi': { title: 'Ғылыми мақала жазу негіздері', discipline: 'Ғылыми-зерттеу жұмысы', questions: [/* 20 сұрақ */] }
-};
- 'alkandap': {
-    title: 'Алкандар (Alkanes)',
+  'alkandap': { 
+    title: 'Алкандар (Alkanes)', 
+    discipline: 'Органикалық химия', 
     questions: [
       { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
-      { q: "Methane has a ______ molecular geometry.", a: ["Linear", "Trigonal", "Tetrahedral", "Square planar"], c: 2 },
-      { q: "What is the hybridization of carbon in methane?", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
-      { q: "The bond angle in methane is ______ degrees.", a: ["90°", "109.5°", "120°", "180°"], c: 1 },
-      { q: "Which reaction is typical for alkanes?", a: ["Addition", "Substitution", "Elimination", "Polymerization"], c: 1 },
-      { q: "Paraffins is another name for ______.", a: ["Alkenes", "Alkynes", "Alkanes", "Arenes"], c: 2 },
-      { q: "What is the suffix for alkanes?", a: ["-ene", "-yne", "-ane", "-ol"], c: 2 },
-      { q: "Алкандардың гомологтық қатары неден басталады?", a: ["Ethane", "Propane", "Methane", "Butane"], c: 2 },
-      { q: "Isomerism in alkanes starts from ______.", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
-      { q: "Which alkane is a gas at room temperature?", a: ["Pentane", "Hexane", "Ethane", "Octane"], c: 2 },
-      { q: "The C-C bond in alkanes is a ______ bond.", a: ["Double", "Triple", "Sigma (σ)", "Pi (π)"], c: 2 },
-      { q: "What is the common name for CH4?", a: ["Ethane", "Marsh gas", "Water gas", "Ozone"], c: 1 },
-      { q: "Wurtz reaction is used to produce ______.", a: ["Alcohols", "Alkanes", "Alkenes", "Acids"], c: 1 },
-      { q: "What is produced in complete combustion of alkanes?", a: ["CO + H2O", "CO2 + H2O", "C + H2", "CO2 + H2"], c: 1 },
-      { q: "In substitution reactions, hydrogen is replaced by ______.", a: ["Oxygen", "Halogens", "Water", "Carbon"], c: 1 },
-      { q: "The boiling point of alkanes ______ with increasing chain length.", a: ["Decreases", "Increases", "Stays same", "Becomes zero"], c: 1 },
-      { q: "Cycloalkanes have the general formula ______.", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], c: 1 },
-      { q: "Алкандардағы көміртек атомының валенттілігі қандай?", a: ["II", "III", "IV", "I"], c: 2 },
-      { q: "Natural gas consists mainly of ______.", a: ["Butane", "Propane", "Methane", "Hexane"], c: 2 },
-      { q: "Octane number measures the quality of ______.", a: ["Water", "Oil", "Gasoline (petrol)", "Alcohol"], c: 2 }
+      { q: "The hybrid state of carbon atoms in alkanes is:", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
+      { q: "What is the bond angle in methane ($CH_4$)?", a: ["90°", "120°", "109.5°", "180°"], c: 2 },
+      { q: "The simplest alkane is:", a: ["Ethane", "Methane", "Propane", "Butane"], c: 1 },
+      { q: "Алкандарға тән реакция түрі:", a: ["Қосылу", "Орын басу (Substitution)", "Полимерлену", "Гидратация"], c: 1 },
+      { q: "Which gas is known as 'marsh gas'?", a: ["Butane", "Ethane", "Methane", "Propane"], c: 2 },
+      { q: "The reaction of methane with chlorine in UV light follows which mechanism?", a: ["Electrophilic", "Nucleophilic", "Free radical substitution", "Elimination"], c: 2 },
+      { q: "Identify the Wurtz reaction reactant:", a: ["Alcohol", "Alkyl halide + Sodium", "Alkene", "Acid"], c: 1 },
+      { q: "What is the bond length of C-C in alkanes?", a: ["0.134 nm", "0.154 nm", "0.120 nm", "0.140 nm"], c: 1 },
+      { q: "Алкандардың гомологтық айырмасы (homologous difference):", a: ["CH", "CH2", "CH3", "C2H2"], c: 1 },
+      { q: "Which alkane has the highest boiling point?", a: ["Methane", "Ethane", "Propane", "n-Butane"], c: 3 },
+      { q: "Isomerism starts in alkanes from:", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
+      { q: "Complete combustion of alkanes produces:", a: ["CO + H2", "CO2 + H2O", "C + H2", "CH3OH"], c: 1 },
+      { q: "Natural gas mainly consists of:", a: ["Ethane", "Methane", "Butane", "Propane"], c: 1 },
+      { q: "What is the shape of a methane molecule?", a: ["Linear", "Planar", "Tetrahedral", "Octahedral"], c: 2 },
+      { q: "Alkanes are also called:", a: ["Olefins", "Paraffins", "Acetylenes", "Arenes"], c: 1 },
+      { q: "Which catalyst is used in the dehydrogenation of alkanes?", a: ["Pt/Pd", "AlCl3", "Fe", "Cu"], c: 0 },
+      { q: "The number of isomers in pentane ($C_5H_{12}$) is:", a: ["2", "3", "4", "5"], c: 1 },
+      { q: "Paraffin means:", a: ["Highly reactive", "Little affinity", "Sweet smelling", "Liquid gas"], c: 1 },
+      { q: "Cracking of alkanes produces:", a: ["Only alkanes", "Alkanes and alkenes", "Only hydrogen", "Alcohols"], c: 1 }
     ]
   },
-  'alkender': {
-    title: 'Алкендер (Alkenes)',
+  'alkender': { 
+    title: 'Алкендер (Alkenes)', 
+    discipline: 'Органикалық химия', 
     questions: [
-      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnHn"], c: 1 },
-      { q: "Alkenes are also known as ______.", a: ["Paraffins", "Olefins", "Acetylenes", "Arenes"], c: 1 },
-      { q: "The hybridization of carbon in ethene is ______.", a: ["sp", "sp2", "sp3", "dsp2"], c: 1 },
-      { q: "What type of bond is unique to alkenes?", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
-      { q: "The geometry of ethene is ______.", a: ["Linear", "Tetrahedral", "Trigonal planar", "Octahedral"], c: 2 },
-      { q: "The bond angle in ethene is ______.", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
-      { q: "What is the IUPAC name for ethylene?", a: ["Ethane", "Ethene", "Ethyne", "Ethanol"], c: 1 },
-      { q: "Which reaction is characteristic for alkenes?", a: ["Substitution", "Addition", "Elimination", "Redox"], c: 1 },
-      { q: "Hydrogenation of alkenes produces ______.", a: ["Alkynes", "Alcohols", "Alkanes", "Aldehydes"], c: 2 },
-      { q: "Bromine water test for alkenes results in ______.", a: ["Blue color", "Decolorization", "Red color", "No change"], c: 1 },
-      { q: "What is the suffix for alkenes?", a: ["-ane", "-ene", "-yne", "-al"], c: 1 },
-      { q: "Markovnikov's rule is used in ______ reactions.", a: ["Substitution", "Addition", "Cracking", "Combustion"], c: 1 },
-      { q: "Polymerization of ethene produces ______.", a: ["PVC", "Polyethylene", "Teflon", "Rubber"], c: 1 },
-      { q: "Dehydration of alcohols gives ______.", a: ["Alkanes", "Alkenes", "Acids", "Ethers"], c: 1 },
-      { q: "The double bond consists of ______.", a: ["2 sigma bonds", "2 pi bonds", "1 sigma and 1 pi bond", "Ionic bonds"], c: 2 },
-      { q: "Geometric isomerism is also called ______.", a: ["Chain isomerism", "Optical isomerism", "Cis-trans isomerism", "Tautomerism"], c: 2 },
-      { q: "Hydration of ethene produces ______.", a: ["Acetic acid", "Ethanol", "Ethane", "Ethene"], c: 1 },
-      { q: "The catalyst used in hydrogenation is often ______.", a: ["H2SO4", "NaCl", "Ni or Pt", "NaOH"], c: 2 },
-      { q: "Алкендер гомологтық қатары неден басталады?", a: ["Methene", "Ethene", "Propene", "Butene"], c: 1 },
-      { q: "Cis-isomers have groups on the ______ side.", a: ["Opposite", "Same", "Diagonal", "Outer"], c: 1 }
+      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n-6"], c: 1 },
+      { q: "Alkenes contain at least one ______ bond.", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
+      { q: "Hybridization of carbon in the double bond is:", a: ["sp3", "sp", "sp2", "dsp2"], c: 2 },
+      { q: "The simplest alkene is:", a: ["Methane", "Ethene (Ethylene)", "Propene", "Butene"], c: 1 },
+      { q: "What is the bond angle around the double bond?", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
+      { q: "Алкендерге тән сапалық реакция:", a: ["Жану", "Бром суын түссіздендіру", "Гидрирлеу", "Изомерлену"], c: 1 },
+      { q: "Markovnikov's rule is applied to:", a: ["Substitution", "Electrophilic addition", "Elimination", "Combustion"], c: 1 },
+      { q: "Baeyer's reagent is used to detect:", a: ["Alkanes", "Unsaturation (double/triple bonds)", "Alcohols", "Acids"], c: 1 },
+      { q: "Which gas is used to ripen fruits artificially?", a: ["Ethane", "Ethylene", "Methane", "Acetylene"], c: 1 },
+      { q: "Alkenes are also known as:", a: ["Paraffins", "Olefins", "Acetylenes", "Glycols"], c: 1 },
+      { q: "The bond length of C=C is:", a: ["0.154 nm", "0.120 nm", "0.134 nm", "0.140 nm"], c: 2 },
+      { q: "Addition of H2 to alkenes is called:", a: ["Dehydrogenation", "Hydrogenation", "Hydration", "Halogenation"], c: 1 },
+      { q: "Reaction of alkene with water produces:", a: ["Alkane", "Alcohol", "Acid", "Ether"], c: 1 },
+      { q: "Which rule describes the addition of HX to asymmetric alkenes?", a: ["Hund's", "Zaitsev's", "Markovnikov's", "Pauli's"], c: 2 },
+      { q: "Ozonolysis of alkenes produces:", a: ["Alcohols", "Carbonyl compounds", "Alkanes", "Halides"], c: 1 },
+      { q: "Geometrical isomerism (cis-trans) is found in:", a: ["Ethane", "Propane", "But-2-ene", "Ethyne"], c: 2 },
+      { q: "The catalyst used in Ziegler-Natta polymerization is:", a: ["Fe", "TiCl4 + Al(C2H5)3", "V2O5", "Ni"], c: 1 },
+      { q: "Double bond consists of:", a: ["Two sigma bonds", "Two pi bonds", "One sigma and one pi bond", "Ionic bond"], c: 2 },
+      { q: "Reaction of ethylene with KMnO4 in cold dilute solution produces:", a: ["Ethanol", "Ethylene glycol", "Acetic acid", "Oxalic acid"], c: 1 },
+      { q: "Polymerization of ethylene produces:", a: ["Polypropylene", "Polyethylene", "Polystyrene", "PVC"], c: 1 }
     ]
   },
-  'massalar': {
-    title: 'Әрекеттесуші массалар заңы (Law of Mass Action)',
+  'massalar': { 
+    title: 'Әрекеттесуші массалар заңы', 
+    discipline: 'Аналитикалық химия', 
     questions: [
-      { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Mendeleev"], c: 1 },
-      { q: "The rate of reaction is proportional to the ______ of reactants.", a: ["Volume", "Mass", "Concentration", "Density"], c: 2 },
-      { q: "Chemical equilibrium is a ______ state.", a: ["Static", "Dynamic", "Passive", "Irreversible"], c: 1 },
-      { q: "The symbol [A] denotes ______.", a: ["Mass of A", "Molar concentration of A", "Volume of A", "Temperature of A"], c: 1 },
-      { q: "Rate constant (k) depends on ______.", a: ["Concentration", "Pressure", "Temperature", "Container size"], c: 2 },
-      { q: "Unit of reaction rate is ______.", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
-      { q: "Homogeneous reaction occurs in ______ phase.", a: ["One", "Two", "Three", "Multiple"], c: 0 },
-      { q: "Қайтымды реакция белгісін көрсетіңіз:", a: ["═", "→", "⇌", "↑"], c: 2 },
-      { q: "What happens to the rate if concentration of reactants increases?", a: ["Decreases", "Increases", "Stays same", "Stops"], c: 1 },
-      { q: "Catalyst ______ the rate of reaction.", a: ["Decreases", "Increases", "Does not change", "Slows"], c: 1 },
-      { q: "Vant Hoff's rule describes the effect of ______ on rate.", a: ["Pressure", "Concentration", "Temperature", "Catalyst"], c: 2 },
-      { q: "For a reaction A+B → C, the rate law is v = ______.", a: ["k[A][B]", "k[A]/[B]", "k[C]", "[A]+[B]"], c: 0 },
-      { q: "In a closed system, equilibrium is ______.", a: ["Impossible", "Possible", "Always static", "Never reached"], c: 1 },
-      { q: "Activation energy is the ______ energy needed for reaction.", a: ["Maximum", "Minimum", "Total", "Potential"], c: 1 },
-      { q: "Heterogeneous reaction occurs at the ______.", a: ["Center", "Gas phase", "Interface (бөліну беті)", "Liquid phase"], c: 2 },
-      { q: "Irreversible reactions proceed to ______.", a: ["Half", "Completion", "Beginning", "Equilibrium"], c: 1 },
-      { q: "Equilibrium constant Kc depends on ______.", a: ["Initial concentration", "Pressure", "Temperature", "Volume"], c: 2 },
-      { q: "Le Chatelier's principle predicts shifts in ______.", a: ["Mass", "Equilibrium", "Atomic number", "Gravity"], c: 1 },
-      { q: "If the temperature increases, the rate constant (k) ______.", a: ["Decreases", "Increases", "Stays same", "Becomes zero"], c: 1 },
-      { q: "Molecularity of a reaction can be ______.", a: ["0", "1, 2, or 3", "Fractional", "Negative"], c: 1 }
+      { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Ostwald"], c: 1 },
+      { q: "Reaction rate is proportional to the product of ______ of reactants.", a: ["Mass", "Volume", "Active masses (concentrations)", "Temperature"], c: 2 },
+      { q: "In the expression $v = k[A]^a[B]^b$, 'k' is the:", a: ["Equilibrium constant", "Rate constant", "Universal constant", "Activity"], c: 1 },
+      { q: "What factor does NOT affect the rate constant (k)?", a: ["Temperature", "Catalyst", "Concentration", "Nature of reactants"], c: 2 },
+      { q: "For a reaction $A + B \rightarrow C$, if [A] is doubled, the rate ______.", a: ["Doubles", "Triples", "Remains same", "Halves"], c: 0 },
+      { q: "Chemical equilibrium is ______ in nature.", a: ["Static", "Dynamic", "Irreversible", "Stable"], c: 1 },
+      { q: "The unit of rate of reaction is:", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
+      { q: "If $\Delta n = 0$ for a gaseous reaction, then:", a: ["Kp > Kc", "Kp < Kc", "Kp = Kc", "Kp = 0"], c: 2 },
+      { q: "Le Chatelier's principle predicts the effect of:", a: ["Mass only", "Pressure, Temp, Concentration", "Catalyst only", "Atomic weight"], c: 1 },
+      { q: "Addition of a catalyst ______ the equilibrium state.", a: ["Shifts forward", "Shifts backward", "Does not change", "Destroys"], c: 2 },
+      { q: "In an exothermic reaction, increasing temperature shifts equilibrium to the:", a: ["Right", "Left", "Does not shift", "Top"], c: 1 },
+      { q: "Pressure affects equilibrium only if there is a change in ______.", a: ["Mass", "Temperature", "Number of gas moles", "Color"], c: 2 },
+      { q: "Rate of reverse reaction equals forward reaction at:", a: ["Start", "Completion", "Equilibrium", "Half-time"], c: 2 },
+      { q: "Homogeneous reaction occurs in ______ phase.", a: ["Single", "Two", "Multiple", "Solid"], c: 0 },
+      { q: "Activation energy is lowered by:", a: ["Heat", "Pressure", "Catalyst", "Volume"], c: 2 },
+      { q: "The expression for Kc of $H_2 + I_2 \rightleftharpoons 2HI$ is:", a: ["[HI]/[H2][I2]", "[HI]^2/[H2][I2]", "[H2][I2]/[HI]^2", "[HI]^2/[H2]"], c: 1 },
+      { q: "If Kc > 1, the equilibrium favors:", a: ["Reactants", "Products", "Neither", "Slow rate"], c: 1 },
+      { q: "Increase in pressure favors the side with ______ moles of gas.", a: ["More", "Fewer", "Same", "Zero"], c: 1 },
+      { q: "Relation between Kp and Kc is:", a: ["Kp = Kc(RT)", "Kp = Kc(RT)^Δn", "Kc = Kp(RT)^Δn", "Kp = Kc"], c: 1 },
+      { q: "Law of Mass Action is applicable to ______ reactions.", a: ["Irreversible", "Reversible", "Nuclear", "Instantaneous"], c: 1 }
     ]
   },
-  'eritindi': {
-    title: 'Иондық күш және активтілік (Ionic Strength & Activity)',
+  'eritindi': { 
+    title: 'Иондық күш және активтілік', 
+    discipline: 'Аналитикалық химия', 
     questions: [
-      { q: "Ionic strength (I) was introduced by ______.", a: ["Lewis and Randall", "Arrhenius", "Faraday", "Dalton"], c: 0 },
-      { q: "The formula for ionic strength is I = ______.", a: ["Σ cz", "½ Σ cz²", "Σ c/z", "c²z"], c: 1 },
-      { q: "Activity (a) is defined as a = ______.", a: ["f + c", "f / c", "f * c", "c / f"], c: 2 },
-      { q: "Activity coefficient (f) for ideal solutions is ______.", a: ["0", "0.5", "1", "10"], c: 2 },
-      { q: "Ionic strength depends on ______ of ions.", a: ["Size", "Charge and concentration", "Color", "Mass"], c: 1 },
-      { q: "Debye-Hückel theory describes ______ electrolytes.", a: ["Strong", "Weak", "Non-", "Gaseous"], c: 0 },
-      { q: "Effective concentration of an ion is called ______.", a: ["Molarity", "Activity", "Normality", "Molality"], c: 1 },
-      { q: "As ionic strength increases, the activity coefficient ______.", a: ["Increases", "Decreases", "Stays same", "Becomes 1"], c: 1 },
-      { q: "For very dilute solutions, activity is ______ concentration.", a: ["Greater than", "Less than", "Equal to", "Zero"], c: 2 },
-      { q: "The charge of the ion in the I formula is ______.", a: ["Linear", "Squared", "Cubed", "Rooted"], c: 1 },
-      { q: "Ionic strength of 0.1 M NaCl solution is ______.", a: ["0.05", "0.1", "0.2", "1.0"], c: 1 },
-      { q: "Strong electrolytes ______ completely in water.", a: ["Dissolve", "Dissociate", "Evaporate", "Freeze"], c: 1 },
-      { q: "Activity is used instead of concentration in ______ solutions.", a: ["Ideal", "Real", "Dilute", "Pure"], c: 1 },
-      { q: "The unit of ionic strength is ______.", a: ["mol/L", "L/mol", "Dimensionless", "g/L"], c: 0 },
-      { q: "Multivalent ions have a ______ effect on ionic strength.", a: ["Small", "Greater", "Zero", "Negative"], c: 1 },
-      { q: "Activity coefficient is ______ for non-electrolytes.", a: ["0", "0.5", "Approximately 1", "Infinite"], c: 2 },
-      { q: "Standard state activity is defined as ______.", a: ["0", "1", "10", "100"], c: 1 },
-      { q: "Coulombic forces are responsible for ______ interactions.", a: ["Neutral", "Inter-ionic", "Atomic", "Covalent"], c: 1 },
-      { q: "The 'f' value decreases as ion charge ______.", a: ["Decreases", "Increases", "Disappears", "Stays same"], c: 1 },
-      { q: "Ionic strength of 0.1 M Na2SO4 is ______.", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 }
+      { q: "Ionic strength ($\mu$) was introduced by:", a: ["Arrhenius", "Lewis and Randall", "Debye", "Hückel"], c: 1 },
+      { q: "Formula for ionic strength is $\mu = \frac{1}{2} \sum$ ______.", a: ["ci zi", "ci zi^2", "ci^2 zi", "ci / zi"], c: 1 },
+      { q: "Activity ($a$) is related to concentration ($c$) by:", a: ["a = c/f", "a = f·c", "a = f+c", "a = f^c"], c: 1 },
+      { q: "In very dilute solutions, the activity coefficient ($f$) is:", a: ["0", "Infinity", "Approaching 1", "Negative"], c: 2 },
+      { q: "What is the ionic strength of 0.1 M NaCl solution?", a: ["0.05", "0.1", "0.2", "0.4"], c: 1 },
+      { q: "Ionic strength depends on the ______ of ions.", a: ["Size only", "Color", "Concentration and charge", "Weight"], c: 2 },
+      { q: "Activity coefficient decreases as ionic strength ______.", a: ["Decreases", "Increases", "Remains constant", "Becomes zero"], c: 1 },
+      { q: "Debye-Hückel limiting law is used for ______ solutions.", a: ["Concentrated", "Dilute electrolytes", "Non-electrolytes", "Solid"], c: 1 },
+      { q: "Mean ionic activity coefficient is represented by:", a: ["f±", "μ", "α", "Kw"], c: 0 },
+      { q: "For a 1:2 electrolyte like $MgCl_2$ (0.1 M), the ionic strength is:", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 },
+      { q: "Strong electrolytes are ______ ionized in water.", a: ["Partially", "Completely", "Not", "Slowly"], c: 1 },
+      { q: "The effective concentration is called:", a: ["Molarity", "Molality", "Activity", "Normality"], c: 2 },
+      { q: "Activity is a dimensionless quantity?", a: ["Yes", "No", "Depends on unit", "Only for gases"], c: 0 },
+      { q: "Increasing the charge of an ion ______ its effect on ionic strength.", a: ["Decreases", "Increases", "Does not change", "Eliminates"], c: 1 },
+      { q: "The 'Salting-out' effect is related to:", a: ["Alkanes", "Ionic strength increase", "Catalysis", "Distillation"], c: 1 },
+      { q: "Debye-Hückel theory considers ions as:", a: ["Point charges", "Large spheres", "Cubes", "Rings"], c: 0 },
+      { q: "What is the charge ($z$) of a sulfate ion $SO_4^{2-}$?", a: ["+2", "-2", "-1", "+6"], c: 1 },
+      { q: "If $\mu = 0$, then activity ($a$) ______ concentration ($c$).", a: [">", "<", "=", "is 0"], c: 2 },
+      { q: "Ionic atmosphere concept is part of:", a: ["Bohr model", "Debye-Hückel theory", "Kinetic theory", "VSEPR"], c: 1 },
+      { q: "Unit of ionic strength is:", a: ["mol/L", "L/mol", "No unit", "mol·L"], c: 0 }
     ]
   },
-  'gylymi': {
-    title: 'Ғылыми мақала жазу негіздері (Scientific Writing)',
+  'gylymi': { 
+    title: 'Ғылыми мақала жазу негіздері', 
+    discipline: 'Ғылыми-зерттеу жұмысы', 
     questions: [
-      { q: "What does IMRAD stand for?", a: ["Intro, Method, Results, And, Discussion", "Idea, Main, Research, Art, Data", "Index, Map, Rule, Aim, Draft", "Info, Mode, Read, Author, Date"], c: 0 },
-      { q: "A brief summary of a scientific paper is called ______.", a: ["Index", "Abstract", "Preface", "Appendix"], c: 1 },
-      { q: "Where do you state the goal of the research?", a: ["Methods", "Introduction", "Results", "References"], c: 1 },
-      { q: "Keywords are used for ______.", a: ["Translation", "Indexing and searching", "Decoration", "Plagiarism"], c: 1 },
-      { q: "In 'Methods' section, you explain ______ the work was done.", a: ["Why", "When", "How", "Who"], c: 2 },
-      { q: "Where do you present raw data and findings?", a: ["Discussion", "Results", "Abstract", "Conclusion"], c: 1 },
-      { q: "The list of sources at the end is called ______.", a: ["Content", "References / Bibliography", "Footnotes", "Glossary"], c: 1 },
-      { q: "What is 'Peer Review'?", a: ["Grammar check", "Expert evaluation", "Public talk", "Self-reading"], c: 1 },
-      { q: "DOI stands for ______.", a: ["Data Online Index", "Digital Object Identifier", "Daily Original Info", "Document Order Id"], c: 1 },
-      { q: "Using someone else's work without citation is ______.", a: ["Editing", "Plagiarism", "Collaboration", "Reviewing"], c: 1 },
-      { q: "Which section interprets the results?", a: ["Introduction", "Discussion", "Methods", "Title"], c: 1 },
-      { q: "A good scientific title should be ______.", a: ["Funny", "Very long", "Concise and descriptive", "Vague"], c: 2 },
-      { q: "Scopus and Web of Science are ______.", a: ["Journals", "Databases", "Software", "Countries"], c: 1 },
-      { q: "Impact Factor measures a journal's ______.", a: ["Price", "Influence / Prestige", "Size", "Age"], c: 1 },
-      { q: "The 'Conclusion' should summarize ______.", a: ["New sources", "Main findings", "Budget", "History"], c: 1 },
-      { q: "Which tense is usually used for 'Methods'?", a: ["Future", "Present", "Past", "Conditional"], c: 2 },
-      { q: "A primary source is ______.", a: ["Textbook", "Original research article", "Encyclopedia", "Blog post"], c: 1 },
-      { q: "Citation styles include ______.", a: ["Excel, Word", "APA, MLA, Harvard", "Arial, Times", "PDF, JPG"], c: 1 },
-      { q: "Open Access means the article is ______.", a: ["Hidden", "Free to read", "Unpublished", "Draft"], c: 1 },
-      { q: "The main goal of scientific writing is ______.", a: ["To be famous", "To share knowledge", "To earn money", "To write a story"], c: 1 }
+      { q: "What is the standard structure of a research article?", a: ["IMRaD", "ABCC", "H-index", "DOI"], c: 0 },
+      { q: "IMRaD stands for Introduction, Methods, Results, and ______.", a: ["Data", "Diagram", "Discussion", "Description"], c: 2 },
+      { q: "Where is the main hypothesis of the work stated?", a: ["Abstract", "Introduction", "Conclusion", "References"], c: 1 },
+      { q: "What is 'Scopus'?", a: ["A type of microscope", "Abstract and citation database", "A chemistry journal", "An AI tool"], c: 1 },
+      { q: "The 'Impact Factor' measures the ______ of a journal.", a: ["Speed", "Cost", "Influence/Quality", "Size"], c: 2 },
+      { q: "A short summary of the article is called:", a: ["Introduction", "Abstract", "Appendix", "Footnote"], c: 1 },
+      { q: "Which tool is used for reference management?", a: ["Photoshop", "Mendeley / Zotero", "Excel", "Canvas"], c: 1 },
+      { q: "What is 'Plagiarism'?", a: ["Data analysis", "Using others' work without credit", "Peer review", "Citing sources"], c: 1 },
+      { q: "A 'DOI' is a ______ for digital documents.", a: ["Price tag", "Unique persistent identifier", "Date of issue", "Type of ink"], c: 1 },
+      { q: "The H-index measures an author's ______.", a: ["Age", "Productivity and citation impact", "Salary", "Number of degrees"], c: 1 },
+      { q: "Peer-review is a process of ______.", a: ["Selling articles", "Evaluation by experts", "Typing results", "Translation"], c: 1 },
+      { q: "Keywords are used for ______.", a: ["Grammar check", "Search and indexing", "Word count", "Design"], c: 1 },
+      { q: "Ethics in research includes:", a: ["Fabrication", "Data falsification", "Informed consent/Honesty", "Copy-pasting"], c: 2 },
+      { q: "Which section describes 'How' the research was done?", a: ["Results", "Methods", "Literature Review", "Discussion"], c: 1 },
+      { q: "CiteScore is a metric used by:", a: ["Web of Science", "Scopus", "Google Scholar", "ResearchGate"], c: 1 },
+      { q: "A 'Review Article' is different because it ______.", a: ["Has no data", "Summarizes existing research", "Is very short", "Is not scientific"], c: 1 },
+      { q: "Where do you interpret the findings and compare with others?", a: ["Methods", "Discussion", "Title", "References"], c: 1 },
+      { q: "Predatory journals are ______ journals.", a: ["High quality", "Exploitative/low quality", "Open access only", "Free"], c: 1 },
+      { q: "What is 'Paraphrasing'?", a: ["Copying directly", "Expressing ideas in your own words", "Deleting paragraphs", "Adding pictures"], c: 1 },
+      { q: "Analytical competence in research means the ability to ______.", a: ["Type fast", "Analyze and interpret data", "Buy chemicals", "Speak English"], c: 1 }
     ]
   }
 };
+
 function startTest(id) {
   const name = document.getElementById('userName').value;
   const group = document.getElementById('userGroup').value;
@@ -238,7 +238,7 @@ function finishTest(id) {
   const form = document.getElementById('quiz-form');
   const test = quizData[id];
   
-  if (!form.checkValidity()) return alert("Барлық сұраққа жауап беріңіz!");
+  if (!form.checkValidity()) return alert("Барлық сұраққа жауап беріңіз!");
 
   let score = 0;
   test.questions.forEach((q, i) => {
@@ -255,7 +255,7 @@ function finishTest(id) {
   const data = {
     name: document.getElementById('userName').value,
     group: document.getElementById('userGroup').value,
-    discipline: test.discipline, // Жаңа баған қосылды
+    discipline: test.discipline,
     topic: test.title,
     score: score,
     total: test.questions.length
