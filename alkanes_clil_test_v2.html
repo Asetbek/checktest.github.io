@@ -77,11 +77,8 @@ function gradeQuiz() {
   document.getElementById('result').innerHTML =
     `<p>✅ Нәтиже / Результат: <b>${score} / 20</b></p><p id="status">Жіберілуде... / Отправка...</p>`;
 
-  fetch(SCRIPT_URL, {
+ fetch(SCRIPT_URL, {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
   body: JSON.stringify({
     name: name,
     subject: testMeta.subject,
