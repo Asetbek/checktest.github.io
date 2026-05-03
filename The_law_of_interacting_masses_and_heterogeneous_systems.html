@@ -187,18 +187,25 @@ function gradeQuiz() {
      <p id="status">Жіберілуде...</p>`;
 
   fetch(SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: name,
-      subject: testMeta.subject,
-      topic: testMeta.topic,
-      test_id: testMeta.test_id,
-      score: score,
-      total: 20
-    })
-  });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    name: name,
+    subject: testMeta.subject,
+    topic: testMeta.topic,
+    test_id: testMeta.test_id,
+    score: score,
+    total: 20
+  })
+})
+.then(response => {
+  document.getElementById('status').innerHTML =
+    '<span style="color:green">✅ Нәтиже жіберілді! / Результат отправлен учителю!</span>';
+})
+.catch(error => {
+  document.getElementById('status').innerHTML =
+    '<span style="color:red">❌ Қате. Интернетті тексеріңіз.</span>';
+});
 }
 </script>
 
