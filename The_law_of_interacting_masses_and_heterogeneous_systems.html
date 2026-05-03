@@ -1,166 +1,124 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>CLIL Equilibrium Test</title>
-<style>
-body { font-family: Arial; max-width: 900px; margin: auto; padding: 20px; }
-.q { margin-bottom: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
-button { padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px; }
-#result { margin-top: 20px; font-size: 20px; }
-</style>
-</head>
-<body>
-
-<h2>CLIL — Әрекеттесуші массалар заңы және гетерогенді жүйелер</h2>
-
-<input type="text" id="studentName" placeholder="Аты-жөні" style="padding:8px; width:300px;"><br><br>
-
+<!-- ТЕК сұрақ блогын ауыстыр -->
 <form id="quiz">
 
-<!-- 1 -->
-<div class="q"><b>1. Law of mass action describes:</b><br>
-<input type="radio" name="q1" value="1"> reaction rate depends on concentration<br>
-<input type="radio" name="q1" value="0"> temperature only<br></div>
+<div class='q'><b>1. Law of mass action describes:</b><br>
+<label><input type="radio" name="q1" value="0"> temperature</label><br>
+<label><input type="radio" name="q1" value="1"> rate depends on concentration</label><br>
+<label><input type="radio" name="q1" value="2"> pressure only</label><br>
+<label><input type="radio" name="q1" value="3"> volume</label></div>
 
-<!-- 2 -->
-<div class="q"><b>2. Тепе-теңдік дегеніміз:</b><br>
-<input type="radio" name="q2" value="1"> жылдамдықтар тең<br>
-<input type="radio" name="q2" value="0"> реакция тоқтайды<br></div>
+<div class='q'><b>2. Тепе-теңдік дегеніміз:</b><br>
+<label><input type="radio" name="q2" value="0"> реакция тоқтайды</label><br>
+<label><input type="radio" name="q2" value="1"> жылдамдықтар тең</label><br>
+<label><input type="radio" name="q2" value="2"> тек тура жүреді</label><br>
+<label><input type="radio" name="q2" value="3"> тек кері жүреді</label></div>
 
-<!-- 3 -->
-<div class="q"><b>3. Equilibrium constant:</b><br>
-<input type="radio" name="q3" value="1"> K<br>
-<input type="radio" name="q3" value="0"> V<br></div>
+<div class='q'><b>3. Equilibrium constant:</b><br>
+<label><input type="radio" name="q3" value="0"> V</label><br>
+<label><input type="radio" name="q3" value="1"> K</label><br>
+<label><input type="radio" name="q3" value="2"> M</label><br>
+<label><input type="radio" name="q3" value="3"> N</label></div>
 
-<!-- 4 -->
-<div class="q"><b>4. Гетерогенді жүйе:</b><br>
-<input type="radio" name="q4" value="1"> көп фазалы<br>
-<input type="radio" name="q4" value="0"> бір фазалы<br></div>
+<div class='q'><b>4. Гетерогенді жүйе:</b><br>
+<label><input type="radio" name="q4" value="0"> бір фазалы</label><br>
+<label><input type="radio" name="q4" value="1"> көп фазалы</label><br>
+<label><input type="radio" name="q4" value="2"> тек газ</label><br>
+<label><input type="radio" name="q4" value="3"> тек сұйық</label></div>
 
-<!-- 5 -->
-<div class="q"><b>5. Solids in equilibrium:</b><br>
-<input type="radio" name="q5" value="1"> not included<br>
-<input type="radio" name="q5" value="0"> included<br></div>
+<div class='q'><b>5. Solids in equilibrium:</b><br>
+<label><input type="radio" name="q5" value="0"> included</label><br>
+<label><input type="radio" name="q5" value="1"> not included</label><br>
+<label><input type="radio" name="q5" value="2"> doubled</label><br>
+<label><input type="radio" name="q5" value="3"> ignored randomly</label></div>
 
-<!-- 6 -->
-<div class="q"><b>6. Концентрация артса:</b><br>
-<input type="radio" name="q6" value="1"> жылдамдық артады<br>
-<input type="radio" name="q6" value="0"> азаяды<br></div>
+<div class='q'><b>6. Концентрация артса:</b><br>
+<label><input type="radio" name="q6" value="0"> азаяды</label><br>
+<label><input type="radio" name="q6" value="1"> артады</label><br>
+<label><input type="radio" name="q6" value="2"> өзгермейді</label><br>
+<label><input type="radio" name="q6" value="3"> тоқтайды</label></div>
 
-<!-- 7 -->
-<div class="q"><b>7. Equilibrium means:</b><br>
-<input type="radio" name="q7" value="1"> balance<br>
-<input type="radio" name="q7" value="0"> motion<br></div>
+<div class='q'><b>7. Equilibrium means:</b><br>
+<label><input type="radio" name="q7" value="0"> motion</label><br>
+<label><input type="radio" name="q7" value="1"> balance</label><br>
+<label><input type="radio" name="q7" value="2"> heat</label><br>
+<label><input type="radio" name="q7" value="3"> pressure</label></div>
 
-<!-- 8 -->
-<div class="q"><b>8. Газ фазасы:</b><br>
-<input type="radio" name="q8" value="1"> K-ға кіреді<br>
-<input type="radio" name="q8" value="0"> кірмейді<br></div>
+<div class='q'><b>8. Gas phase in K:</b><br>
+<label><input type="radio" name="q8" value="0"> no</label><br>
+<label><input type="radio" name="q8" value="1"> yes</label><br>
+<label><input type="radio" name="q8" value="2"> sometimes not</label><br>
+<label><input type="radio" name="q8" value="3"> unknown</label></div>
 
-<!-- 9 -->
-<div class="q"><b>9. Homogeneous system:</b><br>
-<input type="radio" name="q9" value="1"> one phase<br>
-<input type="radio" name="q9" value="0"> many phases<br></div>
+<div class='q'><b>9. Homogeneous system:</b><br>
+<label><input type="radio" name="q9" value="0"> many phases</label><br>
+<label><input type="radio" name="q9" value="1"> one phase</label><br>
+<label><input type="radio" name="q9" value="2"> solid only</label><br>
+<label><input type="radio" name="q9" value="3"> liquid only</label></div>
 
-<!-- 10 -->
-<div class="q"><b>10. Температура артса:</b><br>
-<input type="radio" name="q10" value="1"> әсер етеді<br>
-<input type="radio" name="q10" value="0"> әсер етпейді<br></div>
+<div class='q'><b>10. Temperature effect:</b><br>
+<label><input type="radio" name="q10" value="0"> no effect</label><br>
+<label><input type="radio" name="q10" value="1"> affects equilibrium</label><br>
+<label><input type="radio" name="q10" value="2"> stops reaction</label><br>
+<label><input type="radio" name="q10" value="3"> only pressure</label></div>
 
-<!-- 11 -->
-<div class="q"><b>11. Reaction rate depends on:</b><br>
-<input type="radio" name="q11" value="1"> concentration<br>
-<input type="radio" name="q11" value="0"> color<br></div>
+<div class='q'><b>11. Reaction rate depends on:</b><br>
+<label><input type="radio" name="q11" value="0"> color</label><br>
+<label><input type="radio" name="q11" value="1"> concentration</label><br>
+<label><input type="radio" name="q11" value="2"> smell</label><br>
+<label><input type="radio" name="q11" value="3"> shape</label></div>
 
-<!-- 12 -->
-<div class="q"><b>12. Қысым әсер етеді:</b><br>
-<input type="radio" name="q12" value="1"> газдарға<br>
-<input type="radio" name="q12" value="0"> қаттыға<br></div>
+<div class='q'><b>12. Pressure affects:</b><br>
+<label><input type="radio" name="q12" value="0"> solids</label><br>
+<label><input type="radio" name="q12" value="1"> gases</label><br>
+<label><input type="radio" name="q12" value="2"> liquids only</label><br>
+<label><input type="radio" name="q12" value="3"> none</label></div>
 
-<!-- 13 -->
-<div class="q"><b>13. Catalyst:</b><br>
-<input type="radio" name="q13" value="1"> changes rate<br>
-<input type="radio" name="q13" value="0"> changes K<br></div>
+<div class='q'><b>13. Catalyst:</b><br>
+<label><input type="radio" name="q13" value="0"> changes K</label><br>
+<label><input type="radio" name="q13" value="1"> changes rate</label><br>
+<label><input type="radio" name="q13" value="2"> stops reaction</label><br>
+<label><input type="radio" name="q13" value="3"> no effect</label></div>
 
-<!-- 14 -->
-<div class="q"><b>14. Ле Шателье принципі:</b><br>
-<input type="radio" name="q14" value="1"> тепе-теңдік ығысады<br>
-<input type="radio" name="q14" value="0"> өзгермейді<br></div>
+<div class='q'><b>14. Le Chatelier principle:</b><br>
+<label><input type="radio" name="q14" value="0"> no change</label><br>
+<label><input type="radio" name="q14" value="1"> equilibrium shifts</label><br>
+<label><input type="radio" name="q14" value="2"> reaction stops</label><br>
+<label><input type="radio" name="q14" value="3"> only heat changes</label></div>
 
-<!-- 15 -->
-<div class="q"><b>15. Forward reaction:</b><br>
-<input type="radio" name="q15" value="1"> тура<br>
-<input type="radio" name="q15" value="0"> кері<br></div>
+<div class='q'><b>15. Forward reaction:</b><br>
+<label><input type="radio" name="q15" value="0"> reverse</label><br>
+<label><input type="radio" name="q15" value="1"> direct</label><br>
+<label><input type="radio" name="q15" value="2"> stop</label><br>
+<label><input type="radio" name="q15" value="3"> none</label></div>
 
-<!-- 16 -->
-<div class="q"><b>16. Reverse reaction:</b><br>
-<input type="radio" name="q16" value="1"> кері<br>
-<input type="radio" name="q16" value="0"> тура<br></div>
+<div class='q'><b>16. Reverse reaction:</b><br>
+<label><input type="radio" name="q16" value="0"> direct</label><br>
+<label><input type="radio" name="q16" value="1"> reverse</label><br>
+<label><input type="radio" name="q16" value="2"> stop</label><br>
+<label><input type="radio" name="q16" value="3"> none</label></div>
 
-<!-- 17 -->
-<div class="q"><b>17. CLIL: concentration:</b><br>
-<input type="radio" name="q17" value="1"> концентрация<br>
-<input type="radio" name="q17" value="0"> қысым<br></div>
+<div class='q'><b>17. Concentration means:</b><br>
+<label><input type="radio" name="q17" value="0"> pressure</label><br>
+<label><input type="radio" name="q17" value="1"> amount per volume</label><br>
+<label><input type="radio" name="q17" value="2"> heat</label><br>
+<label><input type="radio" name="q17" value="3"> mass only</label></div>
 
-<!-- 18 -->
-<div class="q"><b>18. System types:</b><br>
-<input type="radio" name="q18" value="1"> homo + hetero<br>
-<input type="radio" name="q18" value="0"> only one<br></div>
+<div class='q'><b>18. System types:</b><br>
+<label><input type="radio" name="q18" value="0"> one</label><br>
+<label><input type="radio" name="q18" value="1"> homo + hetero</label><br>
+<label><input type="radio" name="q18" value="2"> only gas</label><br>
+<label><input type="radio" name="q18" value="3"> only solid</label></div>
 
-<!-- 19 -->
-<div class="q"><b>19. K depends on:</b><br>
-<input type="radio" name="q19" value="1"> temperature<br>
-<input type="radio" name="q19" value="0"> volume<br></div>
+<div class='q'><b>19. K depends on:</b><br>
+<label><input type="radio" name="q19" value="0"> volume</label><br>
+<label><input type="radio" name="q19" value="1"> temperature</label><br>
+<label><input type="radio" name="q19" value="2"> pressure</label><br>
+<label><input type="radio" name="q19" value="3"> mass</label></div>
 
-<!-- 20 -->
-<div class="q"><b>20. Equilibrium is:</b><br>
-<input type="radio" name="q20" value="1"> dynamic<br>
-<input type="radio" name="q20" value="0"> static<br></div>
+<div class='q'><b>20. Equilibrium is:</b><br>
+<label><input type="radio" name="q20" value="0"> static</label><br>
+<label><input type="radio" name="q20" value="1"> dynamic</label><br>
+<label><input type="radio" name="q20" value="2"> stopped</label><br>
+<label><input type="radio" name="q20" value="3"> unknown</label></div>
 
 </form>
-
-<button onclick="gradeQuiz()">Аяқтау</button>
-
-<div id="result"></div>
-
-<script>
-const SCRIPT_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
-
-const answers = {
-q1:1,q2:1,q3:1,q4:1,q5:1,
-q6:1,q7:1,q8:1,q9:1,q10:1,
-q11:1,q12:1,q13:1,q14:1,q15:1,
-q16:1,q17:1,q18:1,q19:1,q20:1
-};
-
-function gradeQuiz(){
-let name=document.getElementById("studentName").value.trim();
-if(!name){alert("Атыңды жаз!");return;}
-
-let score=0;
-for(let q in answers){
-let el=document.querySelector(`input[name="${q}"]:checked`);
-if(el && Number(el.value)===answers[q]) score++;
-}
-
-document.getElementById("result").innerHTML =
-"Нәтиже: "+score+"/20 (жіберілуде...)";
-
-fetch(SCRIPT_URL,{
-method:"POST",
-mode:"no-cors",
-body:JSON.stringify({
-name:name,
-subject:"Chemistry",
-topic:"Equilibrium",
-test_id:"EQ-01",
-score:score,
-total:20
-})
-});
-}
-</script>
-
-</body>
-</html>
