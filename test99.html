@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhetysu University - Chemistry CLIL</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Правильный ответ */
+.correct-answer {
+  border-color: var(--success) !important;
+  background-color: #d4edda !important;
+  color: #155724;
+}
+
+/* Неправильный ответ */
+.wrong-answer {
+  border-color: var(--primary) !important;
+  background-color: #f8d7da !important;
+  color: #721c24;
+}
+
+/* Итоговый балл */
+.score-display {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--secondary);
+  color: white;
+  border-radius: 8px;
+}
+:root { 
+  --primary: #8C1515; 
+  --secondary: #2E2D29; 
+  --bg: #F4F4F4;
+  --white: #FFFFFF;
+  --text: #2E2D29;
+  --success: #28a745;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --transition: all 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+  font-family: 'Montserrat', sans-serif; 
+  background-color: var(--bg); 
+  color: var(--text); 
+  line-height: 1.6;
+}
+
+header { 
+  background: var(--white); 
+  padding: 30px 20px; 
+  text-align: center; 
+  border-bottom: 3px solid var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.uni-info h1 { 
+  color: var(--primary); 
+  font-size: 1.3rem; 
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.uni-info p { 
+  color: var(--secondary); 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.hero { 
+  background: var(--secondary); 
+  color: var(--white); 
+  padding: 60px 20px 100px; 
+  text-align: center;
+}
+
+.hero h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+
+.reg-card { 
+  background: var(--white); 
+  padding: 40px; 
+  border-radius: 12px; 
+  box-shadow: var(--shadow); 
+  margin-top: -50px; 
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+input { 
+  flex: 1;
+  font-family: inherit;
+  padding: 14px 18px; 
+  border: 1px solid #CCC; 
+  border-radius: 8px; 
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(140, 21, 21, 0.1);
+}
+
+/* Дисциплина атауларын ортаға қою */
+.section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 35px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.section-title::before, .section-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: #EEE;
+}
+
+.menu-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 15px; 
+}
+
+.menu-btn { 
+  background: var(--white); 
+  border: 1px solid #DDD; 
+  color: var(--secondary); 
+  padding: 22px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 1.05rem; 
+  font-weight: 600; 
+  transition: var(--transition);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-btn:hover { 
+  background: #FFF9F9;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(140, 21, 21, 0.08);
+}
+
+.test-box { display: none; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); }
+.active { display: block; }
+
+/* Сұрақтар мен жауаптар арақашықтығы */
+.question { 
+  margin-bottom: 30px; /* Әр сұрақтың арасы */
+  padding: 25px; 
+  border-radius: 8px;
+  background: #FAFAFA; 
+  border-left: 5px solid var(--primary);
+}
+
+.question p { 
+  font-weight: 700; 
+  font-size: 1.1rem; 
+  margin-bottom: 20px; /* Сұрақ пен бірінші жауаптың арасы */
+}
+
+label {
+  display: block;
+  padding: 14px 18px;    
+  margin-bottom: 12px;   /* Жауаптардың (нұсқалардың) арасы */
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #EEE;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+label:hover { border-color: var(--primary); background: #FFF9F9; }
+
+/* "Жіберу" батырмасы */
+.submit-btn { 
+  background: var(--primary); 
+  color: var(--white); 
+  padding: 18px; 
+  border: none; 
+  border-radius: 8px; 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  cursor: pointer; 
+  width: 100%; 
+  margin-top: 25px;
+}
+
+.submit-btn:hover { background: #701111; }
+
+/* Мұғалімге жіберілгені туралы жасыл хабарлама стилі */
+.status-message {
+  display: none; 
+  color: var(--success); 
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid var(--success);
+  border-radius: 8px;
+  background-color: #f8fff9;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .input-group { flex-direction: column; }
+  .uni-info h1 { font-size: 1.1rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="uni-info">
+    <h1>Ілияс Жансүгіров атындағы Жетісу университеті</h1>
+    <p>Жаратылыстану-техникалық факультеті</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">Жаратылыстану пәндер кафедрасы</p>
+  </div>
+</header>
+
+<div id="main-view">
+  <section class="hero">
+    <h2>Chemistry CLIL tests</h2>
+    <p>Білімді тексеру платформасына қош келдіңіз</p>
+  </section>
+
+  <div class="container">
+    <div class="reg-card">
+      <div class="input-group">
+        <input type="text" id="userName" placeholder="Аты-жөніңіз / Full Name">
+        <input type="text" id="userGroup" placeholder="Тобыңыз / Group">
+      </div>
+      
+      <div class="section-title">Органикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="startTest('alkandap')">Алкандар <span>→</span></button>
+        <button class="menu-btn" onclick="startTest('alkender')">Алкендер <span>→</span></button>
+      </div>
+
+      <div class="section-title">Аналитикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="startTest('massalar')">Массалар заңы <span>→</span></button>
+        <button class="menu-btn" onclick="startTest('eritindi')">Иондық күш <span>→</span></button>
+      </div>
+
+      <div class="section-title">Ғылыми-зерттеу жұмысын ұйымдастыру</div>
+      <div class="menu-grid">
+        <button class="menu-btn" style="grid-column: 1/-1;" onclick="startTest('gylymi')">Ғылыми мақала<span>→</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="test-view" class="container" style="margin-top: 40px;"></div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
+
+const quizData = {
+  'alkandap': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкандар',
+    questions: [
+       { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "The hybrid state of carbon atoms in alkanes is:", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
+      { q: "What is the bond angle in methane (CH4)?", a: ["90°", "120°", "109.5°", "180°"], c: 2 },
+      { q: "The simplest alkane is:", a: ["Ethane", "Methane", "Propane", "Butane"], c: 1 },
+      { q: "Алкандарға тән реакция түрі:", a: ["Қосылу", "Орынбасу (Substitution)", "Полимерлену", "Гидратация"], c: 1 },
+      { q: "Which gas is known as 'marsh gas'?", a: ["Butane", "Ethane", "Methane", "Propane"], c: 2 },
+      { q: "The reaction of methane with chlorine in UV light follows which mechanism?", a: ["Electrophilic", "Nucleophilic", "Free radical substitution", "Elimination"], c: 2 },
+      { q: "Identify the Wurtz reaction reactant:", a: ["Alcohol", "Alkyl halide + Sodium", "Alkene", "Acid"], c: 1 },
+      { q: "What is the bond length of C-C in alkanes?", a: ["0.134 nm", "0.154 nm", "0.120 nm", "0.140 nm"], c: 1 },
+      { q: "Алкандардың гомологтық айырмасы (homologous difference):", a: ["CH", "CH2", "CH3", "C2H2"], c: 1 },
+      { q: "Which alkane has the highest boiling point?", a: ["Methane", "Ethane", "Propane", "n-Butane"], c: 3 },
+      { q: "Isomerism starts in alkanes from:", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
+      { q: "Complete combustion of alkanes produces:", a: ["CO + H2", "CO2 + H2O", "C + H2", "CH3OH"], c: 1 },
+      { q: "Natural gas mainly consists of:", a: ["Ethane", "Methane", "Butane", "Propane"], c: 1 },
+      { q: "What is the shape of a methane molecule?", a: ["Linear", "Planar", "Tetrahedral", "Octahedral"], c: 2 },
+      { q: "Alkanes are also called:", a: ["Olefins", "Paraffins", "Acetylenes", "Arenes"], c: 1 },
+      { q: "Which catalyst is used in the dehydrogenation of alkanes?", a: ["Pt/Pd", "AlCl3", "Fe", "Cu"], c: 0 },
+      { q: "The number of isomers in pentane (C5H12) is:", a: ["2", "3", "4", "5"], c: 1 },
+      { q: "Paraffin means:", a: ["Highly reactive", "Little affinity", "Sweet smelling", "Liquid gas"], c: 1 },
+      { q: "Cracking of alkanes produces:", a: ["Only alkanes", "Alkanes and alkenes", "Only hydrogen", "Alcohols"], c: 1 }
+    ]
+  },
+  'alkender': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкендер',
+    questions: [
+      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n-6"], c: 1 },
+      { q: "Alkenes contain at least one ______ bond.", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
+      { q: "Hybridization of carbon in the double bond is:", a: ["sp3", "sp", "sp2", "dsp2"], c: 2 },
+      { q: "The simplest alkene is:", a: ["Methane", "Ethene (Ethylene)", "Propene", "Butene"], c: 1 },
+      { q: "What is the bond angle around the double bond?", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
+      { q: "Алкендерге тән сапалық реакция:", a: ["Жану", "Бром суын түссіздендіру", "Гидрирлеу", "Изомерлену"], c: 1 },
+      { q: "Markovnikov's rule is applied to:", a: ["Substitution", "Electrophilic addition", "Elimination", "Combustion"], c: 1 },
+      { q: "Baeyer's reagent is used to detect:", a: ["Alkanes", "Unsaturation (double/triple bonds)", "Alcohols", "Acids"], c: 1 },
+      { q: "Which gas is used to ripen fruits artificially?", a: ["Ethane", "Ethylene", "Methane", "Acetylene"], c: 1 },
+      { q: "Alkenes are also known as:", a: ["Paraffins", "Olefins", "Acetylenes", "Glycols"], c: 1 },
+      { q: "The bond length of C=C is:", a: ["0.154 nm", "0.120 nm", "0.134 nm", "0.140 nm"], c: 2 },
+      { q: "Addition of H2 to alkenes is called:", a: ["Dehydrogenation", "Hydrogenation", "Hydration", "Halogenation"], c: 1 },
+      { q: "Reaction of alkene with water produces:", a: ["Alkane", "Alcohol", "Acid", "Ether"], c: 1 },
+      { q: "Which rule describes the addition of HX to asymmetric alkenes?", a: ["Hund's", "Zaitsev's", "Markovnikov's", "Pauli's"], c: 2 },
+      { q: "Ozonolysis of alkenes produces:", a: ["Alcohols", "Carbonyl compounds", "Alkanes", "Halides"], c: 1 },
+      { q: "Geometrical isomerism (cis-trans) is found in:", a: ["Ethane", "Propane", "But-2-ene", "Ethyne"], c: 2 },
+      { q: "The catalyst used in Ziegler-Natta polymerization is:", a: ["Fe", "TiCl4 + Al(C2H5)3", "V2O5", "Ni"], c: 1 },
+      { q: "Double bond consists of:", a: ["Two sigma bonds", "Two pi bonds", "One sigma and one pi bond", "Ionic bond"], c: 2 },
+      { q: "Reaction of ethylene with KMnO4 in cold dilute solution produces:", a: ["Ethanol", "Ethylene glycol", "Acetic acid", "Oxalic acid"], c: 1 },
+      { q: "Polymerization of ethylene produces:", a: ["Polypropylene", "Polyethylene", "Polystyrene", "PVC"], c: 1 }
+    ]
+  },
+  'massalar': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Әрекеттесуші массалар заңы және гетерогенді жүйелер', 
+    questions: [
+       { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Ostwald"], c: 1 },
+      { q: "Reaction rate is proportional to the product of ______ of reactants.", a: ["Mass", "Volume", "Active masses (concentrations)", "Temperature"], c: 2 },
+      { q: "In the expression v = k[A]^a[B]^b, 'k' is the:", a: ["Equilibrium constant", "Rate constant", "Universal constant", "Activity"], c: 1 },
+      { q: "What factor does NOT affect the rate constant (k)?", a: ["Temperature", "Catalyst", "Concentration", "Nature of reactants"], c: 2 },
+      { q: "For a reaction A + B = C, if [A] is doubled, the rate ______.", a: ["Doubles", "Triples", "Remains same", "Halves"], c: 0 },
+      { q: "Chemical equilibrium is ______ in nature.", a: ["Static", "Dynamic", "Irreversible", "Stable"], c: 1 },
+      { q: "The unit of rate of reaction is:", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
+      { q: "If Delta n = 0 for a gaseous reaction, then:", a: ["Kp > Kc", "Kp < Kc", "Kp = Kc", "Kp = 0"], c: 2 },
+      { q: "Le Chatelier's principle predicts the effect of:", a: ["Mass only", "Pressure, Temp, Concentration", "Catalyst only", "Atomic weight"], c: 1 },
+      { q: "Addition of a catalyst ______ the equilibrium state.", a: ["Shifts forward", "Shifts backward", "Does not change", "Destroys"], c: 2 },
+      { q: "In an exothermic reaction, increasing temperature shifts equilibrium to the:", a: ["Right", "Left", "Does not shift", "Top"], c: 1 },
+      { q: "Pressure affects equilibrium only if there is a change in ______.", a: ["Mass", "Temperature", "Number of gas moles", "Color"], c: 2 },
+      { q: "Rate of reverse reaction equals forward reaction at:", a: ["Start", "Completion", "Equilibrium", "Half-time"], c: 2 },
+      { q: "Homogeneous reaction occurs in ______ phase.", a: ["Single", "Two", "Multiple", "Solid"], c: 0 },
+      { q: "Activation energy is lowered by:", a: ["Heat", "Pressure", "Catalyst", "Volume"], c: 2 },
+      { q: "The expression for Kc of H2 + I2 = 2HI is:", a: ["[HI]/[H2][I2]", "[HI]^2/[H2][I2]", "[H2][I2]/[HI]^2", "[HI]^2/[H2]"], c: 1 },
+      { q: "If Kc > 1, the equilibrium favors:", a: ["Reactants", "Products", "Neither", "Slow rate"], c: 1 },
+      { q: "Increase in pressure favors the side with ______ moles of gas.", a: ["More", "Fewer", "Same", "Zero"], c: 1 },
+      { q: "Relation between Kp and Kc is:", a: ["Kp = Kc(RT)", "Kp = Kc(RT)^Δn", "Kc = Kp(RT)^Δn", "Kp = Kc"], c: 1 },
+      { q: "Law of Mass Action is applicable to ______ reactions.", a: ["Irreversible", "Reversible", "Nuclear", "Instantaneous"], c: 1 }
+    ]
+  },
+  'eritindi': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Ерітіндінің иондық күші мен активтілігі', 
+    questions: [
+      { q: "Ionic strength (mu) was introduced by:", a: ["Arrhenius", "Lewis and Randall", "Debye", "Hückel"], c: 1 },
+      { q: "Formula for ionic strength is $\mu = \frac{1}{2} \sum$ ______.", a: ["ci zi", "ci zi^2", "ci^2 zi", "ci / zi"], c: 1 },
+      { q: "Activity (a) is related to concentration (c) by:", a: ["a = c/f", "a = f·c", "a = f+c", "a = f^c"], c: 1 },
+      { q: "In very dilute solutions, the activity coefficient ($f$) is:", a: ["0", "Infinity", "Approaching 1", "Negative"], c: 2 },
+      { q: "What is the ionic strength of 0.1 M NaCl solution?", a: ["0.05", "0.1", "0.2", "0.4"], c: 1 },
+      { q: "Ionic strength depends on the ______ of ions.", a: ["Size only", "Color", "Concentration and charge", "Weight"], c: 2 },
+      { q: "Activity coefficient decreases as ionic strength ______.", a: ["Decreases", "Increases", "Remains constant", "Becomes zero"], c: 1 },
+      { q: "Debye-Hückel limiting law is used for ______ solutions.", a: ["Concentrated", "Dilute electrolytes", "Non-electrolytes", "Solid"], c: 1 },
+      { q: "Mean ionic activity coefficient is represented by:", a: ["f±", "μ", "α", "Kw"], c: 0 },
+      { q: "For a 1:2 electrolyte like MgCl2 (0.1 M), the ionic strength is:", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 },
+      { q: "Strong electrolytes are ______ ionized in water.", a: ["Partially", "Completely", "Not", "Slowly"], c: 1 },
+      { q: "The effective concentration is called:", a: ["Molarity", "Molality", "Activity", "Normality"], c: 2 },
+      { q: "Activity is a dimensionless quantity?", a: ["Yes", "No", "Depends on unit", "Only for gases"], c: 0 },
+      { q: "Increasing the charge of an ion ______ its effect on ionic strength.", a: ["Decreases", "Increases", "Does not change", "Eliminates"], c: 1 },
+      { q: "The 'Salting-out' effect is related to:", a: ["Alkanes", "Ionic strength increase", "Catalysis", "Distillation"], c: 1 },
+      { q: "Debye-Hückel theory considers ions as:", a: ["Point charges", "Large spheres", "Cubes", "Rings"], c: 0 },
+      { q: "What is the charge (z) of a sulfate ion SO4^{2-}?", a: ["+2", "-2", "-1", "+6"], c: 1 },
+      { q: "If mu = 0, then activity (a) ______ concentration (c).", a: [">", "<", "=", "is 0"], c: 2 },
+      { q: "Ionic atmosphere concept is part of:", a: ["Bohr model", "Debye-Hückel theory", "Kinetic theory", "VSEPR"], c: 1 },
+      { q: "Unit of ionic strength is:", a: ["mol/L", "L/mol", "No unit", "mol·L"], c: 0 }
+    ]
+  },
+  'gylymi': { 
+    discipline: 'Ғылыми-зерттеу жұмысын ұйымдастыру',
+    title: 'Ғылыми мақала', 
+    questions: [
+      { q: "What is the standard structure of a research article?", a: ["IMRAD", "ABCC", "H-index", "DOI"], c: 0 },
+      { q: "IMRaD stands for Introduction, Methods, Results, and ______.", a: ["Data", "Diagram", "Discussion", "Description"], c: 2 },
+      { q: "Where is the main hypothesis of the work stated?", a: ["Abstract", "Introduction", "Conclusion", "References"], c: 1 },
+      { q: "What is 'Scopus'?", a: ["A type of microscope", "Abstract and citation database", "A chemistry journal", "An AI tool"], c: 1 },
+      { q: "The 'Impact Factor' measures the ______ of a journal.", a: ["Speed", "Cost", "Influence/Quality", "Size"], c: 2 },
+      { q: "A short summary of the article is called:", a: ["Introduction", "Abstract", "Appendix", "Footnote"], c: 1 },
+      { q: "Which tool is used for reference management?", a: ["Photoshop", "Mendeley / Zotero", "Excel", "Canvas"], c: 1 },
+      { q: "What is 'Plagiarism'?", a: ["Data analysis", "Using others' work without credit", "Peer review", "Citing sources"], c: 1 },
+      { q: "A 'DOI' is a ______ for digital documents.", a: ["Price tag", "Unique persistent identifier", "Date of issue", "Type of ink"], c: 1 },
+      { q: "The H-index measures an author's ______.", a: ["Age", "Productivity and citation impact", "Salary", "Number of degrees"], c: 1 },
+      { q: "Peer-review is a process of ______.", a: ["Selling articles", "Evaluation by experts", "Typing results", "Translation"], c: 1 },
+      { q: "Keywords are used for ______.", a: ["Grammar check", "Search and indexing", "Word count", "Design"], c: 1 },
+      { q: "Ethics in research includes:", a: ["Fabrication", "Data falsification", "Informed consent/Honesty", "Copy-pasting"], c: 2 },
+      { q: "Which section describes 'How' the research was done?", a: ["Results", "Methods", "Literature Review", "Discussion"], c: 1 },
+      { q: "CiteScore is a metric used by:", a: ["Web of Science", "Scopus", "Google Scholar", "ResearchGate"], c: 1 },
+      { q: "A 'Review Article' is different because it ______.", a: ["Has no data", "Summarizes existing research", "Is very short", "Is not scientific"], c: 1 },
+      { q: "Where do you interpret the findings and compare with others?", a: ["Methods", "Discussion", "Title", "References"], c: 1 },
+      { q: "Predatory journals are ______ journals.", a: ["High quality", "Exploitative/low quality", "Open access only", "Free"], c: 1 },
+      { q: "What is 'Paraphrasing'?", a: ["Copying directly", "Expressing ideas in your own words", "Deleting paragraphs", "Adding pictures"], c: 1 },
+      { q: "Analytical competence in research means the ability to ______.", a: ["Type fast", "Analyze and interpret data", "Buy chemicals", "Speak English"], c: 1 }
+    ]
+  }
+};
+
+function startTest(id) {
+  const name = document.getElementById('userName').value;
+  const group = document.getElementById('userGroup').value;
+  if(!name || !group) return alert("Аты-жөніңіз бен тобыңызды жазыңыз!");
+
+  const test = quizData[id];
+  let html = `<div class="test-box active">
+    <button class="menu-btn" style="padding:10px 20px; font-size:0.9rem; margin-bottom:30px; width: auto;" onclick="location.reload()">← Артқа</button>
+    <h2 style="margin-bottom:30px; color:var(--primary); text-align:center;">${test.title}</h2>
+    <form id="quiz-form">`;
+
+  test.questions.forEach((item, i) => {
+    html += `<div class="question"><p>${i+1}. ${item.q}</p>`;
+    item.a.forEach((opt, j) => {
+      html += `<label><input type="radio" name="q${i}" value="${j}" required> <span>${opt}</span></label>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `
+    <button type="button" id="submit-btn" class="submit-btn" onclick="finishTest('${id}')">Нәтижені жіберу</button>
+    <div id="final-status" class="status-message">Нәтижеңіз мұғалімге жіберілді!</div>
+    </form></div>`;
+  
+  document.getElementById('main-view').style.display = 'none';
+  document.getElementById('test-view').innerHTML = html;
+  window.scrollTo(0,0);
+}
+
+function finishTest(id) {
+  const btn = document.getElementById('submit-btn');
+  const form = document.getElementById('quiz-form');
+  const statusMsg = document.getElementById('final-status');
+  const test = quizData[id];
+  
+  if (!form.checkValidity()) return alert("Барлық сұраққа жауап беріңіз!");
+
+  let score = 0;
+  
+  // 1. Проверка ответов
+  test.questions.forEach((q, i) => {
+    const questionDiv = form.querySelectorAll('.question')[i];
+    const labels = questionDiv.querySelectorAll('label');
+    const selectedInput = form.querySelector(`input[name="q${i}"]:checked`);
+    const selectedIndex = parseInt(selectedInput.value);
+
+    labels[q.c].classList.add('correct-answer');
+
+    if (selectedIndex === q.c) {
+      score++;
+    } else {
+      labels[selectedIndex].classList.add('wrong-answer');
+    }
+
+    questionDiv.querySelectorAll('input').forEach(input => input.disabled = true);
+  });
+
+  // 2. Показ результата
+  const scoreHtml = `<div class="score-display">
+    Сіздің нәтижеңіз: ${score} / ${test.questions.length}<br>
+    <small>Дұрыс жауаптар жасыл түспен белгіленді</small>
+  </div>`;
+  
+  form.insertAdjacentHTML('afterbegin', scoreHtml);
+
+  // 3. Отправка данных
+  btn.disabled = true;
+  btn.innerText = "Жіберілуде...";
+
+  const data = {
+    name: document.getElementById('userName').value.trim(),
+    group: document.getElementById('userGroup').value.trim(),
+    discipline: test.discipline,
+    topic: test.title,
+    score: score,
+    total: test.questions.length
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => {
+    btn.style.display = 'none';
+    statusMsg.style.display = 'block';
+    window.scrollTo(0,0);
+  }).catch(() => {
+    alert("Қате кетті.");
+    btn.disabled = false;
+    btn.innerText = "Қайта жіберу";
+  });
+}
+</script>
+</body>
+</html>
+</html>
