@@ -1,296 +1,434 @@
 <!doctype html>
-<html>
+<html lang="kk">
 <head>
 <meta charset="utf-8">
-<title>CLIL Химия тесттері</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhetysu University - Chemistry CLIL</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-* { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; max-width: 960px; margin: 0 auto; padding: 20px 16px; background: #f0f4ff; }
-h1 { text-align: center; color: #1a3c6e; margin-bottom: 6px; }
-.subtitle { text-align:center; color:#555; margin-bottom: 24px; font-size: 15px; }
-.menu { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
-.menu-btn { padding: 20px 14px; background: #1a3c6e; color: white; border: none; border-radius: 8px; font-size: 15px; cursor: pointer; line-height: 1.5; }
-.menu-btn:hover { background: #2a5298; }
-.menu-btn small { font-size: 12px; opacity: 0.85; display: block; margin-top: 4px; }
-.test-page { display: none; }
-.test-page.active { display: block; }
-.back-btn { padding: 8px 18px; background: #888; color: white; border: none; border-radius: 6px; cursor: pointer; margin-bottom: 18px; font-size: 14px; }
-.back-btn:hover { background: #555; }
-.name-box { background: #e8f0fe; padding: 16px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #b0c4f8; }
-.name-box input { padding: 8px 12px; font-size: 16px; width: 320px; border: 1px solid #aaa; border-radius: 4px; margin-top: 8px; }
-.q { margin-bottom: 14px; padding: 12px 14px; border: 1px solid #ddd; border-radius: 6px; background: white; }
-.q p { margin: 0 0 8px; font-weight: bold; font-size: 15px; }
-label { display: block; margin: 4px 0; cursor: pointer; font-size: 14px; }
-.submit-btn { padding: 11px 30px; font-size: 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer; margin-top: 12px; }
-.submit-btn:hover { background: #45a049; }
-.result-box { margin-top: 20px; font-size: 20px; font-weight: bold; }
-h2 { color: #1a3c6e; border-bottom: 2px solid #1a3c6e; padding-bottom: 6px; margin-bottom: 20px; }
-.tag { display: inline-block; font-size: 12px; background: #1a3c6e; color: white; padding: 2px 8px; border-radius: 4px; margin-bottom: 14px; }
+:root { 
+  --primary: #8C1515; 
+  --secondary: #2E2D29; 
+  --bg: #F4F4F4;
+  --white: #FFFFFF;
+  --text: #2E2D29;
+  --success: #28a745; /* Жасыл түс */
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --transition: all 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+  font-family: 'Montserrat', sans-serif; 
+  background-color: var(--bg); 
+  color: var(--text); 
+  line-height: 1.6;
+}
+
+header { 
+  background: var(--white); 
+  padding: 30px 20px; 
+  text-align: center; 
+  border-bottom: 3px solid var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.uni-info h1 { 
+  color: var(--primary); 
+  font-size: 1.3rem; 
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.uni-info p { 
+  color: var(--secondary); 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.hero { 
+  background: var(--secondary); 
+  color: var(--white); 
+  padding: 60px 20px 100px; 
+  text-align: center;
+}
+
+.hero h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+
+.reg-card { 
+  background: var(--white); 
+  padding: 40px; 
+  border-radius: 12px; 
+  box-shadow: var(--shadow); 
+  margin-top: -50px; 
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+input { 
+  flex: 1;
+  font-family: inherit;
+  padding: 14px 18px; 
+  border: 1px solid #CCC; 
+  border-radius: 8px; 
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+/* Дисциплина атауларын ортаға қою */
+.section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 35px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center; /* Ортаға қою */
+}
+
+.section-title::before, .section-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: #EEE;
+}
+
+.menu-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 15px; 
+}
+
+.menu-btn { 
+  background: var(--white); 
+  border: 1px solid #DDD; 
+  color: var(--secondary); 
+  padding: 22px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 1.05rem; 
+  font-weight: 600; 
+  transition: var(--transition);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-btn:hover { 
+  background: #FFF9F9;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(140, 21, 21, 0.08);
+}
+
+.test-box { display: none; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); }
+.active { display: block; }
+
+/* Сәтті жіберу хабарламасының стилі */
+.success-message {
+  display: none;
+  background: var(--success);
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 20px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question { 
+  margin-bottom: 20px; 
+  padding: 25px; 
+  border-radius: 8px;
+  background: #FAFAFA; 
+  border-left: 5px solid var(--primary);
+}
+
+.submit-btn { 
+  background: var(--primary); 
+  color: var(--white); 
+  padding: 18px; 
+  border: none; 
+  border-radius: 8px; 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  cursor: pointer; 
+  width: 100%; 
+  margin-top: 25px;
+}
+
+.submit-btn:hover { background: #701111; }
 </style>
 </head>
 <body>
 
-<!-- MAIN MENU -->
-<div id="main-menu">
-  <h1>🧪 CLIL Химия тесттері</h1>
-  <p class="subtitle">Тақырыпты таңдамас бұрын аты-жөніңізді енгізіңіз</p>
-
-  <div class="name-box">
-    <label><b>Аты-жөніңіз / Имя и фамилия:</b></label><br>
-    <input type="text" id="studentName" placeholder="Мысалы: Айгерим Сейткали" />
+<header>
+  <div class="uni-info">
+    <h1>Ілияс Жансүгіров атындағы Жетісу университеті</h1>
+    <p>Жаратылыстану-техникалық факультеті</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">Жаратылыстану пәндер кафедрасы</p>
   </div>
+</header>
 
-  <p style="text-align:center;color:#444;font-weight:bold;">Тақырыпты таңдаңыз:</p>
-  <div class="menu">
-    <button class="menu-btn" onclick="openTest('alkandар')">Органикалық химия<small>Алкандар</small></button>
-    <button class="menu-btn" onclick="openTest('alkender')">Органикалық химия<small>Алкендер</small></button>
-    <button class="menu-btn" onclick="openTest('massalar')">Аналитикалық химия<small>Әрекеттесуші массалар заңы және гетерогенді жүйелер</small></button>
-    <button class="menu-btn" onclick="openTest('eritindi')">Аналитикалық химия<small>Ерітіндінің иондық күші және ионның активтілігі</small></button>
-    <button class="menu-btn" onclick="openTest('gylymi')" style="grid-column: span 2;">Ғылыми-зерттеу жұмысын ұйымдастыру<small>Ғылыми мақала</small></button>
+<div id="main-view">
+  <section class="hero">
+    <h2>Chemistry CLIL tests</h2>
+    <p>Білімді тексеру платформасына қош келдіңіз</p>
+  </section>
+
+  <div class="container">
+    <div class="reg-card">
+      <div class="input-group">
+        <input type="text" id="userName" placeholder="Аты-жөніңіз / Full Name">
+        <input type="text" id="userGroup" placeholder="Тобыңыз / Group">
+      </div>
+      
+      <div class="section-title">Органикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="startTest('alkandap')">Алкандар <span>→</span></button>
+        <button class="menu-btn" onclick="startTest('alkender')">Алкендер <span>→</span></button>
+      </div>
+
+      <div class="section-title">Аналитикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="startTest('massalar')">Массалар заңы <span>→</span></button>
+        <button class="menu-btn" onclick="startTest('eritindi')">Иондық күш <span>→</span></button>
+      </div>
+
+      <div class="section-title">Ғылыми-зерттеу жұмысын ұйымдастыру</div>
+      <div class="menu-grid">
+        <button class="menu-btn style="grid-column: 1/-1;" onclick="startTest('gylymi')">Ғылыми мақала<span>→</span></button>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- TEST 1: АЛКАНДАР -->
-<div id="test-alkandар" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
-  <span class="tag">Органикалық химия</span>
-  <h2>Алкандар — 20 сұрақ</h2>
-  <form id="form-alkandар"></form>
-  <button class="submit-btn" onclick="gradeTest('alkandар','Органикалық химия','Алкандар')">Аяқтау</button>
-  <div class="result-box" id="result-alkandар"></div>
-</div>
-
-<!-- TEST 2: АЛКЕНДЕР -->
-<div id="test-alkender" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
-  <span class="tag">Органикалық химия</span>
-  <h2>Алкендер — 20 сұрақ</h2>
-  <form id="form-alkender"></form>
-  <button class="submit-btn" onclick="gradeTest('alkender','Органикалық химия','Алкендер')">Аяқтау</button>
-  <div class="result-box" id="result-alkender"></div>
-</div>
-
-<!-- TEST 3: МАССАЛАР ЗАҢЫ -->
-<div id="test-massalar" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
-  <span class="tag">Аналитикалық химия</span>
-  <h2>Әрекеттесуші массалар заңы және гетерогенді жүйелер — 20 сұрақ</h2>
-  <form id="form-massalar"></form>
-  <button class="submit-btn" onclick="gradeTest('massalar','Аналитикалық химия','Әрекеттесуші массалар заңы')">Аяқтау</button>
-  <div class="result-box" id="result-massalar"></div>
-</div>
-
-<!-- TEST 4: ЕРІТІНДІ -->
-<div id="test-eritindi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
-  <span class="tag">Аналитикалық химия</span>
-  <h2>Ерітіндінің иондық күші және ионның активтілігі — 20 сұрақ</h2>
-  <form id="form-eritindi"></form>
-  <button class="submit-btn" onclick="gradeTest('eritindi','Аналитикалық химия','Иондық күш және активтілік')">Аяқтау</button>
-  <div class="result-box" id="result-eritindi"></div>
-</div>
-
-<!-- TEST 5: ҒЫЛЫМИ МАҚАЛА -->
-<div id="test-gylymi" class="test-page">
-  <button class="back-btn" onclick="goBack()">← Артқа</button>
-  <span class="tag">Ғылыми-зерттеу жұмысы</span>
-  <h2>Ғылыми мақала — 20 сұрақ</h2>
-  <form id="form-gylymi"></form>
-  <button class="submit-btn" onclick="gradeTest('gylymi','Ғылыми-зерттеу жұмысы','Ғылыми мақала')">Аяқтау</button>
-  <div class="result-box" id="result-gylymi"></div>
-</div>
+<div id="test-view" class="container" style="margin-top: 40px;"></div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
 
-// ========== СҰРАҚТАР ==========
-
-const tests = {
-
-'alkandар': {
-  questions: [
-    { q: '1. Алкандардың жалпы формуласы қандай?', opts: ['CₙH₂ₙ', 'CₙH₂ₙ₊₂', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
-    { q: '2. Метан молекуласындағы сутек атомдарының саны:', opts: ['2', '4', '6', '8'], ans: 1 },
-    { q: '3. Алкандарға тән реакция түрі:', opts: ['Қосылу', 'Орынбасу', 'Полимерлену', 'Сусызсыздандыру'], ans: 1 },
-    { q: '4. Алкандардағы көміртек-көміртек байланысы:', opts: ['Қос байланыс', 'Үш байланыс', 'Жай (бір) байланыс', 'Ароматты байланыс'], ans: 2 },
-    { q: '5. Алкан қатарының бірінші мүшесі:', opts: ['Метан', 'Этан', 'Пропан', 'Бутан'], ans: 0 },
-    { q: '6. Пропанның молекулалық формуласы:', opts: ['C₃H₆', 'C₃H₈', 'C₃H₄', 'C₃H₁₀'], ans: 1 },
-    { q: '7. Бутан молекуласындағы көміртек атомдарының саны:', opts: ['2', '3', '4', '5'], ans: 2 },
-    { q: '8. Табиғи газдың негізгі құрамы:', opts: ['Метан', 'Пропан', 'Гексан', 'Октан'], ans: 0 },
-    { q: '9. Алкандар суда:', opts: ['Жақсы ериді', 'Нашар ериді', 'Толық иондарға ыдырайды', 'Қышқыл түзеді'], ans: 1 },
-    { q: '10. Көміртек атомдары саны өскен сайын алкандардың қайнау температурасы:', opts: ['Төмендейді', 'Өзгермейді', 'Жоғарылайды', 'Жоқ болады'], ans: 2 },
-    { q: '11. Пентанның молекулалық формуласы:', opts: ['C₅H₁₀', 'C₅H₁₂', 'C₅H₈', 'C₅H₁₄'], ans: 1 },
-    { q: '12. Метанның гомологы:', opts: ['Этан', 'Этен', 'Этанол', 'Этаналь'], ans: 0 },
-    { q: '13. Алкандардың жану өнімдері:', opts: ['CO₂ және H₂O', 'HCl және H₂', 'O₂ және H₂', 'Тек CO₂'], ans: 0 },
-    { q: '14. Гексан молекуласындағы сутек атомдарының саны:', opts: ['12', '14', '10', '16'], ans: 1 },
-    { q: '15. Изомерия қай алканнан басталады?', opts: ['Метан', 'Этан', 'Пропан', 'Бутан'], ans: 3 },
-    { q: '16. C₄H₁₀ формуласына сәйкес алкан:', opts: ['Пропан', 'Бутан', 'Пентан', 'Гексан'], ans: 1 },
-    { q: '17. Алкандар қай класқа жатады?', opts: ['Қанықпаған', 'Қаныққан', 'Ароматты', 'Спирттер'], ans: 1 },
-    { q: '18. Октан молекуласындағы көміртек атомдарының саны:', opts: ['6', '7', '8', '9'], ans: 2 },
-    { q: '19. Алкандардың хлорлану реакциясы қандай жағдайда жүреді?', opts: ['Қараңғыда', 'Жарықта немесе қыздырғанда', 'Суда', 'Катализатор болмаса'], ans: 1 },
-    { q: '20. Алкандардың физикалық қасиеті — олар:', opts: ['Полярлы еріткіштерде жақсы ериді', 'Бейполярлы еріткіштерде ериді', 'Электр тогын өткізеді', 'Суда жақсы ериді'], ans: 1 },
-  ]
-},
-
-'alkender': {
-  questions: [
-    { q: '1. Алкендердің жалпы формуласы:', opts: ['CₙH₂ₙ₊₂', 'CₙH₂ₙ', 'CₙH₂ₙ₋₂', 'CₙH₂ₙ₊₁'], ans: 1 },
-    { q: '2. Алкендерге тән байланыс түрі:', opts: ['Жай байланыс', 'Үш байланыс', 'Қос байланыс', 'Ароматты байланыс'], ans: 2 },
-    { q: '3. Алкендер қатарының бірінші мүшесі:', opts: ['Метан', 'Этен (этилен)', 'Пропен', 'Бутен'], ans: 1 },
-    { q: '4. Этиленнің молекулалық формуласы:', opts: ['C₂H₆', 'C₂H₄', 'C₂H₂', 'C₂H₅'], ans: 1 },
-    { q: '5. Алкендерге тән реакция түрі:', opts: ['Орынбасу', 'Қосылу', 'Ыдырау', 'Полимерлену'], ans: 1 },
-    { q: '6. Алкендер бром суын:', opts: ['Тотықтырады', 'Түссіздендіреді', 'Ерітпейді', 'Бояйды'], ans: 1 },
-    { q: '7. Пропеннің молекулалық формуласы:', opts: ['C₃H₈', 'C₃H₄', 'C₃H₆', 'C₃H₁₀'], ans: 2 },
-    { q: '8. Марковников ережесі қандай реакцияға қатысты?', opts: ['Жану', 'Галогенсутек қосылу', 'Орынбасу', 'Полимерлену'], ans: 1 },
-    { q: '9. Этиленнің полимерлену өнімі:', opts: ['Полипропилен', 'Полиэтилен', 'Полистирол', 'Полибутилен'], ans: 1 },
-    { q: '10. Алкендердің гидраттану өнімі:', opts: ['Альдегид', 'Спирт', 'Қышқыл', 'Эфир'], ans: 1 },
-    { q: '11. Алкендердегі қос байланыс нені білдіреді?', opts: ['Бір σ-байланыс', 'Екі π-байланыс', 'Бір σ және бір π байланыс', 'Екі σ-байланыс'], ans: 2 },
-    { q: '12. Бутен-1 мен бутен-2 бір-біріне қатысты:', opts: ['Гомологтар', 'Изомерлер', 'Бір зат', 'Аллотропты түрлер'], ans: 1 },
-    { q: '13. Алкендерді алудың негізгі өнеркәсіптік тәсілі:', opts: ['Алкандарды синтездеу', 'Алкандарды крекингілеу', 'Тотықтыру', 'Гидрлеу'], ans: 1 },
-    { q: '14. Этиленнің жану теңдеуіндегі CO₂ коэффициенті:', opts: ['1', '2', '3', '4'], ans: 1 },
-    { q: '15. Алкендер калий перманганатын (KMnO₄):', opts: ['Тотықтырмайды', 'Түссіздендіреді', 'Тұндырады', 'Ерітеді'], ans: 1 },
-    { q: '16. Пентен молекуласындағы сутек атомдарының саны:', opts: ['8', '10', '12', '14'], ans: 1 },
-    { q: '17. Алкендердің алкандардан айырмашылығы:', opts: ['Жалпы формуласы', 'Қос байланыстың болуы', 'Жану реакциясы', 'Барлығы дұрыс'], ans: 3 },
-    { q: '18. Цис- және транс-изомерия қай алкеннен басталады?', opts: ['Этен', 'Пропен', 'Бутен-2', 'Пентен'], ans: 2 },
-    { q: '19. Алкендердің су қосып алу реакциясы нені береді?', opts: ['Альдегид', 'Спирт', 'Кетон', 'Қышқыл'], ans: 1 },
-    { q: '20. HBr-ді пропенге қосқанда негізгі өнім (Марковников бойынша):', opts: ['1-бромпропан', '2-бромпропан', '1,2-дибромпропан', '3-бромпропан'], ans: 1 },
-  ]
-},
-
-'massalar': {
-  questions: [
-    { q: '1. Әрекеттесуші массалар заңын кім ашты?', opts: ['Менделеев және Мейер', 'Гульдберг және Вааге', 'Аррениус және Оствальд', 'Лавуазье және Дальтон'], ans: 1 },
-    { q: '2. Химиялық тепе-теңдік константасы К нені сипаттайды?', opts: ['Реакция жылдамдығын', 'Өнімдер мен реагенттер концентрацияларының қатынасын', 'Температура әсерін', 'Катализатор әсерін'], ans: 1 },
-    { q: '3. Гомогенді жүйе дегеніміз:', opts: ['Бірнеше фазадан тұратын жүйе', 'Бір фазадан тұратын жүйе', 'Екі сұйықтан тұратын жүйе', 'Қатты және газ фазасы'], ans: 1 },
-    { q: '4. Гетерогенді жүйеде тепе-теңдік константасына қатты заттардың концентрациясы:', opts: ['Кіреді', 'Кірмейді', 'Кейде кіреді', 'Температураға байланысты'], ans: 1 },
-    { q: '5. aA + bB ⇌ cC + dD реакциясы үшін К өрнегі:', opts: ['K = [A]ᵃ[B]ᵇ / [C]ᶜ[D]ᵈ', 'K = [C]ᶜ[D]ᵈ / [A]ᵃ[B]ᵇ', 'K = [C][D] / [A][B]', 'K = [A][B] / [C][D]'], ans: 1 },
-    { q: '6. Тепе-теңдік константасы К > 1 болса:', opts: ['Реакция солға қарай жылжиды', 'Реакция өнімдері басым болады', 'Реагенттер басым болады', 'Реакция жүрмейді'], ans: 1 },
-    { q: '7. Ле Шателье принципі нені сипаттайды?', opts: ['Реакция жылдамдығын', 'Жүйенің сыртқы әсерге қарсы іс-әрекетін', 'Тепе-теңдік константасының мәнін', 'Температура тәуелділігін'], ans: 1 },
-    { q: '8. Температура жоғарыласа, эндотермиялық реакция үшін тепе-теңдік:', opts: ['Солға жылжиды', 'Оңға жылжиды', 'Өзгермейді', 'Жойылады'], ans: 1 },
-    { q: '9. Қысым өссе, газдар үшін тепе-теңдік қай жаққа жылжиды?', opts: ['Газ молі аз жаққа', 'Газ молі көп жаққа', 'Өзгермейді', 'Температураға байланысты'], ans: 0 },
-    { q: '10. Гетерогенді жүйеге мысал:', opts: ['NaCl ерітіндісі', 'Мұз бен су', 'HCl газы', 'Этанол ерітіндісі'], ans: 1 },
-    { q: '11. Концентрация өссе реакция жылдамдығы:', opts: ['Төмендейді', 'Өзгермейді', 'Жоғарылайды', 'Жойылады'], ans: 2 },
-    { q: '12. Гетерогенді реакцияда беткі аудан ұлғайса реакция жылдамдығы:', opts: ['Төмендейді', 'Жоғарылайды', 'Өзгермейді', 'Белгісіз'], ans: 1 },
-    { q: '13. Тепе-теңдікте тура және кері реакция жылдамдықтары:', opts: ['Тура жылдамдық жоғары', 'Тең', 'Кері жылдамдық жоғары', 'Нөлге тең'], ans: 1 },
-    { q: '14. Катализатор тепе-теңдік константасын:', opts: ['Жоғарылатады', 'Төмендетеді', 'Өзгертпейді', 'Жояды'], ans: 2 },
-    { q: '15. CaCO₃(қ) ⇌ CaO(қ) + CO₂(г) үшін К өрнегі:', opts: ['K = [CaO][CO₂]/[CaCO₃]', 'K = [CO₂]', 'K = [CaCO₃]/[CaO]', 'K = 1/[CO₂]'], ans: 1 },
-    { q: '16. Реакция дәрежесі дегеніміз:', opts: ['Стехиометриялық коэффициенттер қосындысы', 'Концентрация дәрежелерінің қосындысы', 'Тепе-теңдік константасы', 'Жылдамдық константасы'], ans: 1 },
-    { q: '17. Экзотермиялық реакцияда температура жоғарыласа тепе-теңдік:', opts: ['Оңға жылжиды', 'Солға жылжиды', 'Өзгермейді', 'Катализаторға байланысты'], ans: 1 },
-    { q: '18. Аррениус теңдеуі не сипаттайды?', opts: ['Концентрация тәуелділігін', 'Температураның жылдамдыққа әсерін', 'Тепе-теңдік константасын', 'Қысым әсерін'], ans: 1 },
-    { q: '19. Ван-Гофф ережесіне сәйкес температура 10°C өссе реакция жылдамдығы:', opts: ['2 есе азаяды', '2-4 есе өседі', '10 есе өседі', 'Өзгермейді'], ans: 1 },
-    { q: '20. Фаза дегеніміз:', opts: ['Химиялық реакция', 'Физикалық қасиеттері біртекті жүйенің бөлігі', 'Концентрация өлшемі', 'Температура интервалы'], ans: 1 },
-  ]
-},
-
-'eritindi': {
-  questions: [
-    { q: '1. Иондық күш (I) дегеніміз:', opts: ['Иондар концентрациясының қосындысы', 'Иондар концентрациясы мен заряд квадратының жартылай қосындысы', 'Тек катиондар концентрациясы', 'Ерітінді тығыздығы'], ans: 1 },
-    { q: '2. Иондық күш формуласы:', opts: ['I = Σcᵢzᵢ', 'I = ½Σcᵢzᵢ²', 'I = Σcᵢzᵢ²', 'I = ½Σcᵢzᵢ'], ans: 1 },
-    { q: '3. Активтілік (a) мен концентрация (c) арасындағы байланыс:', opts: ['a = c + γ', 'a = c × γ', 'a = c / γ', 'a = c − γ'], ans: 1 },
-    { q: '4. Активтілік коэффициенті (γ) сұйытылған ерітінді үшін:', opts: ['0-ге тең', '1-ге жақын', '1-ден үлкен', 'Теріс'], ans: 1 },
-    { q: '5. Дебай-Хюккель шектік заңы қандай ерітінділерге қолданылады?', opts: ['Концентрлі ерітінділер', 'Өте сұйытылған ерітінділер', 'Бейэлектролиттер', 'Суспензиялар'], ans: 1 },
-    { q: '6. Иондық күш өскен сайын активтілік коэффициенті:', opts: ['Өседі', 'Кемиді', 'Өзгермейді', 'Бірге тең болады'], ans: 1 },
-    { q: '7. 0.1 М NaCl ерітіндісінің иондық күші шамамен:', opts: ['0.05', '0.1', '0.2', '1.0'], ans: 1 },
-    { q: '8. Иондық күшке иондардың заряды қалай әсер етеді?', opts: ['Заряд өскенде иондық күш кемиді', 'Заряд квадраты арқылы күшейтеді', 'Әсер етпейді', 'Тек катиондар есептеледі'], ans: 1 },
-    { q: '9. Орташа активтілік коэффициенті (γ±) нені сипаттайды?', opts: ['Тек катион активтілігін', 'Тек анион активтілігін', 'Катион мен анион коэффициенттерінің геометриялық ортасын', 'Ерітінді тұтқырлығын'], ans: 2 },
-    { q: '10. Термодинамикалық тепе-теңдік константасы активтілік арқылы өрнектелгенде:', opts: ['Температураға тәуелді емес', 'Концентрацияға тәуелді', 'Нақты мән береді', 'Иондық күшке тәуелді'], ans: 2 },
-    { q: '11. CaCl₂ ерітіндісінің иондық күшін есептегенде хлор ионының үлесі:', opts: ['c(Cl⁻)', '2c(Cl⁻)', '½ × c(Cl⁻) × 1²', '½ × 2c(Cl⁻) × 1²'], ans: 3 },
-    { q: '12. Дебай-Хюккель теориясы нені түсіндіреді?', opts: ['Бейэлектролиттер қасиетін', 'Иондар арасындағы электростатикалық өзара әрекетті', 'Беткі керілісті', 'Диффузия жылдамдығын'], ans: 1 },
-    { q: '13. Активтілік ерітінді концентрациясынан аз болады, себебі:', opts: ['Иондар бір-бірімен әрекеттеспейді', 'Иондар арасындағы өзара тартылыс активтілікті азайтады', 'Еріткіш иондарды байланыстырады', 'Температура жоғары'], ans: 1 },
-    { q: '14. рН есептеуде нақты нәтиже үшін не пайдаланылады?', opts: ['Молярлық концентрация', 'Активтілік', 'Моляльдік концентрация', 'Мольдік үлес'], ans: 1 },
-    { q: '15. Иондық күші жоғары ерітіндіде γ < 1 болса, бұл нені білдіреді?', opts: ['Иондар тәуелсіз', 'Иондар арасында өзара әрекет бар', 'Ерітінді таза', 'Концентрация нөлге тең'], ans: 1 },
-    { q: '16. 0.01 М MgSO₄ ерітіндісінің иондық күші:', opts: ['0.01', '0.02', '0.04', '0.08'], ans: 2 },
-    { q: '17. Активтілік коэффициентін есептеудің негізгі тәсілі:', opts: ['Тікелей өлшеу', 'Дебай-Хюккель теңдеуін пайдалану', 'Температура өлшеу', 'Тығыздық өлшеу'], ans: 1 },
-    { q: '18. Ерітіндінің иондық күші артқанда ерігіштік:', opts: ['Кемиді', 'Өзгермейді', 'Артады (тұздық эффект)', 'Нөлге дейін кемиді'], ans: 2 },
-    { q: '19. Буферлік ерітіндіде активтілікті ескерудің маңыздылығы:', opts: ['Маңызды емес', 'рН мәнін нақты есептеу үшін қажет', 'Тек температура жоғары болғанда қажет', 'Тек концентрлі ерітінділерде'], ans: 1 },
-    { q: '20. Иондық күш бірлігі:', opts: ['моль/л²', 'моль/л', 'л/моль', 'моль·л'], ans: 1 },
-  ]
-},
-
-'gylymi': {
-  questions: [
-    { q: '1. Ғылыми мақаланың міндетті құрылымдық бөліктері:', opts: ['Тек кіріспе мен қорытынды', 'Аннотация, кіріспе, әдістер, нәтижелер, қорытынды, әдебиеттер', 'Тек нәтижелер мен графиктер', 'Кіріспе мен тізімдер'], ans: 1 },
-    { q: '2. IMRaD форматы нені білдіреді?', opts: ['Introduction, Methods, Results and Discussion', 'Index, Methodology, Research and Data', 'Information, Mapping, Results, Analysis', 'Introduction, Material, Review, Discussion'], ans: 0 },
-    { q: '3. Аннотация (Abstract) дегеніміз:', opts: ['Мақаланың толық мәтіні', 'Мақаланың қысқаша мазмұны', 'Пайдаланылған әдебиеттер тізімі', 'Кіріспе бөлімі'], ans: 1 },
-    { q: '4. Кіріспе (Introduction) бөлімінде не жазылады?', opts: ['Зерттеу нәтижелері', 'Зерттеу мәселесі, өзектілігі және мақсаты', 'Статистикалық есептеулер', 'Қорытындылар'], ans: 1 },
-    { q: '5. Peer review (рецензиялау) дегеніміз:', opts: ['Мақаланы автордың өзі тексеруі', 'Тәуелсіз сарапшылардың мақаланы бағалауы', 'Редактордың мақаланы өңдеуі', 'Мақаланы аударуы'], ans: 1 },
-    { q: '6. DOI (Digital Object Identifier) не үшін қолданылады?', opts: ['Мақала авторын анықтау', 'Ғылыми мақалаға тұрақты сілтеме беру', 'Журнал рейтингін анықтау', 'Плагиатты тексеру'], ans: 1 },
-    { q: '7. Impact Factor (импакт-фактор) нені өлшейді?', opts: ['Мақаланың бет санын', 'Журналдың дәйексөн алу жиілігін', 'Авторлар санын', 'Журнал бағасын'], ans: 1 },
-    { q: '8. Плагиат дегеніміз:', opts: ['Дұрыс дәйексөн беру', 'Басқа авторлардың идеясын рұқсатсыз пайдалану', 'Өз жұмысын қайта жариялау', 'Аударма жасау'], ans: 1 },
-    { q: '9. Scopus және Web of Science не болып табылады?', opts: ['Ашық қолжетімді журналдар', 'Халықаралық ғылыми дерекқорлар', 'Аударма бағдарламалары', 'Плагиат тексеру жүйелері'], ans: 1 },
-    { q: '10. Ғылыми мақалада "Әдістер" (Methods) бөлімінде не сипатталады?', opts: ['Зерттеу мақсаты', 'Зерттеу жүргізу тәсілдері мен материалдары', 'Ғылыми болжам', 'Дәйексөндер тізімі'], ans: 1 },
-    { q: '11. Ғылыми гипотеза дегеніміз:', opts: ['Дәлелденген теория', 'Тексеруге жататын болжам', 'Эксперимент нәтижесі', 'Зерттеу қорытындысы'], ans: 1 },
-    { q: '12. Ашық қолжетімді журнал (Open Access) дегеніміз:', opts: ['Тек ақылы журнал', 'Мақалалары ақысыз қолжетімді журнал', 'Тек университет ішінде қолданылатын журнал', 'Баспасөз журналы'], ans: 1 },
-    { q: '13. Ғылыми мақала жазудағы этиканың негізгі талабы:', opts: ['Көп бет жазу', 'Деректерді дұрыс және шынайы ұсыну', 'Импакт-факторы жоғары журналда жариялау', 'Көп автор болу'], ans: 1 },
-    { q: '14. Кілт сөздер (Keywords) не үшін қолданылады?', opts: ['Мақала форматы үшін', 'Іздеу жүйелерінде мақаланы табу үшін', 'Аннотацияны ауыстыру үшін', 'Автор санын көрсету үшін'], ans: 1 },
-    { q: '15. Ғылыми зерттеудің объективтілігі нені білдіреді?', opts: ['Тек оң нәтижелерді жариялау', 'Алынған деректерді бейтарап, шынайы талдау', 'Болжамды дәлелдеуге ұмтылу', 'Ескі зерттеулерді қайталау'], ans: 1 },
-    { q: '16. ORCID дегеніміз:', opts: ['Журнал рейтингі', 'Ғалымның бірегей сандық идентификаторы', 'Плагиат тексеру жүйесі', 'Аударма платформасы'], ans: 1 },
-    { q: '17. Мақалада нәтижелерді ұсынудың ең жақсы тәсілі:', opts: ['Тек мәтін арқылы', 'Кесте, график және мәтінмен бірге', 'Тек сандар арқылы', 'Сурет арқылы ғана'], ans: 1 },
-    { q: '18. Ғылыми мақаланың қорытынды бөлімінде не жазылады?', opts: ['Жаңа болжамдар', 'Негізгі нәтижелер мен олардың маңыздылығы', 'Толық эксперимент сипаттамасы', 'Пайдаланылған химиялық реагенттер'], ans: 1 },
-    { q: '19. Халықаралық журналда мақала жариялаудың негізгі тілі:', opts: ['Тек қазақ тілі', 'Тек орыс тілі', 'Ағылшын тілі', 'Автор тілі'], ans: 2 },
-    { q: '20. Ғылыми зерттеу жұмысының маңыздылығы (өзектілігі) дегеніміз:', opts: ['Зерттеудің бет саны', 'Зерттеудің ғылым мен қоғам үшін қажеттілігін негіздеу', 'Зерттеу ұзақтығы', 'Пайдаланылған әдебиет саны'], ans: 1 },
-  ]
-}
-
+const quizData = {
+  'alkandap': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкандар',
+    questions: [
+       { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "The hybrid state of carbon atoms in alkanes is:", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
+      { q: "What is the bond angle in methane (CH4)?", a: ["90°", "120°", "109.5°", "180°"], c: 2 },
+      { q: "The simplest alkane is:", a: ["Ethane", "Methane", "Propane", "Butane"], c: 1 },
+      { q: "Алкандарға тән реакция түрі:", a: ["Қосылу", "Орынбасу (Substitution)", "Полимерлену", "Гидратация"], c: 1 },
+      { q: "Which gas is known as 'marsh gas'?", a: ["Butane", "Ethane", "Methane", "Propane"], c: 2 },
+      { q: "The reaction of methane with chlorine in UV light follows which mechanism?", a: ["Electrophilic", "Nucleophilic", "Free radical substitution", "Elimination"], c: 2 },
+      { q: "Identify the Wurtz reaction reactant:", a: ["Alcohol", "Alkyl halide + Sodium", "Alkene", "Acid"], c: 1 },
+      { q: "What is the bond length of C-C in alkanes?", a: ["0.134 nm", "0.154 nm", "0.120 nm", "0.140 nm"], c: 1 },
+      { q: "Алкандардың гомологтық айырмасы (homologous difference):", a: ["CH", "CH2", "CH3", "C2H2"], c: 1 },
+      { q: "Which alkane has the highest boiling point?", a: ["Methane", "Ethane", "Propane", "n-Butane"], c: 3 },
+      { q: "Isomerism starts in alkanes from:", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
+      { q: "Complete combustion of alkanes produces:", a: ["CO + H2", "CO2 + H2O", "C + H2", "CH3OH"], c: 1 },
+      { q: "Natural gas mainly consists of:", a: ["Ethane", "Methane", "Butane", "Propane"], c: 1 },
+      { q: "What is the shape of a methane molecule?", a: ["Linear", "Planar", "Tetrahedral", "Octahedral"], c: 2 },
+      { q: "Alkanes are also called:", a: ["Olefins", "Paraffins", "Acetylenes", "Arenes"], c: 1 },
+      { q: "Which catalyst is used in the dehydrogenation of alkanes?", a: ["Pt/Pd", "AlCl3", "Fe", "Cu"], c: 0 },
+      { q: "The number of isomers in pentane (C5H12) is:", a: ["2", "3", "4", "5"], c: 1 },
+      { q: "Paraffin means:", a: ["Highly reactive", "Little affinity", "Sweet smelling", "Liquid gas"], c: 1 },
+      { q: "Cracking of alkanes produces:", a: ["Only alkanes", "Alkanes and alkenes", "Only hydrogen", "Alcohols"], c: 1 }
+    ]
+  },
+  'alkender': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкендер',
+    questions: [
+      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n-6"], c: 1 },
+      { q: "Alkenes contain at least one ______ bond.", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
+      { q: "Hybridization of carbon in the double bond is:", a: ["sp3", "sp", "sp2", "dsp2"], c: 2 },
+      { q: "The simplest alkene is:", a: ["Methane", "Ethene (Ethylene)", "Propene", "Butene"], c: 1 },
+      { q: "What is the bond angle around the double bond?", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
+      { q: "Алкендерге тән сапалық реакция:", a: ["Жану", "Бром суын түссіздендіру", "Гидрирлеу", "Изомерлену"], c: 1 },
+      { q: "Markovnikov's rule is applied to:", a: ["Substitution", "Electrophilic addition", "Elimination", "Combustion"], c: 1 },
+      { q: "Baeyer's reagent is used to detect:", a: ["Alkanes", "Unsaturation (double/triple bonds)", "Alcohols", "Acids"], c: 1 },
+      { q: "Which gas is used to ripen fruits artificially?", a: ["Ethane", "Ethylene", "Methane", "Acetylene"], c: 1 },
+      { q: "Alkenes are also known as:", a: ["Paraffins", "Olefins", "Acetylenes", "Glycols"], c: 1 },
+      { q: "The bond length of C=C is:", a: ["0.154 nm", "0.120 nm", "0.134 nm", "0.140 nm"], c: 2 },
+      { q: "Addition of H2 to alkenes is called:", a: ["Dehydrogenation", "Hydrogenation", "Hydration", "Halogenation"], c: 1 },
+      { q: "Reaction of alkene with water produces:", a: ["Alkane", "Alcohol", "Acid", "Ether"], c: 1 },
+      { q: "Which rule describes the addition of HX to asymmetric alkenes?", a: ["Hund's", "Zaitsev's", "Markovnikov's", "Pauli's"], c: 2 },
+      { q: "Ozonolysis of alkenes produces:", a: ["Alcohols", "Carbonyl compounds", "Alkanes", "Halides"], c: 1 },
+      { q: "Geometrical isomerism (cis-trans) is found in:", a: ["Ethane", "Propane", "But-2-ene", "Ethyne"], c: 2 },
+      { q: "The catalyst used in Ziegler-Natta polymerization is:", a: ["Fe", "TiCl4 + Al(C2H5)3", "V2O5", "Ni"], c: 1 },
+      { q: "Double bond consists of:", a: ["Two sigma bonds", "Two pi bonds", "One sigma and one pi bond", "Ionic bond"], c: 2 },
+      { q: "Reaction of ethylene with KMnO4 in cold dilute solution produces:", a: ["Ethanol", "Ethylene glycol", "Acetic acid", "Oxalic acid"], c: 1 },
+      { q: "Polymerization of ethylene produces:", a: ["Polypropylene", "Polyethylene", "Polystyrene", "PVC"], c: 1 }
+    ]
+  },
+  'massalar': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Әрекеттесуші массалар заңы және гетерогенді жүйелер', 
+    questions: [
+       { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Ostwald"], c: 1 },
+      { q: "Reaction rate is proportional to the product of ______ of reactants.", a: ["Mass", "Volume", "Active masses (concentrations)", "Temperature"], c: 2 },
+      { q: "In the expression v = k[A]^a[B]^b, 'k' is the:", a: ["Equilibrium constant", "Rate constant", "Universal constant", "Activity"], c: 1 },
+      { q: "What factor does NOT affect the rate constant (k)?", a: ["Temperature", "Catalyst", "Concentration", "Nature of reactants"], c: 2 },
+      { q: "For a reaction A + B = C, if [A] is doubled, the rate ______.", a: ["Doubles", "Triples", "Remains same", "Halves"], c: 0 },
+      { q: "Chemical equilibrium is ______ in nature.", a: ["Static", "Dynamic", "Irreversible", "Stable"], c: 1 },
+      { q: "The unit of rate of reaction is:", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
+      { q: "If Delta n = 0 for a gaseous reaction, then:", a: ["Kp > Kc", "Kp < Kc", "Kp = Kc", "Kp = 0"], c: 2 },
+      { q: "Le Chatelier's principle predicts the effect of:", a: ["Mass only", "Pressure, Temp, Concentration", "Catalyst only", "Atomic weight"], c: 1 },
+      { q: "Addition of a catalyst ______ the equilibrium state.", a: ["Shifts forward", "Shifts backward", "Does not change", "Destroys"], c: 2 },
+      { q: "In an exothermic reaction, increasing temperature shifts equilibrium to the:", a: ["Right", "Left", "Does not shift", "Top"], c: 1 },
+      { q: "Pressure affects equilibrium only if there is a change in ______.", a: ["Mass", "Temperature", "Number of gas moles", "Color"], c: 2 },
+      { q: "Rate of reverse reaction equals forward reaction at:", a: ["Start", "Completion", "Equilibrium", "Half-time"], c: 2 },
+      { q: "Homogeneous reaction occurs in ______ phase.", a: ["Single", "Two", "Multiple", "Solid"], c: 0 },
+      { q: "Activation energy is lowered by:", a: ["Heat", "Pressure", "Catalyst", "Volume"], c: 2 },
+      { q: "The expression for Kc of H2 + I2 = 2HI is:", a: ["[HI]/[H2][I2]", "[HI]^2/[H2][I2]", "[H2][I2]/[HI]^2", "[HI]^2/[H2]"], c: 1 },
+      { q: "If Kc > 1, the equilibrium favors:", a: ["Reactants", "Products", "Neither", "Slow rate"], c: 1 },
+      { q: "Increase in pressure favors the side with ______ moles of gas.", a: ["More", "Fewer", "Same", "Zero"], c: 1 },
+      { q: "Relation between Kp and Kc is:", a: ["Kp = Kc(RT)", "Kp = Kc(RT)^Δn", "Kc = Kp(RT)^Δn", "Kp = Kc"], c: 1 },
+      { q: "Law of Mass Action is applicable to ______ reactions.", a: ["Irreversible", "Reversible", "Nuclear", "Instantaneous"], c: 1 }
+    ]
+  },
+  'eritindi': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Ерітіндінің иондық күші мен активтілігі', 
+    questions: [
+      { q: "Ionic strength (mu) was introduced by:", a: ["Arrhenius", "Lewis and Randall", "Debye", "Hückel"], c: 1 },
+      { q: "Formula for ionic strength is $\mu = \frac{1}{2} \sum$ ______.", a: ["ci zi", "ci zi^2", "ci^2 zi", "ci / zi"], c: 1 },
+      { q: "Activity (a) is related to concentration (c) by:", a: ["a = c/f", "a = f·c", "a = f+c", "a = f^c"], c: 1 },
+      { q: "In very dilute solutions, the activity coefficient ($f$) is:", a: ["0", "Infinity", "Approaching 1", "Negative"], c: 2 },
+      { q: "What is the ionic strength of 0.1 M NaCl solution?", a: ["0.05", "0.1", "0.2", "0.4"], c: 1 },
+      { q: "Ionic strength depends on the ______ of ions.", a: ["Size only", "Color", "Concentration and charge", "Weight"], c: 2 },
+      { q: "Activity coefficient decreases as ionic strength ______.", a: ["Decreases", "Increases", "Remains constant", "Becomes zero"], c: 1 },
+      { q: "Debye-Hückel limiting law is used for ______ solutions.", a: ["Concentrated", "Dilute electrolytes", "Non-electrolytes", "Solid"], c: 1 },
+      { q: "Mean ionic activity coefficient is represented by:", a: ["f±", "μ", "α", "Kw"], c: 0 },
+      { q: "For a 1:2 electrolyte like MgCl2 (0.1 M), the ionic strength is:", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 },
+      { q: "Strong electrolytes are ______ ionized in water.", a: ["Partially", "Completely", "Not", "Slowly"], c: 1 },
+      { q: "The effective concentration is called:", a: ["Molarity", "Molality", "Activity", "Normality"], c: 2 },
+      { q: "Activity is a dimensionless quantity?", a: ["Yes", "No", "Depends on unit", "Only for gases"], c: 0 },
+      { q: "Increasing the charge of an ion ______ its effect on ionic strength.", a: ["Decreases", "Increases", "Does not change", "Eliminates"], c: 1 },
+      { q: "The 'Salting-out' effect is related to:", a: ["Alkanes", "Ionic strength increase", "Catalysis", "Distillation"], c: 1 },
+      { q: "Debye-Hückel theory considers ions as:", a: ["Point charges", "Large spheres", "Cubes", "Rings"], c: 0 },
+      { q: "What is the charge (z) of a sulfate ion SO4^{2-}?", a: ["+2", "-2", "-1", "+6"], c: 1 },
+      { q: "If mu = 0, then activity (a) ______ concentration (c).", a: [">", "<", "=", "is 0"], c: 2 },
+      { q: "Ionic atmosphere concept is part of:", a: ["Bohr model", "Debye-Hückel theory", "Kinetic theory", "VSEPR"], c: 1 },
+      { q: "Unit of ionic strength is:", a: ["mol/L", "L/mol", "No unit", "mol·L"], c: 0 }
+    ]
+  },
+  'gylymi': { 
+    discipline: 'Ғылыми-зерттеу жұмысын ұйымдастыру',
+    title: 'Ғылыми мақала', 
+    questions: [
+      { q: "What is the standard structure of a research article?", a: ["IMRAD", "ABCC", "H-index", "DOI"], c: 0 },
+      { q: "IMRaD stands for Introduction, Methods, Results, and ______.", a: ["Data", "Diagram", "Discussion", "Description"], c: 2 },
+      { q: "Where is the main hypothesis of the work stated?", a: ["Abstract", "Introduction", "Conclusion", "References"], c: 1 },
+      { q: "What is 'Scopus'?", a: ["A type of microscope", "Abstract and citation database", "A chemistry journal", "An AI tool"], c: 1 },
+      { q: "The 'Impact Factor' measures the ______ of a journal.", a: ["Speed", "Cost", "Influence/Quality", "Size"], c: 2 },
+      { q: "A short summary of the article is called:", a: ["Introduction", "Abstract", "Appendix", "Footnote"], c: 1 },
+      { q: "Which tool is used for reference management?", a: ["Photoshop", "Mendeley / Zotero", "Excel", "Canvas"], c: 1 },
+      { q: "What is 'Plagiarism'?", a: ["Data analysis", "Using others' work without credit", "Peer review", "Citing sources"], c: 1 },
+      { q: "A 'DOI' is a ______ for digital documents.", a: ["Price tag", "Unique persistent identifier", "Date of issue", "Type of ink"], c: 1 },
+      { q: "The H-index measures an author's ______.", a: ["Age", "Productivity and citation impact", "Salary", "Number of degrees"], c: 1 },
+      { q: "Peer-review is a process of ______.", a: ["Selling articles", "Evaluation by experts", "Typing results", "Translation"], c: 1 },
+      { q: "Keywords are used for ______.", a: ["Grammar check", "Search and indexing", "Word count", "Design"], c: 1 },
+      { q: "Ethics in research includes:", a: ["Fabrication", "Data falsification", "Informed consent/Honesty", "Copy-pasting"], c: 2 },
+      { q: "Which section describes 'How' the research was done?", a: ["Results", "Methods", "Literature Review", "Discussion"], c: 1 },
+      { q: "CiteScore is a metric used by:", a: ["Web of Science", "Scopus", "Google Scholar", "ResearchGate"], c: 1 },
+      { q: "A 'Review Article' is different because it ______.", a: ["Has no data", "Summarizes existing research", "Is very short", "Is not scientific"], c: 1 },
+      { q: "Where do you interpret the findings and compare with others?", a: ["Methods", "Discussion", "Title", "References"], c: 1 },
+      { q: "Predatory journals are ______ journals.", a: ["High quality", "Exploitative/low quality", "Open access only", "Free"], c: 1 },
+      { q: "What is 'Paraphrasing'?", a: ["Copying directly", "Expressing ideas in your own words", "Deleting paragraphs", "Adding pictures"], c: 1 },
+      { q: "Analytical competence in research means the ability to ______.", a: ["Type fast", "Analyze and interpret data", "Buy chemicals", "Speak English"], c: 1 }
+    ]
+  }
 };
 
-// ========== ФУНКЦИЯЛАР ==========
+function startTest(id) {
+  const name = document.getElementById('userName').value;
+  const group = document.getElementById('userGroup').value;
+  if(!name || !group) return alert("Аты-жөніңіз бен тобыңызды жазыңыз!");
 
-function buildForm(testId) {
-  const form = document.getElementById('form-' + testId);
-  if (form.innerHTML !== '') return;
-  const qs = tests[testId].questions;
-  qs.forEach((item, i) => {
-    let html = `<div class="q"><p>${item.q}</p>`;
-    item.opts.forEach((opt, j) => {
-      html += `<label><input type="radio" name="${testId}_q${i}" value="${j}"> ${opt}</label>`;
+  const test = quizData[id];
+  let html = `<div class="test-box active">
+    <div id="success-banner" class="success-message">Нәтижелер жіберілді!</div>
+    <button class="menu-btn" style="padding:10px 20px; font-size:0.9rem; margin-bottom:30px; width: auto;" onclick="location.reload()">← Артқа</button>
+    <h2 style="margin-bottom:30px; color:var(--primary); text-align:center;">${test.title}</h2>
+    <form id="quiz-form">`;
+
+  test.questions.forEach((item, i) => {
+    html += `<div class="question"><p>${i+1}. ${item.q}</p>`;
+    item.a.forEach((opt, j) => {
+      html += `<label><input type="radio" name="q${i}" value="${j}" required> <span>${opt}</span></label>`;
     });
-    html += '</div>';
-    form.innerHTML += html;
+    html += `</div>`;
   });
+
+  html += `<button type="button" id="submit-btn" class="submit-btn" onclick="finishTest('${id}')">Нәтижені жіберу</button></form></div>`;
+  
+  document.getElementById('main-view').style.display = 'none';
+  document.getElementById('test-view').innerHTML = html;
+  window.scrollTo(0,0);
 }
 
-function openTest(testId) {
-  const name = document.getElementById('studentName').value.trim();
-  if (!name) {
-    alert('Алдымен аты-жөніңізді енгізіңіз!');
-    return;
-  }
-  document.getElementById('main-menu').style.display = 'none';
-  document.querySelectorAll('.test-page').forEach(p => p.classList.remove('active'));
-  document.getElementById('test-' + testId).classList.add('active');
-  buildForm(testId);
-  window.scrollTo(0, 0);
-}
+function finishTest(id) {
+  const btn = document.getElementById('submit-btn');
+  const form = document.getElementById('quiz-form');
+  const banner = document.getElementById('success-banner');
+  const test = quizData[id];
+  
+  if (!form.checkValidity()) return alert("Барлық сұраққа жауап беріңіз!");
 
-function goBack() {
-  document.getElementById('main-menu').style.display = 'block';
-  document.querySelectorAll('.test-page').forEach(p => p.classList.remove('active'));
-  window.scrollTo(0, 0);
-}
-
-function gradeTest(testId, subject, topic) {
-  const name = document.getElementById('studentName').value.trim();
-  const qs = tests[testId].questions;
   let score = 0;
-  for (let i = 0; i < qs.length; i++) {
-    const checked = document.querySelector(`input[name="${testId}_q${i}"]:checked`);
-    if (checked && Number(checked.value) === qs[i].ans) score++;
-  }
-  const resultEl = document.getElementById('result-' + testId);
-  resultEl.innerHTML = `<p>✅ Нәтиже: <b>${score} / 20</b></p><p id="status-${testId}">Жіберілуде...</p>`;
+  test.questions.forEach((q, i) => {
+    const sel = form.querySelector(`input[name="q${i}"]:checked`);
+    if(sel && parseInt(sel.value) === q.c) score++;
+  });
 
-  fetch(SCRIPT_URL, {
+  btn.disabled = true;
+  btn.innerText = "Жіберілуде...";
+
+  const data = {
+    name: document.getElementById('userName').value.trim(),
+    group: document.getElementById('userGroup').value.trim(),
+    discipline: test.discipline,
+    topic: test.title,
+    score: score,
+    total: test.questions.length
+  };
+
+  fetch(APPS_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, subject, topic, score, total: 20 })
+    body: JSON.stringify(data)
   }).then(() => {
-    document.getElementById('status-' + testId).innerHTML =
-      '<span style="color:green">✅ Нәтиже мұғалімге жіберілді!</span>';
+    // Alert орнына жасыл хабарлама шығару
+    banner.style.display = 'block';
+    btn.style.display = 'none';
+    setTimeout(() => {
+        location.reload();
+    }, 2500); // 2.5 секундтан кейін бетті жаңарту
   }).catch(() => {
-    document.getElementById('status-' + testId).innerHTML =
-      '<span style="color:red">❌ Қате. Интернетті тексеріңіз.</span>';
+    alert("Қате кетті.");
+    btn.disabled = false;
   });
 }
 </script>
