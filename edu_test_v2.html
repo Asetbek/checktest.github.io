@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zhetysu University - Chemistry CLIL</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { 
+  --primary: #8C1515; 
+  --secondary: #2E2D29; 
+  --bg: #F4F4F4;
+  --white: #FFFFFF;
+  --text: #2E2D29;
+  --success: #28a745;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --transition: all 0.25s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+  font-family: 'Montserrat', sans-serif; 
+  background-color: var(--bg); 
+  color: var(--text); 
+  line-height: 1.6;
+}
+
+header { 
+  background: var(--white); 
+  padding: 30px 20px; 
+  text-align: center; 
+  border-bottom: 3px solid var(--primary);
+  box-shadow: var(--shadow);
+}
+
+.uni-info h1 { 
+  color: var(--primary); 
+  font-size: 1.3rem; 
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.uni-info p { 
+  color: var(--secondary); 
+  font-weight: 600; 
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.hero { 
+  background: var(--secondary); 
+  color: var(--white); 
+  padding: 60px 20px 100px; 
+  text-align: center;
+}
+
+.hero h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px 60px; }
+
+.reg-card { 
+  background: var(--white); 
+  padding: 40px; 
+  border-radius: 12px; 
+  box-shadow: var(--shadow); 
+  margin-top: -50px; 
+}
+
+.input-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 35px;
+}
+
+input { 
+  flex: 1;
+  font-family: inherit;
+  padding: 14px 18px; 
+  border: 1px solid #CCC; 
+  border-radius: 8px; 
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(140, 21, 21, 0.1);
+}
+
+.section-title {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin: 35px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.section-title::before, .section-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: #EEE;
+}
+
+.menu-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 15px; 
+}
+
+.menu-btn { 
+  background: var(--white); 
+  border: 1px solid #DDD; 
+  color: var(--secondary); 
+  padding: 22px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-size: 1.05rem; 
+  font-weight: 600; 
+  transition: var(--transition);
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+}
+
+.menu-btn:hover { 
+  background: #FFF9F9;
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(140, 21, 21, 0.08);
+}
+
+/* ===== VARIANT SELECTION PAGE ===== */
+.variant-view {
+  display: none;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px 60px;
+}
+
+.variant-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 40px;
+}
+
+.variant-card h2 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.variant-card .subtitle {
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 35px;
+}
+
+.variant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .variant-grid { grid-template-columns: 1fr; }
+}
+
+.variant-btn {
+  background: var(--white);
+  border: 2px solid #DDD;
+  border-radius: 12px;
+  padding: 35px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.variant-btn:hover {
+  border-color: var(--primary);
+  background: #FFF9F9;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(140,21,21,0.1);
+}
+
+.variant-btn .v-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.variant-btn .v-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.variant-btn .v-desc {
+  font-size: 0.8rem;
+  color: #999;
+  display: block;
+}
+
+.variant-btn.advanced .v-number { color: #5a0080; }
+.variant-btn.advanced {
+  border-color: #e0c3f5;
+}
+.variant-btn.advanced:hover {
+  border-color: #5a0080;
+  background: #fdf6ff;
+}
+
+/* ===== TEST VIEW ===== */
+.test-box { display: none; background: var(--white); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); }
+.active { display: block; }
+
+.question { 
+  margin-bottom: 30px;
+  padding: 25px; 
+  border-radius: 8px;
+  background: #FAFAFA; 
+  border-left: 5px solid var(--primary);
+}
+
+.question p { 
+  font-weight: 700; 
+  font-size: 1.05rem; 
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  padding: 14px 18px;    
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: white;
+  border: 1px solid #EEE;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+label:hover { border-color: var(--primary); background: #FFF9F9; }
+
+.correct-answer {
+  border-color: var(--success) !important;
+  background-color: #d4edda !important;
+  color: #155724;
+}
+
+.wrong-answer {
+  border-color: var(--primary) !important;
+  background-color: #f8d7da !important;
+  color: #721c24;
+}
+
+.score-display {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--secondary);
+  color: white;
+  border-radius: 8px;
+}
+
+.submit-btn { 
+  background: var(--primary); 
+  color: var(--white); 
+  padding: 18px; 
+  border: none; 
+  border-radius: 8px; 
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  cursor: pointer; 
+  width: 100%; 
+  margin-top: 25px;
+  font-family: inherit;
+}
+
+.submit-btn:hover { background: #701111; }
+
+.status-message {
+  display: none; 
+  color: var(--success); 
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid var(--success);
+  border-radius: 8px;
+  background-color: #f8fff9;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.variant-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+.badge-v1 { background: #eef5ff; color: #1a5fa8; border: 1px solid #b3d0f5; }
+.badge-v2 { background: #f5edff; color: #5a0080; border: 1px solid #d4a8f0; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  .input-group { flex-direction: column; }
+  .uni-info h1 { font-size: 1.1rem; }
+  .reg-card { padding: 25px; }
+  .test-box { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="uni-info">
+    <h1>Ілияс Жансүгіров атындағы Жетісу университеті</h1>
+    <p>Жаратылыстану-техникалық факультеті</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">Жаратылыстану пәндер кафедрасы</p>
+  </div>
+</header>
+
+<!-- MAIN VIEW -->
+<div id="main-view">
+  <section class="hero">
+    <h2>Chemistry CLIL tests</h2>
+    <p>Білімді тексеру платформасына қош келдіңіз</p>
+  </section>
+
+  <div class="container">
+    <div class="reg-card">
+      <div class="input-group">
+        <input type="text" id="userName" placeholder="Аты-жөніңіз / Full Name">
+        <input type="text" id="userGroup" placeholder="Тобыңыз / Group">
+      </div>
+      
+      <div class="section-title">Органикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="showVariantSelect('alkandap')">Алкандар <span>→</span></button>
+        <button class="menu-btn" onclick="showVariantSelect('alkender')">Алкендер <span>→</span></button>
+      </div>
+
+      <div class="section-title">Аналитикалық химия</div>
+      <div class="menu-grid">
+        <button class="menu-btn" onclick="showVariantSelect('massalar')">Әрекеттесуші массалар заңы және гетерогенді жүйелер <span>→</span></button>
+        <button class="menu-btn" onclick="showVariantSelect('eritindi')">Ерітіндінің иондық күші және ионның активтілігін есептеу әдістері <span>→</span></button>
+      </div>
+
+      <div class="section-title">Ғылыми-зерттеу жұмысын ұйымдастыру</div>
+      <div class="menu-grid">
+        <button class="menu-btn" style="grid-column: 1/-1;" onclick="showVariantSelect('gylymi')">Ғылыми мақала<span>→</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VARIANT SELECT VIEW -->
+<div id="variant-view" class="variant-view">
+  <div class="variant-card">
+    <button class="menu-btn" style="padding:10px 20px; font-size:0.9rem; margin-bottom:25px; width:auto; border:1px solid #ddd;" onclick="backToMain()">← Артқа / Back</button>
+    <h2 id="variant-topic-title"></h2>
+    <p class="subtitle">Тест нұсқасын таңдаңыз / Choose your test variant</p>
+    <div class="variant-grid">
+      <button class="variant-btn" onclick="startTest(currentTopicId, 1)">
+        <span class="v-number">1</span>
+        <span class="v-label">Вариант 1</span>
+        <span class="v-desc">Негізгі деңгей<br>Basic level</span>
+      </button>
+      <button class="variant-btn advanced" onclick="startTest(currentTopicId, 2)">
+        <span class="v-number">2</span>
+        <span class="v-label">Вариант 2</span>
+        <span class="v-desc">Тереңдетілген CLIL<br>Advanced CLIL level</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TEST VIEW -->
+<div id="test-view" class="container" style="margin-top: 40px;"></div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOty53LwQzR5bmsQ--YI93JL7ohWhNVzqsxvanGX7cXR4tUaBLNcmDrgLLtMdOw1NvZA/exec';
+
+let currentTopicId = null;
+
+// =====================================================================
+// QUIZ DATA — Variant 1 (original) + Variant 2 (advanced CLIL)
+// =====================================================================
+const quizData = {
+
+  // ==========================
+  // ALKANES
+  // ==========================
+  'alkandap': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкандар',
+    v1: [
+      { q: "What is the general formula of alkanes?", a: ["CnH2n", "CnH2n+2", "CnH2n-2", "CnHn"], c: 1 },
+      { q: "The hybrid state of carbon atoms in alkanes is:", a: ["sp", "sp2", "sp3", "dsp2"], c: 2 },
+      { q: "What is the bond angle in methane (CH4)?", a: ["90°", "120°", "109.5°", "180°"], c: 2 },
+      { q: "The simplest alkane is:", a: ["Ethane", "Methane", "Propane", "Butane"], c: 1 },
+      { q: "Алкандарға тән реакция түрі:", a: ["Қосылу", "Орынбасу (Substitution)", "Полимерлену", "Гидратация"], c: 1 },
+      { q: "Which gas is known as 'marsh gas'?", a: ["Butane", "Ethane", "Methane", "Propane"], c: 2 },
+      { q: "The reaction of methane with chlorine in UV light follows which mechanism?", a: ["Electrophilic", "Nucleophilic", "Free radical substitution", "Elimination"], c: 2 },
+      { q: "Identify the Wurtz reaction reactant:", a: ["Alcohol", "Alkyl halide + Sodium", "Alkene", "Acid"], c: 1 },
+      { q: "What is the bond length of C-C in alkanes?", a: ["0.134 nm", "0.154 nm", "0.120 nm", "0.140 nm"], c: 1 },
+      { q: "Алкандардың гомологтық айырмасы (homologous difference):", a: ["CH", "CH2", "CH3", "C2H2"], c: 1 },
+      { q: "Which alkane has the highest boiling point?", a: ["Methane", "Ethane", "Propane", "n-Butane"], c: 3 },
+      { q: "Isomerism starts in alkanes from:", a: ["Methane", "Ethane", "Propane", "Butane"], c: 3 },
+      { q: "Complete combustion of alkanes produces:", a: ["CO + H2", "CO2 + H2O", "C + H2", "CH3OH"], c: 1 },
+      { q: "Natural gas mainly consists of:", a: ["Ethane", "Methane", "Butane", "Propane"], c: 1 },
+      { q: "What is the shape of a methane molecule?", a: ["Linear", "Planar", "Tetrahedral", "Octahedral"], c: 2 },
+      { q: "Alkanes are also called:", a: ["Olefins", "Paraffins", "Acetylenes", "Arenes"], c: 1 },
+      { q: "Which catalyst is used in the dehydrogenation of alkanes?", a: ["Pt/Pd", "AlCl3", "Fe", "Cu"], c: 0 },
+      { q: "The number of isomers in pentane (C5H12) is:", a: ["2", "3", "4", "5"], c: 1 },
+      { q: "Paraffin means:", a: ["Highly reactive", "Little affinity", "Sweet smelling", "Liquid gas"], c: 1 },
+      { q: "Cracking of alkanes produces:", a: ["Only alkanes", "Alkanes and alkenes", "Only hydrogen", "Alcohols"], c: 1 }
+    ],
+    v2: [
+      { q: "In the free radical chlorination of methane, what is the role of UV light in the initiation step? (CLIL: photochemistry)", a: ["It ionizes the chlorine molecule", "It provides energy to homolytically cleave Cl–Cl bond forming radicals", "It excites CH4 to form carbocation", "It increases temperature to start the chain"], c: 1 },
+      { q: "Why do branched-chain alkanes have lower boiling points than their straight-chain isomers? (CLIL: intermolecular forces)", a: ["They have more mass", "Branching reduces surface area, weakening London dispersion forces", "They contain more C–H bonds", "They have stronger covalent bonds"], c: 1 },
+      { q: "Catalytic reforming converts n-alkanes into aromatic compounds. What is the industrial significance of this process? (CLIL: petroleum chemistry)", a: ["It removes sulfur impurities", "It increases octane rating of fuel and produces benzene, toluene, xylene", "It polymerizes alkanes into plastics", "It converts alkanes to alkenes for synthetic purposes"], c: 1 },
+      { q: "In the Wurtz reaction: 2 R–X + 2Na → R–R + 2NaX, what type of bond formation is occurring? (CLIL: organometallic chemistry)", a: ["Ionic bond between R and Na", "C–C bond via coupling of alkyl radicals generated from Na reduction", "Hydrogen bond between R groups", "Coordinate bond between Na and R"], c: 1 },
+      { q: "Which thermodynamic quantity best explains why alkane combustion is spontaneous at room temperature? (CLIL: thermodynamics)", a: ["ΔH > 0 and ΔS < 0", "ΔG < 0 due to large negative ΔH and positive ΔS", "ΔG > 0 since combustion is endothermic", "ΔS = 0 at constant temperature"], c: 1 },
+      { q: "The 'cracking' of long-chain alkanes in industry uses zeolite catalysts. What property of zeolites makes them effective? (CLIL: heterogeneous catalysis)", a: ["They are strong oxidizing agents", "Their microporous structure and Brønsted acid sites facilitate C–C bond cleavage", "They dissolve alkanes easily", "They supply hydrogen for the reaction"], c: 1 },
+      { q: "In Newman projection of ethane, the most stable conformation is: (CLIL: conformational analysis)", a: ["Eclipsed, as hydrogens are aligned", "Gauche, due to partial overlap", "Anti-staggered, as torsional strain is minimized", "Cis, due to symmetry"], c: 2 },
+      { q: "Why is methane considered a more potent greenhouse gas than CO2 per molecule? (CLIL: environmental chemistry)", a: ["Methane absorbs UV radiation more effectively", "Methane has a higher global warming potential due to stronger IR absorption in relevant atmospheric windows", "Methane reacts with O2 to release more heat", "Methane is more abundant in the atmosphere"], c: 1 },
+      { q: "What does 'octane number' measure in the context of alkane fuels? (CLIL: fuel chemistry)", a: ["Percentage of octane in the fuel", "Resistance to auto-ignition (knocking) compared to iso-octane standard", "Number of carbon atoms in the fuel", "Calorific value of the fuel in kJ/mol"], c: 1 },
+      { q: "During halogenation of propane, two monochlorinated products form. Which carbon position is preferentially chlorinated and why? (CLIL: selectivity)", a: ["C1, because terminal carbons are more reactive", "C2, because secondary radicals are more stable than primary radicals", "Both equally, because all H are identical", "C3, because it is furthest from C1"], c: 1 },
+      { q: "Pentane (C5H12) has three structural isomers. Which physical property changes most significantly among them and why? (CLIL: structure-property relationship)", a: ["Molecular mass, because branching adds mass", "Boiling point decreases with branching due to reduced van der Waals interactions", "Density increases with branching", "Melting point is identical for all isomers"], c: 1 },
+      { q: "In the pyrolysis of alkanes (thermal cracking without catalyst), what determines which C–C bond breaks preferentially? (CLIL: bond dissociation energy)", a: ["The longest bond in the chain breaks first", "The weakest C–C bond (lowest BDE) tends to break, often central bonds in longer chains", "Terminal C–C bonds always break first", "All bonds break simultaneously"], c: 1 },
+      { q: "Why are alkanes relatively unreactive towards strong acids and bases? (CLIL: organic reactivity)", a: ["They have no lone pairs and no π bonds; C–H and C–C bonds are non-polar and strong", "They are ionic and repel H+ ions", "They form stable complexes with acids", "They react only with bases, not acids"], c: 0 },
+      { q: "In a chain reaction mechanism of alkane halogenation, what is the propagation step? (CLIL: reaction mechanism)", a: ["Cl• + Cl• → Cl2 (termination)", "Cl2 → 2Cl• (initiation)", "Cl• + CH4 → HCl + CH3• and CH3• + Cl2 → CH3Cl + Cl• (chain propagation)", "CH3Cl → CH3• + Cl• (decomposition)"], c: 2 },
+      { q: "Shale gas extraction (fracking) releases primarily methane. What environmental risk is associated with methane leakage? (CLIL: energy & environment)", a: ["Ozone layer depletion via radical reactions", "Acid rain formation", "Enhanced greenhouse effect and climate change due to methane's high GWP", "Soil acidification near extraction sites"], c: 2 },
+      { q: "The Kolbe electrolysis of sodium acetate produces ethane. What type of reaction is occurring at the anode? (CLIL: electrochemistry)", a: ["Reduction of CH3COO⁻ to form CH4", "Oxidative decarboxylation: 2CH3COO⁻ → C2H6 + 2CO2 + 2e⁻", "Nucleophilic substitution forming ethanol", "Ionic bonding between two acetate groups"], c: 1 },
+      { q: "How does increasing chain length affect the viscosity of liquid alkanes, and what is the industrial application? (CLIL: materials science)", a: ["Longer chains decrease viscosity; used in lubricating thin films", "Longer chains increase viscosity due to greater intermolecular entanglement; basis for lubricating oils", "Chain length has no effect on viscosity", "Shorter chains are more viscous due to stronger bonding"], c: 1 },
+      { q: "Fischer-Tropsch synthesis converts syngas (CO + H2) into alkanes. What is the catalyst used? (CLIL: industrial chemistry)", a: ["Platinum on alumina", "Iron or cobalt catalysts", "Vanadium pentoxide", "Nickel on zeolite"], c: 1 },
+      { q: "In conformational analysis, what causes the energy difference between gauche and anti conformations of butane? (CLIL: steric effects)", a: ["Difference in bond lengths", "Steric strain from methyl group interactions in gauche conformation", "Electronic repulsion between nuclei only", "Different hybridization states"], c: 1 },
+      { q: "What is the significance of the C–H bond dissociation energy (BDE) in designing selective radical reactions? (CLIL: green chemistry)", a: ["Higher BDE means easier homolytic cleavage", "Lower BDE positions (e.g., tertiary C–H, ~381 kJ/mol) react preferentially, enabling site-selective functionalization", "All C–H bonds have identical BDE in alkanes", "BDE is irrelevant; only temperature determines selectivity"], c: 1 },
+      { q: "Biogas from anaerobic digestion is mainly methane. How can this be linked to the carbon cycle? (CLIL: biochemistry & sustainability)", a: ["Biogas is a fossil fuel identical to natural gas", "Methane from biomass decomposition is part of the biogenic carbon cycle; its combustion returns biogenic CO2, making it potentially carbon-neutral", "Biogas contains no carbon compounds", "Anaerobic digestion produces only CO2, not methane"], c: 1 }
+    ]
+  },
+
+  // ==========================
+  // ALKENES
+  // ==========================
+  'alkender': { 
+    discipline: 'Органикалық химия',
+    title: 'Алкендер',
+    v1: [
+      { q: "What is the general formula of alkenes?", a: ["CnH2n+2", "CnH2n", "CnH2n-2", "CnH2n-6"], c: 1 },
+      { q: "Alkenes contain at least one ______ bond.", a: ["Single", "Double", "Triple", "Ionic"], c: 1 },
+      { q: "Hybridization of carbon in the double bond is:", a: ["sp3", "sp", "sp2", "dsp2"], c: 2 },
+      { q: "The simplest alkene is:", a: ["Methane", "Ethene (Ethylene)", "Propene", "Butene"], c: 1 },
+      { q: "What is the bond angle around the double bond?", a: ["109.5°", "180°", "120°", "90°"], c: 2 },
+      { q: "Алкендерге тән сапалық реакция:", a: ["Жану", "Бром суын түссіздендіру", "Гидрирлеу", "Изомерлену"], c: 1 },
+      { q: "Markovnikov's rule is applied to:", a: ["Substitution", "Electrophilic addition", "Elimination", "Combustion"], c: 1 },
+      { q: "Baeyer's reagent is used to detect:", a: ["Alkanes", "Unsaturation (double/triple bonds)", "Alcohols", "Acids"], c: 1 },
+      { q: "Which gas is used to ripen fruits artificially?", a: ["Ethane", "Ethylene", "Methane", "Acetylene"], c: 1 },
+      { q: "Alkenes are also known as:", a: ["Paraffins", "Olefins", "Acetylenes", "Glycols"], c: 1 },
+      { q: "The bond length of C=C is:", a: ["0.154 nm", "0.120 nm", "0.134 nm", "0.140 nm"], c: 2 },
+      { q: "Addition of H2 to alkenes is called:", a: ["Dehydrogenation", "Hydrogenation", "Hydration", "Halogenation"], c: 1 },
+      { q: "Reaction of alkene with water produces:", a: ["Alkane", "Alcohol", "Acid", "Ether"], c: 1 },
+      { q: "Which rule describes the addition of HX to asymmetric alkenes?", a: ["Hund's", "Zaitsev's", "Markovnikov's", "Pauli's"], c: 2 },
+      { q: "Ozonolysis of alkenes produces:", a: ["Alcohols", "Carbonyl compounds", "Alkanes", "Halides"], c: 1 },
+      { q: "Geometrical isomerism (cis-trans) is found in:", a: ["Ethane", "Propane", "But-2-ene", "Ethyne"], c: 2 },
+      { q: "The catalyst used in Ziegler-Natta polymerization is:", a: ["Fe", "TiCl4 + Al(C2H5)3", "V2O5", "Ni"], c: 1 },
+      { q: "Double bond consists of:", a: ["Two sigma bonds", "Two pi bonds", "One sigma and one pi bond", "Ionic bond"], c: 2 },
+      { q: "Reaction of ethylene with KMnO4 in cold dilute solution produces:", a: ["Ethanol", "Ethylene glycol", "Acetic acid", "Oxalic acid"], c: 1 },
+      { q: "Polymerization of ethylene produces:", a: ["Polypropylene", "Polyethylene", "Polystyrene", "PVC"], c: 1 }
+    ],
+    v2: [
+      { q: "Ethylene acts as a plant hormone triggering fruit ripening. What biochemical pathway does it activate? (CLIL: biochemistry)", a: ["It inhibits respiration completely", "It upregulates cell-wall-degrading enzymes and promotes starch-to-sugar conversion via ethylene signal transduction", "It directly converts starch to glucose by acting as a catalyst", "It blocks chlorophyll synthesis causing color change"], c: 1 },
+      { q: "In electrophilic addition of HBr to propene, the Markovnikov product forms via a more stable carbocation intermediate. What type of carbocation is involved? (CLIL: reaction mechanism)", a: ["Primary carbocation at C1", "Secondary carbocation at C2, stabilized by hyperconjugation and induction", "Tertiary carbocation at C3", "Radical intermediate, not carbocation"], c: 1 },
+      { q: "Cis-2-butene and trans-2-butene are geometric isomers. Which has a higher boiling point and why? (CLIL: stereochemistry & polarity)", a: ["Trans, because it has stronger London forces due to greater molecular length", "Cis, because it has a net dipole moment making it more polar, enhancing intermolecular attractions", "Both have identical boiling points", "Neither, because geometric isomers have identical physical properties"], c: 1 },
+      { q: "In Ziegler-Natta polymerization of ethylene, what is the role of the TiCl4 component? (CLIL: industrial catalysis)", a: ["It acts as a free radical initiator", "It serves as the Lewis acid transition metal site where monomer coordinates and inserts (chain growth)", "It provides hydrogen for hydrogenation", "It terminates the polymer chain"], c: 1 },
+      { q: "Ozonolysis of 2-butene with reductive workup (Zn/H2O) gives two molecules of acetaldehyde. What does this tell you about the double bond position? (CLIL: analytical chemistry)", a: ["The double bond was at C1–C2", "The identical products confirm the double bond is symmetrically placed at C2–C3", "The double bond was cyclic", "Ozonolysis cannot determine double bond position"], c: 1 },
+      { q: "Why does ethylene undergo addition reactions much more readily than substitution reactions, unlike benzene? (CLIL: comparative reactivity)", a: ["Ethylene has delocalized π electrons that prevent substitution", "The isolated π bond of ethylene is reactive toward electrophiles without the stabilization of aromaticity", "Ethylene and benzene react identically", "Ethylene prefers substitution due to sp2 hybridization"], c: 1 },
+      { q: "The oxymercuration-demercuration reaction of alkenes gives Markovnikov alcohols without rearrangement. What makes this method superior to acid-catalyzed hydration? (CLIL: synthetic chemistry)", a: ["It proceeds via a 3-membered mercurinium ion bridge, preventing carbocation rearrangement", "It is faster because mercury is a better acid than H+", "It produces anti-Markovnikov products selectively", "No difference; both proceed through identical mechanisms"], c: 0 },
+      { q: "Hydrohalogenation of vinyl chloride (CH2=CHCl) — to which carbon does HBr preferentially add, and why? (CLIL: electronic effects)", a: ["Cl-bearing carbon, as Cl donates electrons making it nucleophilic", "Non-Cl carbon (C1), as Cl withdraws electrons via induction destabilizing carbocation on C2, directing H+ to C2 and Br⁻ to C1", "Both carbons equally", "HBr does not react with vinyl chloride"], c: 1 },
+      { q: "In the industrial production of polyethylene, high-density polyethylene (HDPE) vs low-density (LDPE) differ structurally. What accounts for HDPE's higher density? (CLIL: materials science)", a: ["HDPE has more double bonds remaining", "HDPE has linear chains with less branching, allowing tighter packing and higher crystallinity", "HDPE is made from a different monomer", "LDPE has longer chain length"], c: 1 },
+      { q: "Alkene metathesis (Nobel Prize 2005) rearranges double bonds. What happens in cross-metathesis of ethylene and 2-butene? (CLIL: catalytic chemistry)", a: ["They form 1,3-butadiene", "They give 2 mol propene via carbene-like intermediate with Ru or Mo catalyst", "They form a polymer", "No reaction occurs under normal conditions"], c: 1 },
+      { q: "KMnO4 (hot, concentrated) cleaves alkene double bonds completely. What products form from 2-methylbut-2-ene? (CLIL: oxidative cleavage)", a: ["Acetone and propanoic acid", "Acetone and acetic acid", "Propanone only", "Two molecules of ethanoic acid"], c: 1 },
+      { q: "In Wacker oxidation, ethylene reacts with O2 in the presence of PdCl2/CuCl2 to give acetaldehyde. This is an example of: (CLIL: organometallic / green chemistry)", a: ["Heterogeneous free-radical oxidation", "Homogeneous catalytic oxidation involving Pd(II)/Pd(0) redox cycle and Cu(II)/Cu(I) regeneration", "Acid-catalyzed hydration", "Thermal cracking process"], c: 1 },
+      { q: "Geometric (cis-trans) isomerism requires restricted rotation around C=C. What additional structural requirement must be met? (CLIL: stereochemistry)", a: ["Each sp2 carbon must bear two different substituents", "The molecule must be cyclic", "At least one carbon must be sp3 hybridized", "Both carbons must carry identical groups"], c: 0 },
+      { q: "Ethylene glycol (from hydration of ethylene oxide) is used as antifreeze. How does it lower the freezing point of water? (CLIL: physical chemistry / colligative properties)", a: ["It reacts with ice to form a new compound", "As a non-volatile solute, it lowers the freezing point proportional to molality (ΔTf = Kf·m)", "It increases the vapor pressure of water", "It changes the hydrogen bonding structure of ice permanently"], c: 1 },
+      { q: "In the context of CLIL science communication: an abstract for a chemistry paper on alkene polymerization should include:", a: ["Only the experimental conditions", "Background, aim, main results, and conclusion in concise scientific English", "The full mechanism with all intermediate steps", "Only the reference list"], c: 1 },
+      { q: "Ethylene biosynthesis in plants follows: methionine → SAM → ACC → ethylene. Which enzyme catalyzes the final step? (CLIL: biochemistry)", a: ["ACC synthase", "ACC oxidase (ethylene-forming enzyme)", "SAM decarboxylase", "Methionine adenosyltransferase"], c: 1 },
+      { q: "Bromine water decolorization tests for unsaturation. Why does cyclohexene decolorize it but cyclohexane does not? (CLIL: comparative chemistry)", a: ["Cyclohexane is more soluble in bromine water", "Cyclohexene's π electrons react with Br2 via electrophilic addition; cyclohexane lacks reactive π bonds", "Cyclohexane is a gas and escapes", "Both decolorize at the same rate"], c: 1 },
+      { q: "The anti addition of Br2 to alkenes produces a specific stereochemical outcome. What product forms from the addition of Br2 to cis-2-butene? (CLIL: stereochemistry)", a: ["Meso-2,3-dibromobutane (due to bromonium ion mechanism giving anti addition)", "Racemic mixture of (2R,3R) and (2S,3S) dibromides", "Only the (2R,3R) enantiomer", "(2R,3S)-dibromobutane exclusively"], c: 0 },
+      { q: "Alkene polymerization has environmental consequences. What makes bioplastics from plant-derived ethylene more sustainable? (CLIL: green chemistry & sustainability)", a: ["They are identical to fossil-based plastics so no difference", "Plant-derived ethylene uses renewable feedstock; its combustion returns biogenic CO2, reducing net fossil carbon emissions", "Bioplastics degrade faster in landfill conditions", "They require no energy for polymerization"], c: 1 },
+      { q: "Hydroboration-oxidation of propene gives 1-propanol (anti-Markovnikov). What is the mechanism? (CLIL: regioselectivity)", a: ["BH3 delivers H to the more substituted carbon via ionic mechanism", "BH3 adds via syn concerted mechanism, boron to less hindered (less substituted) carbon; oxidation then replaces B with OH", "It proceeds via carbocation rearrangement", "Markovnikov selectivity, same as HBr addition"], c: 1 },
+      { q: "Ring-closing metathesis (RCM) of diene substrates is used to synthesize macrocyclic compounds in pharmaceutical industry. What byproduct is released and why is it beneficial? (CLIL: synthetic & green chemistry)", a: ["HCl is released, driving the reaction forward", "Ethylene gas is released; its removal (gas phase) drives the equilibrium toward ring closure (Le Chatelier's principle)", "Water is released as in a condensation reaction", "CO2 is released from decarbonylation"], c: 1 }
+    ]
+  },
+
+  // ==========================
+  // LAW OF MASS ACTION
+  // ==========================
+  'massalar': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Әрекеттесуші массалар заңы және гетерогенді жүйелер',
+    v1: [
+      { q: "Who proposed the Law of Mass Action?", a: ["Le Chatelier", "Guldberg and Waage", "Arrhenius", "Ostwald"], c: 1 },
+      { q: "Reaction rate is proportional to the product of ______ of reactants.", a: ["Mass", "Volume", "Active masses (concentrations)", "Temperature"], c: 2 },
+      { q: "In the expression v = k[A]^a[B]^b, 'k' is the:", a: ["Equilibrium constant", "Rate constant", "Universal constant", "Activity"], c: 1 },
+      { q: "What factor does NOT affect the rate constant (k)?", a: ["Temperature", "Catalyst", "Concentration", "Nature of reactants"], c: 2 },
+      { q: "For a reaction A + B = C, if [A] is doubled, the rate ______.", a: ["Doubles", "Triples", "Remains same", "Halves"], c: 0 },
+      { q: "Chemical equilibrium is ______ in nature.", a: ["Static", "Dynamic", "Irreversible", "Stable"], c: 1 },
+      { q: "The unit of rate of reaction is:", a: ["mol/L", "mol/(L·s)", "L/mol", "s/mol"], c: 1 },
+      { q: "If Delta n = 0 for a gaseous reaction, then:", a: ["Kp > Kc", "Kp < Kc", "Kp = Kc", "Kp = 0"], c: 2 },
+      { q: "Le Chatelier's principle predicts the effect of:", a: ["Mass only", "Pressure, Temp, Concentration", "Catalyst only", "Atomic weight"], c: 1 },
+      { q: "Addition of a catalyst ______ the equilibrium state.", a: ["Shifts forward", "Shifts backward", "Does not change", "Destroys"], c: 2 },
+      { q: "In an exothermic reaction, increasing temperature shifts equilibrium to the:", a: ["Right", "Left", "Does not shift", "Top"], c: 1 },
+      { q: "Pressure affects equilibrium only if there is a change in ______.", a: ["Mass", "Temperature", "Number of gas moles", "Color"], c: 2 },
+      { q: "Rate of reverse reaction equals forward reaction at:", a: ["Start", "Completion", "Equilibrium", "Half-time"], c: 2 },
+      { q: "Homogeneous reaction occurs in ______ phase.", a: ["Single", "Two", "Multiple", "Solid"], c: 0 },
+      { q: "Activation energy is lowered by:", a: ["Heat", "Pressure", "Catalyst", "Volume"], c: 2 },
+      { q: "The expression for Kc of H2 + I2 = 2HI is:", a: ["[HI]/[H2][I2]", "[HI]^2/[H2][I2]", "[H2][I2]/[HI]^2", "[HI]^2/[H2]"], c: 1 },
+      { q: "If Kc > 1, the equilibrium favors:", a: ["Reactants", "Products", "Neither", "Slow rate"], c: 1 },
+      { q: "Increase in pressure favors the side with ______ moles of gas.", a: ["More", "Fewer", "Same", "Zero"], c: 1 },
+      { q: "Relation between Kp and Kc is:", a: ["Kp = Kc(RT)", "Kp = Kc(RT)^Δn", "Kc = Kp(RT)^Δn", "Kp = Kc"], c: 1 },
+      { q: "Law of Mass Action is applicable to ______ reactions.", a: ["Irreversible", "Reversible", "Nuclear", "Instantaneous"], c: 1 }
+    ],
+    v2: [
+      { q: "For the heterogeneous equilibrium CaCO3(s) ⇌ CaO(s) + CO2(g), write the correct Kc expression and explain why solids are excluded. (CLIL: equilibrium constants)", a: ["Kc = [CaO][CO2]/[CaCO3] — all species included", "Kc = [CO2] — solids have constant activity (≈1) and are incorporated into the equilibrium constant", "Kc = [CaCO3]/[CaO] — only solids included", "Kc = [CO2]²/[CaCO3] — stoichiometry doubles CO2"], c: 1 },
+      { q: "The Haber process: N2(g) + 3H2(g) ⇌ 2NH3(g), ΔH = −92 kJ/mol. Industry uses moderate temperature (~450°C) despite thermodynamic preference for low T. Why? (CLIL: industrial chemistry & kinetics)", a: ["Low temperature gives Kc < 1 so no product forms", "Compromise: low T favors equilibrium yield but too slow; 450°C balances acceptable rate with reasonable Kc", "High T is always better because k increases", "Temperature has no effect on this equilibrium"], c: 1 },
+      { q: "For the reaction 2SO2(g) + O2(g) ⇌ 2SO3(g), if Kc = 280 at 1000K, what is Kc for SO3(g) ⇌ SO2(g) + ½O2(g)? (CLIL: mathematical manipulation of K)", a: ["1/280", "√(1/280) ≈ 0.060", "280²", "−280"], c: 1 },
+      { q: "In a heterogeneous catalysis, the solid catalyst provides a surface for adsorption. For the contact process (SO2 oxidation), which step is rate-determining? (CLIL: surface chemistry)", a: ["Desorption of SO3 from the surface", "Adsorption and dissociation of O2 on V2O5 surface is typically rate-limiting", "Collision of SO2 molecules in gas phase", "Dissolution of SO3 in sulfuric acid"], c: 1 },
+      { q: "The reaction quotient Q is used to predict equilibrium shift. If Q > Kc for A ⇌ B, the system will: (CLIL: chemical reasoning)", a: ["Shift forward to produce more B", "Shift in reverse to consume B and form A until Q = Kc", "Remain unchanged since equilibrium is already reached", "Increase temperature to restore balance"], c: 1 },
+      { q: "Van't Hoff equation: d(ln K)/dT = ΔH°/RT². For an endothermic reaction, how does K change with temperature? (CLIL: thermodynamics)", a: ["K decreases with increasing T", "K increases with increasing T, consistent with Le Chatelier's principle", "K is independent of temperature", "K first increases then decreases"], c: 1 },
+      { q: "In the Langmuir adsorption isotherm for heterogeneous reactions, surface coverage θ = KP/(1+KP). What happens to θ at very high pressure? (CLIL: surface chemistry & catalysis)", a: ["θ approaches 0 (desorption)", "θ approaches 1 (monolayer saturation)", "θ increases indefinitely", "θ = KP always"], c: 1 },
+      { q: "For a second-order reaction A + B → products with rate = k[A][B], if [A] = [B] = 0.1 M and k = 2 L·mol⁻¹·s⁻¹, calculate the initial rate. (CLIL: quantitative chemistry)", a: ["0.2 mol·L⁻¹·s⁻¹", "0.02 mol·L⁻¹·s⁻¹", "2.0 mol·L⁻¹·s⁻¹", "0.002 mol·L⁻¹·s⁻¹"], c: 1 },
+      { q: "Enzyme kinetics follows Michaelis-Menten equation: v = Vmax[S]/(Km + [S]). How is this analogous to the Law of Mass Action in biochemical systems? (CLIL: biochemistry)", a: ["They are completely different; enzymes do not follow mass action", "Both relate reaction rate to concentration; enzyme-substrate complex formation/breakdown is governed by equilibrium-like mass action principles", "Michaelis-Menten only applies to inhibited enzymes", "Mass action applies only to inorganic reactions"], c: 1 },
+      { q: "The solubility product Ksp of AgCl = 1.8×10⁻¹⁰. What is the molar solubility of AgCl in pure water? (CLIL: analytical equilibrium)", a: ["1.8×10⁻¹⁰ mol/L", "1.34×10⁻⁵ mol/L", "3.6×10⁻¹⁰ mol/L", "9.0×10⁻⁶ mol/L"], c: 1 },
+      { q: "In a buffer solution, the Henderson-Hasselbalch equation is derived from the Law of Mass Action for weak acid equilibrium. For acetic acid/acetate buffer at pH 5.0 (pKa = 4.74), what is the [A⁻]/[HA] ratio? (CLIL: buffer chemistry)", a: ["0.55", "1.82", "1.0", "4.74"], c: 1 },
+      { q: "Common ion effect: adding NaCl to a saturated AgCl solution. Using Ksp, explain what happens and why. (CLIL: ionic equilibria)", a: ["More AgCl dissolves since Na+ reacts with Cl-", "Ksp is exceeded by added Cl⁻; [Ag⁺][Cl⁻] > Ksp so AgCl precipitates, reducing solubility (common ion effect)", "No change occurs since NaCl is inert", "AgCl becomes more soluble due to ionic strength"], c: 1 },
+      { q: "The temperature coefficient Q10 in biochemistry states that reaction rate doubles for each 10°C rise. How does this relate to the Arrhenius equation? (CLIL: bio-physical chemistry)", a: ["They are unrelated concepts", "Q10 ≈ 2 corresponds to an activation energy of approximately 50–60 kJ/mol via Ea = RT₁T₂/10 × ln(Q10)", "Q10 only applies to enzyme reactions, not Arrhenius", "Arrhenius equation predicts Q10 = e for all reactions"], c: 1 },
+      { q: "Le Chatelier's principle applied in blood physiology: at high altitude, lower pO2 causes hemoglobin to release O2. What shifts the O2–Hb equilibrium? (CLIL: physiology & chemistry)", a: ["Increased CO2 concentration only", "Decreased O2 partial pressure shifts equilibrium: HbO2 ⇌ Hb + O2 toward dissociation (releases O2)", "Increased temperature alone", "Blood pH increases causing more binding"], c: 1 },
+      { q: "For a first-order reaction with k = 0.693 min⁻¹, calculate the half-life t½. (CLIL: quantitative kinetics)", a: ["2 min", "0.693 min", "1 min", "1.386 min"], c: 2 },
+      { q: "In pharmaceutical science, drug dissolution from a solid tablet follows heterogeneous kinetics. Which factor most increases the dissolution rate according to Noyes-Whitney equation? (CLIL: pharmaceutical chemistry)", a: ["Increasing tablet weight", "Decreasing particle size (increasing surface area) and ensuring sink conditions", "Using inert excipients", "Storing at lower temperature"], c: 1 },
+      { q: "Catalytic converters in cars use heterogeneous catalysis. The reaction CO + NO → CO2 + ½N2 occurs on Pt/Rh surface. What type of mechanism operates? (CLIL: environmental catalysis)", a: ["Homogeneous Eley-Rideal mechanism where gas CO reacts with adsorbed NO", "Langmuir-Hinshelwood: both CO and NO adsorb on surface, then react with each other", "Free radical chain mechanism", "Ionic displacement mechanism"], c: 1 },
+      { q: "If the rate law for A → products is: rate = k[A]², what is the integrated rate law and how is k determined graphically? (CLIL: analytical kinetics)", a: ["ln[A]t = ln[A]0 − kt; plot ln[A] vs t gives slope −k", "1/[A]t = 1/[A]0 + kt; plot 1/[A] vs t gives slope k", "[A]t = [A]0 − kt; plot [A] vs t gives slope −k", "log[A]t = kt/2.303; plot log[A] vs t gives slope k"], c: 1 },
+      { q: "In the production of sulfuric acid (contact process), the equilibrium yield of SO3 is improved by removing SO3 from the gas phase using oleum. This is an application of: (CLIL: industrial Le Chatelier)", a: ["Increasing temperature to shift equilibrium right", "Le Chatelier's principle: removing a product shifts equilibrium forward to produce more SO3", "Increasing pressure by adding inert gas", "Adding more catalyst to reach equilibrium faster"], c: 1 },
+      { q: "The Arrhenius equation k = A·e^(−Ea/RT) is used to find activation energy. If ln k vs 1/T graph has slope = −8000 K, what is Ea? (R = 8.314 J/mol·K) (CLIL: mathematical chemistry)", a: ["8000 J/mol", "66.5 kJ/mol", "8.314 kJ/mol", "96.2 kJ/mol"], c: 1 }
+    ]
+  },
+
+  // ==========================
+  // IONIC STRENGTH
+  // ==========================
+  'eritindi': { 
+    discipline: 'Аналитикалық химия',
+    title: 'Ерітіндінің иондық күші және ионның активтілігін есептеу әдістері',
+    v1: [
+      { q: "Ionic strength (mu) was introduced by:", a: ["Arrhenius", "Lewis and Randall", "Debye", "Hückel"], c: 1 },
+      { q: "Formula for ionic strength is μ = ½Σ ______.", a: ["ci zi", "ci zi²", "ci² zi", "ci / zi"], c: 1 },
+      { q: "Activity (a) is related to concentration (c) by:", a: ["a = c/f", "a = f·c", "a = f+c", "a = f^c"], c: 1 },
+      { q: "In very dilute solutions, the activity coefficient (f) is:", a: ["0", "Infinity", "Approaching 1", "Negative"], c: 2 },
+      { q: "What is the ionic strength of 0.1 M NaCl solution?", a: ["0.05", "0.1", "0.2", "0.4"], c: 1 },
+      { q: "Ionic strength depends on the ______ of ions.", a: ["Size only", "Color", "Concentration and charge", "Weight"], c: 2 },
+      { q: "Activity coefficient decreases as ionic strength ______.", a: ["Decreases", "Increases", "Remains constant", "Becomes zero"], c: 1 },
+      { q: "Debye-Hückel limiting law is used for ______ solutions.", a: ["Concentrated", "Dilute electrolytes", "Non-electrolytes", "Solid"], c: 1 },
+      { q: "Mean ionic activity coefficient is represented by:", a: ["f±", "μ", "α", "Kw"], c: 0 },
+      { q: "For a 1:2 electrolyte like MgCl2 (0.1 M), the ionic strength is:", a: ["0.1", "0.2", "0.3", "0.6"], c: 2 },
+      { q: "Strong electrolytes are ______ ionized in water.", a: ["Partially", "Completely", "Not", "Slowly"], c: 1 },
+      { q: "The effective concentration is called:", a: ["Molarity", "Molality", "Activity", "Normality"], c: 2 },
+      { q: "Activity is a dimensionless quantity?", a: ["Yes", "No", "Depends on unit", "Only for gases"], c: 0 },
+      { q: "Increasing the charge of an ion ______ its effect on ionic strength.", a: ["Decreases", "Increases", "Does not change", "Eliminates"], c: 1 },
+      { q: "The 'Salting-out' effect is related to:", a: ["Alkanes", "Ionic strength increase", "Catalysis", "Distillation"], c: 1 },
+      { q: "Debye-Hückel theory considers ions as:", a: ["Point charges", "Large spheres", "Cubes", "Rings"], c: 0 },
+      { q: "What is the charge (z) of a sulfate ion SO4²⁻?", a: ["+2", "-2", "-1", "+6"], c: 1 },
+      { q: "If mu = 0, then activity (a) ______ concentration (c).", a: [">", "<", "=", "is 0"], c: 2 },
+      { q: "Ionic atmosphere concept is part of:", a: ["Bohr model", "Debye-Hückel theory", "Kinetic theory", "VSEPR"], c: 1 },
+      { q: "Unit of ionic strength is:", a: ["mol/L", "L/mol", "No unit", "mol·L"], c: 0 }
+    ],
+    v2: [
+      { q: "Calculate the ionic strength of a solution containing 0.05 M CaCl2 and 0.02 M Na2SO4. (CLIL: quantitative analytical chemistry)", a: ["μ = 0.07 M", "μ = 0.19 M", "μ = 0.12 M", "μ = 0.24 M"], c: 1 },
+      { q: "The extended Debye-Hückel equation: log f± = −A|z+z−|√μ/(1 + Ba√μ). What does the parameter 'a' represent? (CLIL: electrolyte theory)", a: ["Activity of the ion", "Closest approach distance (ion size parameter) between ions", "Anion charge number", "Atmospheric pressure constant"], c: 1 },
+      { q: "Why does the Debye-Hückel limiting law (DHLL) fail at high ionic strength? (CLIL: theory limitations)", a: ["It assumes complete dissociation, which fails for concentrated solutions where ion association, hydration, and short-range forces become significant", "It only works for non-electrolytes", "It ignores temperature effects", "It was derived incorrectly by Debye"], c: 0 },
+      { q: "In potentiometry, a glass electrode measures H+ activity, not concentration. Why is this distinction critical in blood pH measurement? (CLIL: clinical analytical chemistry)", a: ["Blood has no ionic strength so activity = concentration", "Blood ionic strength (~0.15 M) causes activity coefficients ~0.75, meaning [H+]actual differs significantly from measured activity; clinical calibration must account for this", "Only concentration matters in medical diagnosis", "pH meters always measure concentration, not activity"], c: 1 },
+      { q: "The Davies equation extends DHLL: log f± = −A z² [√μ/(1+√μ) − 0.3μ]. For what range of ionic strength is it valid? (CLIL: empirical equations)", a: ["μ < 0.001 M only", "μ up to ~0.5 M, making it useful for physiological and seawater conditions", "μ > 1 M only", "It is only valid for 1:1 electrolytes"], c: 1 },
+      { q: "Salting-out effect: increasing NaCl concentration decreases protein solubility. How does ionic strength explain this? (CLIL: biochemistry & colloidal chemistry)", a: ["NaCl reacts chemically with the protein", "High ionic strength increases ion-water interactions, reducing water available for protein hydration and lowering protein activity", "Sodium ions denature proteins by breaking peptide bonds", "The effect is purely due to osmotic pressure, not ionic strength"], c: 1 },
+      { q: "In a 0.01 M HCl solution, calculate f± using DHLL: log f± = −0.509|z+z−|√μ (at 25°C). (CLIL: numerical calculation)", a: ["f± ≈ 0.99", "f± ≈ 0.90", "f± ≈ 0.75", "f± ≈ 0.50"], c: 1 },
+      { q: "The mean ionic activity coefficient f± for an electrolyte MX₂ (e.g., CaCl2) is defined as: (CLIL: electrolyte thermodynamics)", a: ["f± = f+ · f−", "f± = (f+¹ · f−²)^(1/3)", "f± = (f+ + 2f−)/3", "f± = f+²/f−"], c: 1 },
+      { q: "In environmental chemistry, the speciation of heavy metals in soil depends on ionic strength. How does high salt concentration in seawater affect Pb²+ activity? (CLIL: environmental science)", a: ["Pb²+ activity increases proportionally with [Pb²+]", "High ionic strength reduces Pb²+ activity coefficient, so Pb²+ activity is lower than its total concentration, affecting toxicity assessments", "Ionic strength has no effect on metal speciation", "Sea salt directly precipitates Pb as PbSO4 always"], c: 1 },
+      { q: "Ostwald's dilution law for weak electrolyte HA: Ka = Cα²/(1−α). How does ionic strength affect the apparent Ka? (CLIL: weak electrolyte equilibria)", a: ["Ionic strength has no effect on Ka", "Increased ionic strength lowers activity coefficients of ions more than for the neutral molecule, making the apparent Ka larger (salting-in of ions)", "Ka decreases with ionic strength", "Only the concentration of HA changes, not Ka"], c: 1 },
+      { q: "In pharmaceutical formulation, ionic strength of intravenous solutions must match physiological conditions (~0.15 M). Why? (CLIL: pharmaceutical science)", a: ["To maximize drug solubility only", "To prevent hemolysis or cell crenation from osmotic imbalance, and to ensure correct drug activity at target ionic strength", "Because regulations require it without scientific basis", "To increase viscosity for slow injection"], c: 1 },
+      { q: "The chemical potential of an ion is: μᵢ = μ°ᵢ + RT ln aᵢ. How does ionic strength affect the chemical potential? (CLIL: thermodynamics)", a: ["Ionic strength has no effect on chemical potential", "Higher ionic strength reduces aᵢ (since fᵢ < 1), lowering μᵢ below the ideal value, which affects reaction Gibbs energy", "Ionic strength increases aᵢ above concentration", "Chemical potential depends only on temperature, not ionic strength"], c: 1 },
+      { q: "In oceanography, seawater ionic strength is approximately 0.7 M. Which of the following best applies for activity coefficient calculations at this ionic strength? (CLIL: geochemistry)", a: ["Debye-Hückel limiting law (valid to μ ≈ 0.01 M)", "Pitzer equations, which account for specific ion interactions at high ionic strength", "Ideal solution assumption (f = 1)", "Davies equation (valid to μ ≈ 0.5 M)"], c: 1 },
+      { q: "An electrode cell has EMF: E = E° − (RT/nF)ln Q. How does ionic strength affect the measured EMF? (CLIL: electroanalytical chemistry)", a: ["Ionic strength has no effect on EMF", "Through activity coefficients in Q: using concentrations instead of activities introduces error; high ionic strength causes significant deviation from ideal EMF", "Only the standard potential E° changes with ionic strength", "EMF increases linearly with ionic strength"], c: 1 },
+      { q: "The 'ionic atmosphere' in Debye-Hückel theory creates a screening effect. What is the Debye length κ⁻¹ and how does it relate to ionic strength? (CLIL: physical chemistry)", a: ["κ⁻¹ increases with ionic strength (thicker atmosphere)", "κ⁻¹ = (ε₀εRT/2F²μ)^½; higher ionic strength compresses the ionic atmosphere (shorter Debye length)", "κ⁻¹ is independent of ionic strength", "κ⁻¹ depends only on ion size, not concentration"], c: 1 },
+      { q: "In HPLC with ionic mobile phases, why does adjusting ionic strength affect retention time of charged analytes? (CLIL: chromatography)", a: ["Ionic strength changes mobile phase viscosity only", "Ionic strength modifies analyte activity coefficients and ion-pairing equilibria, altering effective charge and interaction with stationary phase", "Retention time depends only on column temperature", "Salt concentration affects only UV detector response"], c: 1 },
+      { q: "Conductometric titration relies on ion conductivity. How does ionic strength affect molar conductivity (Λm) according to Kohlrausch's law? (CLIL: electrochemistry)", a: ["Λm increases linearly with concentration", "Λm = Λ°m − K√c; higher ionic strength increases interionic interactions, reducing Λm below the limiting value Λ°m", "Λm is constant regardless of concentration", "Only temperature affects molar conductivity"], c: 1 },
+      { q: "In biological systems, the concept of 'ionic strength' was applied to understand enzyme activity. Why do most enzymes function optimally at ionic strength ~0.1–0.2 M? (CLIL: biochemistry)", a: ["At this ionic strength, all substrates become soluble", "This range maintains optimal activity coefficients for substrate and enzyme charged groups, preserving protein conformation and substrate binding without excessive ion shielding", "Enzymes only work in pure water (μ = 0)", "High ionic strength is always better for enzyme catalysis"], c: 1 },
+      { q: "The Pitzer model uses parameters β(0), β(1), and Cφ for each electrolyte pair. What fundamental improvement does this model offer over extended Debye-Hückel? (CLIL: advanced electrolyte theory)", a: ["It works only for 1:1 electrolytes", "It explicitly includes specific short-range interactions between ion pairs (virial coefficients), enabling accurate predictions at μ > 1 M", "It eliminates the need for ionic strength calculations", "It assumes all solutions are ideal above 1 M"], c: 1 },
+      { q: "Design an experiment to measure the activity coefficient of NaCl at 0.1 M using EMF measurements. Which cell would you use and what equation applies? (CLIL: experimental analytical chemistry)", a: ["Weston cell; E = E° − 0.05916 log[Cl⁻]", "Concentration cell without transference using Ag/AgCl electrodes; E = −(2RT/F)ln(f±c/f°±c°) allowing f± calculation from measured E and known concentrations", "Voltaic cell with copper electrodes; E = E° − 0.0296 log[Cu²+]", "Hydrogen electrode only, measuring pH"], c: 1 }
+    ]
+  },
+
+  // ==========================
+  // SCIENTIFIC ARTICLE
+  // ==========================
+  'gylymi': { 
+    discipline: 'Ғылыми-зерттеу жұмысын ұйымдастыру',
+    title: 'Ғылыми мақала',
+    v1: [
+      { q: "What is the standard structure of a research article?", a: ["IMRAD", "ABCC", "H-index", "DOI"], c: 0 },
+      { q: "IMRaD stands for Introduction, Methods, Results, and ______.", a: ["Data", "Diagram", "Discussion", "Description"], c: 2 },
+      { q: "Where is the main hypothesis of the work stated?", a: ["Abstract", "Introduction", "Conclusion", "References"], c: 1 },
+      { q: "What is 'Scopus'?", a: ["A type of microscope", "Abstract and citation database", "A chemistry journal", "An AI tool"], c: 1 },
+      { q: "The 'Impact Factor' measures the ______ of a journal.", a: ["Speed", "Cost", "Influence/Quality", "Size"], c: 2 },
+      { q: "A short summary of the article is called:", a: ["Introduction", "Abstract", "Appendix", "Footnote"], c: 1 },
+      { q: "Which tool is used for reference management?", a: ["Photoshop", "Mendeley / Zotero", "Excel", "Canvas"], c: 1 },
+      { q: "What is 'Plagiarism'?", a: ["Data analysis", "Using others' work without credit", "Peer review", "Citing sources"], c: 1 },
+      { q: "A 'DOI' is a ______ for digital documents.", a: ["Price tag", "Unique persistent identifier", "Date of issue", "Type of ink"], c: 1 },
+      { q: "The H-index measures an author's ______.", a: ["Age", "Productivity and citation impact", "Salary", "Number of degrees"], c: 1 },
+      { q: "Peer-review is a process of ______.", a: ["Selling articles", "Evaluation by experts", "Typing results", "Translation"], c: 1 },
+      { q: "Keywords are used for ______.", a: ["Grammar check", "Search and indexing", "Word count", "Design"], c: 1 },
+      { q: "Ethics in research includes:", a: ["Fabrication", "Data falsification", "Informed consent/Honesty", "Copy-pasting"], c: 2 },
+      { q: "Which section describes 'How' the research was done?", a: ["Results", "Methods", "Literature Review", "Discussion"], c: 1 },
+      { q: "CiteScore is a metric used by:", a: ["Web of Science", "Scopus", "Google Scholar", "ResearchGate"], c: 1 },
+      { q: "A 'Review Article' is different because it ______.", a: ["Has no data", "Summarizes existing research", "Is very short", "Is not scientific"], c: 1 },
+      { q: "Where do you interpret the findings and compare with others?", a: ["Methods", "Discussion", "Title", "References"], c: 1 },
+      { q: "Predatory journals are ______ journals.", a: ["High quality", "Exploitative/low quality", "Open access only", "Free"], c: 1 },
+      { q: "What is 'Paraphrasing'?", a: ["Copying directly", "Expressing ideas in your own words", "Deleting paragraphs", "Adding pictures"], c: 1 },
+      { q: "Analytical competence in research means the ability to ______.", a: ["Type fast", "Analyze and interpret data", "Buy chemicals", "Speak English"], c: 1 }
+    ],
+    v2: [
+      { q: "In scientific writing, what distinguishes a 'research gap' from a 'research problem'? (CLIL: academic writing)", a: ["They are identical terms used interchangeably", "A research gap is an unaddressed area in existing literature; a research problem is the specific issue your study addresses within that gap", "A research problem is broader than a research gap", "Research gaps only exist in natural sciences"], c: 1 },
+      { q: "A chemistry paper reports: 'Catalyst X showed 95% selectivity at 250°C.' In the IMRAD structure, where would you find the experimental conditions that produced this result, and where would you find its interpretation? (CLIL: IMRAD analysis)", a: ["Both in Results section", "Conditions in Methods; the selectivity value in Results; comparison with literature and mechanistic interpretation in Discussion", "Both in Discussion", "Conditions in Abstract; interpretation in Conclusion"], c: 1 },
+      { q: "When calculating Impact Factor (IF): IF = (citations in current year to articles in previous 2 years) / (articles published in those 2 years). A journal published 200 articles in 2022–2023 and received 600 citations in 2024. What is the IF? (CLIL: bibliometrics)", a: ["200", "600", "3.0", "1200"], c: 2 },
+      { q: "In CLIL chemistry education research, a researcher uses 'triangulation.' What does methodological triangulation mean? (CLIL: research methodology)", a: ["Measuring three variables simultaneously", "Using multiple data collection methods (e.g., tests, interviews, observations) to improve validity and reliability of findings", "Conducting the experiment three times for reproducibility", "Using three different statistical tests on the same data"], c: 1 },
+      { q: "An article title: 'CLIL-based Inquiry Approach Improves Conceptual Understanding of Equilibrium in Kazakhstani University Students.' Identify the key PICO elements present. (CLIL: structured research questions)", a: ["Only Population and Intervention are present", "Population (Kazakhstani university students), Intervention (CLIL inquiry), Outcome (conceptual understanding of equilibrium) — Comparison is implicit", "Only Intervention and Outcome are identifiable", "PICO applies only to medical research, not chemistry education"], c: 1 },
+      { q: "Open Access (OA) publishing has Gold and Green routes. Which is most appropriate for a student with no publication funds? (CLIL: scholarly communication)", a: ["Gold OA — pay Article Processing Charge (APC) to publisher", "Green OA — self-archive in an institutional or subject repository (e.g., Zenodo) at no cost", "Only submit to subscription journals", "Post on social media for open access"], c: 1 },
+      { q: "In systematic literature review, PRISMA guidelines are used. What does 'PRISMA' stand for and what is its purpose? (CLIL: research methodology)", a: ["Primary Research In Scientific and Medical Articles — to rank journals", "Preferred Reporting Items for Systematic Reviews and Meta-Analyses — provides a checklist to ensure transparent, complete reporting of systematic reviews", "Protocol for Research In Science and Mathematics Academia — for writing proposals", "Publication Review and Indexing Standard for Medical Abstracts"], c: 1 },
+      { q: "A researcher finds p = 0.03 in a chemistry education study comparing CLIL vs. traditional instruction. What does this mean and what are its limitations? (CLIL: statistical literacy)", a: ["The CLIL method is 97% effective", "p < 0.05 indicates statistical significance (result unlikely due to chance alone), but does not indicate effect size or practical significance; sample size and context matter", "The result is not significant since p > 0.01", "p-value directly measures learning improvement in percentage"], c: 1 },
+      { q: "Why is 'reproducibility' considered a cornerstone of scientific methodology, and how does the Methods section ensure it? (CLIL: philosophy of science)", a: ["Reproducibility means the same lab must repeat it; others cannot", "Reproducibility allows independent verification; the Methods section must be detailed enough for any competent researcher to replicate the study, preventing fraud and confirming validity", "Only results need to be reproduced, not methods", "Reproducibility applies only to quantitative research"], c: 1 },
+      { q: "In an academic chemistry paper written in English as a CLIL context, hedging language is important. Which sentence correctly hedges a research finding? (CLIL: academic language)", a: ["'The catalyst definitely causes the reaction to proceed.'", "'These results suggest that the catalyst may facilitate the reaction under the tested conditions.'", "'It is impossible that temperature affects the yield.'", "'All researchers agree that our method is superior.'"], c: 1 },
+      { q: "Scopus uses CiteScore while Web of Science uses Impact Factor. A journal has IF = 4.5 and CiteScore = 7.2. Why might CiteScore be higher? (CLIL: bibliometrics)", a: ["CiteScore is inflated artificially by Scopus", "CiteScore uses a 4-year citation window and counts all document types; IF uses 2 years and excludes some types, so CiteScore typically appears higher", "The journals are ranked by different algorithms with no scientific basis", "Impact Factor includes book chapters while CiteScore does not"], c: 1 },
+      { q: "Research integrity includes declaring conflicts of interest (COI). A researcher whose study is funded by a chemical company reports that the company's product is highly effective. What ethical concern arises? (CLIL: research ethics)", a: ["No concern — industry funding is always unbiased", "Funding source creates potential COI; readers cannot fully trust objectivity without transparent declaration and independent verification", "Conflicts only arise in medical research", "Industry funding improves quality so no declaration is needed"], c: 1 },
+      { q: "In writing the Discussion of a chemistry paper, which approach best demonstrates critical analysis? (CLIL: academic writing skills)", a: ["Repeating the Results section with different words", "Interpreting findings in relation to the hypothesis, comparing with prior literature, acknowledging limitations, and suggesting future research directions", "Listing all experiments performed", "Only describing the highest result achieved"], c: 1 },
+      { q: "A chemistry research article uses Box-Behnken design for optimization. In which section would you describe why this design was chosen over full factorial design? (CLIL: experimental design in research writing)", a: ["Abstract", "Results", "Methods — specifically the experimental design subsection justifying the statistical approach and its efficiency", "Conclusion"], c: 2 },
+      { q: "Co-authorship in research carries ethical responsibilities. According to Vancouver guidelines, what is required to be listed as an author? (CLIL: publication ethics)", a: ["Being present in the laboratory during experiments", "Meeting all four criteria: substantial contribution, drafting/revising, final approval, and accountability for all aspects of the work", "Funding the research", "Being supervisor of the research group"], c: 1 },
+      { q: "In CLIL chemistry education, 'content and language integration' means: (CLIL: methodology)", a: ["Teaching chemistry in two languages alternately", "Simultaneously developing subject matter competence (chemistry concepts) and language skills (academic English) through meaningful content tasks", "Translating chemistry textbooks into English", "Using English vocabulary lists in chemistry class"], c: 1 },
+      { q: "A retraction notice appears for an article you cited. What should you do in your submitted manuscript? (CLIL: research integrity & academic practice)", a: ["Ignore it since the paper was already published", "Remove or replace the citation with a non-retracted source; add a note if the retracted work is central to your argument; inform the editor if already submitted", "Keep the citation since retracted papers still exist in databases", "Cite the retraction notice itself as a valid source"], c: 1 },
+      { q: "The abstract of a research article should be written: (CLIL: scientific writing conventions)", a: ["Before the experiments to guide the research", "Last, after the full paper is written, as a precise self-contained summary that can be read independently", "Only by the journal editor", "Using first person narrative with personal opinions"], c: 1 },
+      { q: "In scientometrics, the 'Matthew effect' in science refers to: (CLIL: sociology of science)", a: ["Highly cited authors and papers tend to accumulate more citations (cumulative advantage), while lesser-known work remains uncited regardless of quality", "The law that older papers always have more citations", "Equal distribution of citations among all researchers", "Papers published in December receive fewer citations"], c: 0 },
+      { q: "A CLIL chemistry lesson requires students to read and analyze a journal abstract in English. What cognitive skill level (Bloom's taxonomy) does this primarily target when students evaluate the methodology described? (CLIL: pedagogy)", a: ["Remembering — recalling definitions", "Understanding — paraphrasing the abstract", "Evaluating — making judgments about methodological adequacy and validity based on criteria", "Creating — writing their own abstract"], c: 2 }
+    ]
+  }
+};
+
+// ============================
+// NAVIGATION FUNCTIONS
+// ============================
+
+function showVariantSelect(topicId) {
+  const name = document.getElementById('userName').value.trim();
+  const group = document.getElementById('userGroup').value.trim();
+  if (!name || !group) return alert("Аты-жөніңіз бен тобыңызды жазыңыз! / Please enter your name and group.");
+
+  currentTopicId = topicId;
+  const topic = quizData[topicId];
+
+  document.getElementById('variant-topic-title').textContent = topic.title;
+  document.getElementById('main-view').style.display = 'none';
+  document.getElementById('variant-view').style.display = 'block';
+  document.getElementById('test-view').innerHTML = '';
+  window.scrollTo(0, 0);
+}
+
+function backToMain() {
+  document.getElementById('main-view').style.display = 'block';
+  document.getElementById('variant-view').style.display = 'none';
+  document.getElementById('test-view').innerHTML = '';
+  currentTopicId = null;
+  window.scrollTo(0, 0);
+}
+
+function backToVariant() {
+  document.getElementById('variant-view').style.display = 'block';
+  document.getElementById('test-view').innerHTML = '';
+  window.scrollTo(0, 0);
+}
+
+function startTest(id, variant) {
+  const topic = quizData[id];
+  const questions = variant === 1 ? topic.v1 : topic.v2;
+  const variantLabel = variant === 1 ? 'Вариант 1 — Basic' : 'Вариант 2 — Advanced CLIL';
+  const badgeClass = variant === 1 ? 'badge-v1' : 'badge-v2';
+
+  document.getElementById('variant-view').style.display = 'none';
+
+  let html = `<div class="test-box active">
+    <button class="menu-btn" style="padding:10px 20px; font-size:0.9rem; margin-bottom:25px; width:auto; border:1px solid #ddd; font-family:inherit;" onclick="backToVariant()">← Нұсқаға оралу / Back to variants</button>
+    <div style="text-align:center; margin-bottom:25px;">
+      <span class="variant-badge ${badgeClass}">${variantLabel}</span>
+      <h2 style="color:var(--primary); margin-top:10px;">${topic.title}</h2>
+      <p style="color:#888; font-size:0.85rem; margin-top:5px;">${topic.discipline} | 20 сұрақ / questions</p>
+    </div>
+    <form id="quiz-form">`;
+
+  questions.forEach((item, i) => {
+    html += `<div class="question"><p>${i + 1}. ${item.q}</p>`;
+    item.a.forEach((opt, j) => {
+      html += `<label><input type="radio" name="q${i}" value="${j}" required> <span>${opt}</span></label>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `
+    <button type="button" id="submit-btn" class="submit-btn" onclick="finishTest('${id}', ${variant})">Нәтижені жіберу / Submit</button>
+    <div id="final-status" class="status-message">✓ Нәтижеңіз мұғалімге жіберілді! / Result sent to teacher!</div>
+    </form></div>`;
+
+  document.getElementById('test-view').innerHTML = html;
+  window.scrollTo(0, 0);
+}
+
+function finishTest(id, variant) {
+  const btn = document.getElementById('submit-btn');
+  const form = document.getElementById('quiz-form');
+  const statusMsg = document.getElementById('final-status');
+  const questions = variant === 1 ? quizData[id].v1 : quizData[id].v2;
+  const topic = quizData[id];
+
+  if (!form.checkValidity()) return alert("Барлық сұраққа жауап беріңіз! / Answer all questions!");
+
+  let score = 0;
+
+  questions.forEach((q, i) => {
+    const questionDiv = form.querySelectorAll('.question')[i];
+    const labels = questionDiv.querySelectorAll('label');
+    const selectedInput = form.querySelector(`input[name="q${i}"]:checked`);
+    const selectedIndex = parseInt(selectedInput.value);
+
+    labels[q.c].classList.add('correct-answer');
+
+    if (selectedIndex === q.c) {
+      score++;
+    } else {
+      labels[selectedIndex].classList.add('wrong-answer');
+    }
+
+    questionDiv.querySelectorAll('input').forEach(inp => inp.disabled = true);
+  });
+
+  const scoreHtml = `<div class="score-display">
+    Сіздің нәтижеңіз / Your score: <strong>${score} / ${questions.length}</strong><br>
+    <small>Дұрыс жауаптар жасыл түспен белгіленді / Correct answers highlighted in green</small>
+  </div>`;
+  form.insertAdjacentHTML('afterbegin', scoreHtml);
+
+  btn.disabled = true;
+  btn.innerText = "Жіберілуде... / Sending...";
+
+  const variantLabel = variant === 1 ? 'Вариант 1 (Basic)' : 'Вариант 2 (Advanced CLIL)';
+  const data = {
+    name: document.getElementById('userName').value.trim(),
+    group: document.getElementById('userGroup').value.trim(),
+    discipline: topic.discipline,
+    topic: topic.title + ' — ' + variantLabel,
+    score: score,
+    total: questions.length
+  };
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => {
+    btn.style.display = 'none';
+    statusMsg.style.display = 'block';
+    window.scrollTo(0, 0);
+  }).catch(() => {
+    alert("Қате кетті / Error occurred.");
+    btn.disabled = false;
+    btn.innerText = "Қайта жіберу / Retry";
+  });
+}
+</script>
+</body>
+</html>
