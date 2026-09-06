@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Топқа бөлу құралы — Талдықорған</title>
+<style>
+  :root{
+    --bg: #0B2545;
+    --panel: #123561;
+    --panel-2: #1A4272;
+    --line: #2C548C;
+    --ink: #F5F7FA;
+    --ink-dim: #9FB3CC;
+    --accent: #F2B705;
+    --accent-ink: #14213D;
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:48px 20px 80px;
+  }
+  .wrap{width:100%;max-width:760px;}
+
+  .school{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+  .school-badge{
+    width:52px;height:52px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;color:var(--accent);letter-spacing:0.02em;
+    position:relative;
+  }
+  .school-badge img{
+    width:100%;height:100%;border-radius:50%;object-fit:cover;
+    display:none;position:absolute;top:0;left:0;
+  }
+  .school-badge img.loaded{display:block;}
+  .school-badge span.hide{display:none;}
+  .school-text{line-height:1.35;}
+  .school-text .name{font-size:14px;font-weight:600;color:var(--ink);}
+  .school-text .city{font-size:13px;color:var(--accent);font-weight:600;}
+
+  header{margin-bottom:36px;}
+  .kicker{color:var(--accent);font-size:14px;letter-spacing:0.02em;margin:0 0 6px;font-weight:600;}
+  h1{font-size:32px;line-height:1.2;margin:0 0 10px;font-weight:700;letter-spacing:-0.01em;}
+  .sub{color:var(--ink-dim);font-size:15px;line-height:1.5;max-width:56ch;margin:0;}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+  .card h2{font-size:13px;color:var(--ink-dim);margin:0 0 6px;font-weight:600;}
+  .card .hint{font-size:13px;color:var(--ink-dim);margin:0 0 14px;line-height:1.5;}
+
+  textarea{
+    width:100%;min-height:160px;resize:vertical;
+    background:var(--panel-2);border:1px solid var(--line);border-radius:8px;
+    color:var(--ink);font-size:15px;line-height:1.6;padding:14px;font-family:inherit;
+  }
+  textarea.small{min-height:90px;}
+  textarea:focus{outline:none;border-color:var(--accent);}
+  textarea::placeholder{color:#5f7699;}
+
+  .count-line{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:13px;color:var(--ink-dim);flex-wrap:wrap;gap:8px;}
+  .count-line strong{color:var(--ink);}
+  .count-actions{display:flex;align-items:center;gap:14px;}
+  .link-btn{background:none;border:none;color:var(--ink-dim);font-size:13px;text-decoration:underline;cursor:pointer;padding:0;}
+  .link-btn:hover{color:var(--accent);}
+
+  .mode-toggle{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .mode-btn{
+    flex:1;min-width:140px;background:var(--panel-2);border:1px solid var(--line);color:var(--ink-dim);
+    padding:11px 14px;border-radius:8px;font-size:14px;cursor:pointer;transition:border-color .15s ease, color .15s ease;
+  }
+  .mode-btn.active{border-color:var(--accent);color:var(--ink);}
+
+  .stepper{display:flex;align-items:center;gap:16px;}
+  .stepper button{
+    width:44px;height:44px;border-radius:8px;border:1px solid var(--line);background:var(--panel-2);
+    color:var(--ink);font-size:20px;cursor:pointer;line-height:1;
+  }
+  .stepper button:hover{border-color:var(--accent);}
+  .stepper button:active{transform:translateY(1px);}
+  .stepper .value{min-width:110px;text-align:center;font-size:28px;font-weight:700;font-variant-numeric:tabular-nums;}
+  .stepper .value span{display:block;font-size:12px;font-weight:400;color:var(--ink-dim);margin-top:2px;}
+
+  .actions{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
+  .btn{border:none;border-radius:8px;padding:13px 20px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s ease;}
+  .btn-primary{background:var(--accent);color:var(--accent-ink);flex:1;min-width:160px;}
+  .btn-primary:hover{opacity:.9;}
+  .btn-secondary{background:transparent;color:var(--ink-dim);border:1px solid var(--line);}
+  .btn-secondary:hover{color:var(--ink);border-color:var(--ink-dim);}
+  .btn-file{display:inline-block;}
+
+  .checkbox-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .checkbox-row label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);cursor:pointer;}
+  .checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;}
+
+  #error{color:#F28B82;font-size:13px;margin-top:10px;display:none;}
+  #conflictWarning{color:var(--accent);font-size:13px;margin-bottom:14px;display:none;}
+
+  #results{display:none;}
+  .results-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+  .results-head h2{margin:0;color:var(--ink);font-size:18px;font-weight:700;}
+  .results-buttons{display:flex;gap:8px;}
+  .groups{display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:14px;}
+  .group{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:16px;min-height:40px;}
+  .group-num{color:var(--accent);font-size:13px;font-weight:700;margin-bottom:8px;}
+  .group ul{list-style:none;margin:0;padding:0;}
+  .group li{padding:5px 0;border-bottom:1px dashed var(--line);font-size:14px;opacity:0;animation:fadeIn .25s ease forwards;}
+  .group li:last-child{border-bottom:none;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+  footer{text-align:center;color:var(--ink-dim);font-size:12px;margin-top:40px;}
+
+  @media (max-width:480px){h1{font-size:26px;}.card{padding:18px;}}
+
+  @media print{
+    body{background:#fff;color:#000;padding:0;}
+    .no-print{display:none !important;}
+    .wrap > *:not(#results){display:none !important;}
+    .card{border:none;padding:0;background:#fff;}
+    .group{background:#fff;border:1px solid #999;break-inside:avoid;}
+    .group-num{color:#000;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="school">
+    <div class="school-badge" id="badge">
+      <!-- Нақты логотип файлын осы жерге қойыңыз: logo.png (index.html-мен бір қалтада) -->
+      <img src="logo.png" alt="НЗМ логотипі" onload="this.classList.add('loaded'); document.getElementById('badgeFallback').classList.add('hide');" onerror="this.style.display='none';">
+      <span id="badgeFallback">НЗМ</span>
+    </div>
+    <div class="school-text">
+      <div class="name">Назарбаев Зияткерлік мектебі</div>
+      <div class="city">Талдықорған қаласы</div>
+    </div>
+  </div>
+
+  <header>
+    <p class="kicker">Топқа бөлу құралы</p>
+    <h1>Оқушыларды топтарға бөлу</h1>
+    <p class="sub">Есімдерді енгізіңіз, қажет болса жетекшілер мен шектеулерді қосыңыз, бөлу тәсілін таңдап, «Бөлу» түймесін басыңыз.</p>
+  </header>
+
+  <div class="card">
+    <h2>Адамдар тізімі</h2>
+    <textarea id="names" placeholder="Айгерім&#10;Данияр&#10;Әсел&#10;Темірлан&#10;..."></textarea>
+    <div class="count-line">
+      <span>Енгізілген есімдер саны: <strong id="nameCount">0</strong></span>
+      <span class="count-actions">
+        <span id="dupWarning" style="display:none;color:#F28B82;">қайталанатын есімдер бар</span>
+        <label class="btn-file link-btn">
+          Файлдан жүктеу
+          <input type="file" id="importFile" accept=".csv,.txt" style="display:none;">
+        </label>
+        <button class="link-btn" onclick="clearNames()">тізімді тазалау</button>
+      </span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Топ жетекшілері</h2>
+    <p class="hint">Міндетті емес. Әр топқа міндетті түрде қосылатын адамды жазыңыз (әр жолға біреуден).</p>
+    <textarea class="small" id="leaders" placeholder="Мысалы:&#10;Айгерім&#10;Темірлан"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Бірге болмауы керек жұптар</h2>
+    <p class="hint">Міндетті емес. Бір топта болмауы керек екі есімді үтірмен бөліп, әр жолға бір жұптан жазыңыз.</p>
+    <textarea class="small" id="exclusions" placeholder="Айгерім, Данияр&#10;Әсел, Темірлан"></textarea>
+  </div>
+
+  <div class="card">
+    <h2>Бөлу тәсілі</h2>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeGroups" onclick="setMode('groups')">Топ санына қарай</button>
+      <button class="mode-btn" id="modeSize" onclick="setMode('size')">Топтағы адам санына қарай</button>
+    </div>
+    <div class="stepper">
+      <button onclick="changeValue(-1)">−</button>
+      <div class="value" id="stepperValue">2<span id="stepperLabel">топ</span></div>
+      <button onclick="changeValue(1)">+</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Топ атаулары</h2>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="nameModeNumber" onclick="setNamingMode('number')">Нөмірмен</button>
+      <button class="mode-btn" id="nameModeAuto" onclick="setNamingMode('auto')">Автоматты атаулар</button>
+      <button class="mode-btn" id="nameModeCustom" onclick="setNamingMode('custom')">Өзім жазамын</button>
+    </div>
+    <p class="hint" id="namingHint">Топтар «Топ 1», «Топ 2» деп нөмірленеді.</p>
+    <textarea class="small" id="customGroupNames" style="display:none;" placeholder="Әр жолға бір атау (топтар санымен бірдей болсын)"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="checkbox-row">
+      <label><input type="checkbox" id="useHistory" checked> Бұрынғы топтасуларды ескеру (адамдар бір-бірімен азырақ қайталансын)</label>
+      <button class="link-btn" onclick="clearHistory()">тарихты тазалау</button>
+    </div>
+  </div>
+
+  <div id="error"></div>
+
+  <div class="actions">
+    <button class="btn btn-primary" onclick="split()">Бөлу</button>
+    <button class="btn btn-secondary" onclick="split()" id="reshuffleBtn" style="display:none;">Қайта араластыру</button>
+  </div>
+
+  <div class="card" id="results" style="margin-top:20px;">
+    <div class="results-head">
+      <h2>Нәтиже</h2>
+      <div class="results-buttons no-print">
+        <button class="btn btn-secondary" onclick="copyResults()" style="padding:8px 14px;font-size:13px;">Көшіру</button>
+        <button class="btn btn-secondary" onclick="window.print()" style="padding:8px 14px;font-size:13px;">Басып шығару / PDF</button>
+      </div>
+    </div>
+    <div id="conflictWarning">Ескерту: кейбір «бірге болмасын» шарттарын толық сақтау мүмкін болмады — топтар саны жеткіліксіз болуы мүмкін.</div>
+    <div class="groups" id="groups"></div>
+  </div>
+
+  <footer>Толығымен браузерде жұмыс істейді — деректер ешқайда жіберілмейді.</footer>
+</div>
+
+<script>
+let mode = 'groups';
+let value = 2;
+let namingMode = 'number';
+let lastResult = null;
+
+const AUTO_NAMES = [
+  'Әл-Фараби','Абай','Шоқан Уәлиханов','Ыбырай Алтынсарин','Мұхтар Әуезов','Қаныш Сәтбаев',
+  'Ньютон','Эйнштейн','Дарвин','Архимед','Пифагор','Кюри','Тесла','Хокинг','Менделеев',
+  'Ломоносов','Гаусс','Аристотель','Платон','Сократ','Ибн Сина','Коперник','Галилей','Фарадей'
+];
+
+const namesEl = document.getElementById('names');
+const nameCountEl = document.getElementById('nameCount');
+const dupWarningEl = document.getElementById('dupWarning');
+
+const savedNames = localStorage.getItem('gs_names');
+if (savedNames) namesEl.value = savedNames;
+
+function getLines(el){
+  return el.value.split('\n').map(s => s.trim()).filter(s => s.length > 0);
+}
+function getNames(){ return getLines(namesEl); }
+
+function updateCount(){
+  const names = getNames();
+  nameCountEl.textContent = names.length;
+  const unique = new Set(names.map(n => n.toLowerCase()));
+  dupWarningEl.style.display = unique.size !== names.length ? 'inline' : 'none';
+}
+updateCount();
+
+namesEl.addEventListener('input', () => {
+  updateCount();
+  localStorage.setItem('gs_names', namesEl.value);
+});
+
+function clearNames(){
+  namesEl.value = '';
+  localStorage.removeItem('gs_names');
+  updateCount();
+}
+
+document.getElementById('importFile').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    const raw = ev.target.result;
+    const lines = raw.split(/\r?\n/)
+      .flatMap(line => line.includes(',') ? line.split(',') : [line])
+      .map(s => s.trim())
+      .filter(s => s.length > 0);
+    const current = getNames();
+    namesEl.value = current.concat(lines).join('\n');
+    localStorage.setItem('gs_names', namesEl.value);
+    updateCount();
+  };
+  reader.readAsText(file, 'UTF-8');
+  e.target.value = '';
+});
+
+function setMode(newMode){
+  mode = newMode;
+  document.getElementById('modeGroups').classList.toggle('active', mode === 'groups');
+  document.getElementById('modeSize').classList.toggle('active', mode === 'size');
+  document.getElementById('stepperLabel').textContent = mode === 'groups' ? 'топ' : 'топтағы адам';
+  if (value < 1) value = 1;
+  document.getElementById('stepperValue').firstChild.textContent = value;
+}
+function changeValue(delta){
+  value = Math.max(1, value + delta);
+  document.getElementById('stepperValue').firstChild.textContent = value;
+}
+
+function setNamingMode(m){
+  namingMode = m;
+  document.getElementById('nameModeNumber').classList.toggle('active', m === 'number');
+  document.getElementById('nameModeAuto').classList.toggle('active', m === 'auto');
+  document.getElementById('nameModeCustom').classList.toggle('active', m === 'custom');
+  const custom = document.getElementById('customGroupNames');
+  const hint = document.getElementById('namingHint');
+  custom.style.display = m === 'custom' ? 'block' : 'none';
+  if (m === 'number') hint.textContent = 'Топтар «Топ 1», «Топ 2» деп нөмірленеді.';
+  else if (m === 'auto') hint.textContent = 'Топтарға ғалымдар мен ойшылдардың есімдері кездейсоқ беріледі.';
+  else hint.textContent = 'Төменде әр топқа бір атаудан жазыңыз. Жетпей қалса, қалғандары нөмірленеді.';
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function historyKey(a, b){
+  return [a.toLowerCase(), b.toLowerCase()].sort().join('|');
+}
+function loadHistory(){
+  try { return JSON.parse(localStorage.getItem('gs_history') || '{}'); }
+  catch(e){ return {}; }
+}
+function clearHistory(){
+  localStorage.removeItem('gs_history');
+}
+
+function groupNamesFor(numGroups){
+  if (namingMode === 'number'){
+    return Array.from({length: numGroups}, (_, i) => 'Топ ' + (i + 1));
+  }
+  if (namingMode === 'auto'){
+    const pool = shuffle(AUTO_NAMES);
+    const result = [];
+    for (let i = 0; i < numGroups; i++){
+      if (i < pool.length) result.push(pool[i]);
+      else result.push(pool[i % pool.length] + ' ' + (Math.floor(i / pool.length) + 1));
+    }
+    return result;
+  }
+  // custom
+  const custom = getLines(document.getElementById('customGroupNames'));
+  const result = [];
+  for (let i = 0; i < numGroups; i++){
+    result.push(custom[i] || ('Топ ' + (i + 1)));
+  }
+  return result;
+}
+
+function split(){
+  const errorEl = document.getElementById('error');
+  errorEl.style.display = 'none';
+  const names = getNames();
+
+  if (names.length < 2){
+    errorEl.textContent = 'Кемінде 2 есім қосыңыз.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (value < 1){
+    errorEl.textContent = 'Сан нөлден үлкен болуы керек.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  let numGroups;
+  if (mode === 'groups'){
+    numGroups = Math.min(value, names.length);
+  } else {
+    numGroups = Math.max(1, Math.ceil(names.length / value));
+  }
+
+  // жетекшілер
+  const leaderLines = getLines(document.getElementById('leaders'));
+  const namesLower = names.map(n => n.toLowerCase());
+  let pool = names.slice();
+  const assignedLeaders = [];
+  shuffle(leaderLines).forEach(leader => {
+    if (assignedLeaders.length >= numGroups) return;
+    const idx = pool.findIndex(n => n.toLowerCase() === leader.toLowerCase());
+    if (idx !== -1){
+      assignedLeaders.push(pool[idx]);
+      pool.splice(idx, 1);
+    }
+  });
+
+  // шектеулер (бірге болмауы керек жұптар)
+  const excludeMap = {};
+  getLines(document.getElementById('exclusions')).forEach(line => {
+    const parts = line.split(',').map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2) return;
+    const [a, b] = parts;
+    if (!namesLower.includes(a.toLowerCase()) || !namesLower.includes(b.toLowerCase())) return;
+    const ak = a.toLowerCase(), bk = b.toLowerCase();
+    (excludeMap[ak] = excludeMap[ak] || new Set()).add(bk);
+    (excludeMap[bk] = excludeMap[bk] || new Set()).add(ak);
+  });
+
+  const useHistory = document.getElementById('useHistory').checked;
+  const history = useHistory ? loadHistory() : {};
+
+  const groups = Array.from({length: numGroups}, () => []);
+
+  // жетекшілерді таратамыз
+  shuffle(assignedLeaders).forEach((leader, i) => groups[i].push(leader));
+
+  // қалғандарын кездейсоқ ретпен, шектеулер мен тарихты ескеріп бөлеміз
+  let hadConflict = false;
+  shuffle(pool).forEach(person => {
+    const pLower = person.toLowerCase();
+    let bestGroup = 0, bestCost = Infinity, bestViolations = Infinity;
+    for (let gi = 0; gi < numGroups; gi++){
+      const members = groups[gi];
+      let violations = 0;
+      members.forEach(m => {
+        if (excludeMap[pLower] && excludeMap[pLower].has(m.toLowerCase())) violations++;
+      });
+      let histPenalty = 0;
+      if (useHistory){
+        members.forEach(m => { histPenalty += history[historyKey(person, m)] || 0; });
+      }
+      const cost = violations > 0 ? Infinity : (members.length * 100 + histPenalty);
+      if (violations < bestViolations || (violations === bestViolations && cost < bestCost)){
+        bestViolations = violations; bestCost = cost; bestGroup = gi;
+      }
+    }
+    if (bestViolations > 0) hadConflict = true;
+    groups[bestGroup].push(person);
+  });
+
+  // тарихты жаңарту
+  if (useHistory){
+    groups.forEach(members => {
+      for (let i = 0; i < members.length; i++){
+        for (let j = i + 1; j < members.length; j++){
+          const key = historyKey(members[i], members[j]);
+          history[key] = (history[key] || 0) + 1;
+        }
+      }
+    });
+    localStorage.setItem('gs_history', JSON.stringify(history));
+  }
+
+  const names2 = groupNamesFor(numGroups);
+  lastResult = groups.map((members, i) => ({ name: names2[i], members }));
+
+  document.getElementById('conflictWarning').style.display = hadConflict ? 'block' : 'none';
+  revealResults(lastResult);
+}
+
+function revealResults(groups){
+  const container = document.getElementById('groups');
+  container.innerHTML = '';
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('reshuffleBtn').style.display = 'inline-block';
+
+  let gi = 0;
+  function nextGroup(){
+    if (gi >= groups.length) return;
+    const group = groups[gi];
+    const div = document.createElement('div');
+    div.className = 'group';
+    const num = document.createElement('div');
+    num.className = 'group-num';
+    num.textContent = group.name + ' · ' + group.members.length;
+    const ul = document.createElement('ul');
+    div.appendChild(num);
+    div.appendChild(ul);
+    container.appendChild(div);
+
+    let mi = 0;
+    function nextMember(){
+      if (mi >= group.members.length){
+        gi++;
+        setTimeout(nextGroup, 150);
+        return;
+      }
+      const li = document.createElement('li');
+      li.textContent = group.members[mi];
+      ul.appendChild(li);
+      mi++;
+      setTimeout(nextMember, 90);
+    }
+    nextMember();
+  }
+  nextGroup();
+}
+
+function copyResults(){
+  if (!lastResult) return;
+  const text = lastResult
+    .map(g => g.name + ':\n' + g.members.join('\n'))
+    .join('\n\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const original = btn.textContent;
+    btn.textContent = 'Көшірілді';
+    setTimeout(() => btn.textContent = original, 1500);
+  });
+}
+</script>
+</body>
+</html>
