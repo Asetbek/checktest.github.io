@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Жеребьёвка — разделить на группы</title>
+<style>
+  :root{
+    --bg: #17262B;
+    --panel: #1F3037;
+    --panel-2: #24373E;
+    --line: #2C4048;
+    --ink: #EDEBE1;
+    --ink-dim: #93A6A0;
+    --accent: #E8A33D;
+    --accent-dim: #6b5533;
+    --radius: 10px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Arial, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:48px 20px 80px;
+  }
+  .wrap{
+    width:100%;
+    max-width:760px;
+  }
+  header{
+    margin-bottom:36px;
+  }
+  .kicker{
+    color:var(--accent);
+    font-size:14px;
+    letter-spacing:0.02em;
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  h1{
+    font-size:32px;
+    line-height:1.2;
+    margin:0 0 10px;
+    font-weight:700;
+    letter-spacing:-0.01em;
+  }
+  .sub{
+    color:var(--ink-dim);
+    font-size:15px;
+    line-height:1.5;
+    max-width:52ch;
+    margin:0;
+  }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:24px;
+    margin-bottom:20px;
+  }
+  .card h2{
+    font-size:13px;
+    text-transform:none;
+    color:var(--ink-dim);
+    margin:0 0 14px;
+    font-weight:600;
+  }
+
+  textarea{
+    width:100%;
+    min-height:160px;
+    resize:vertical;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    color:var(--ink);
+    font-size:15px;
+    line-height:1.6;
+    padding:14px;
+    font-family:inherit;
+  }
+  textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  textarea::placeholder{color:#5c6e70;}
+
+  .count-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:10px;
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+  .count-line strong{color:var(--ink);}
+
+  .mode-toggle{
+    display:flex;
+    gap:8px;
+    margin-bottom:18px;
+  }
+  .mode-btn{
+    flex:1;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    color:var(--ink-dim);
+    padding:11px 14px;
+    border-radius:8px;
+    font-size:14px;
+    cursor:pointer;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .mode-btn.active{
+    border-color:var(--accent);
+    color:var(--ink);
+  }
+
+  .stepper{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .stepper button{
+    width:44px;
+    height:44px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    background:var(--panel-2);
+    color:var(--ink);
+    font-size:20px;
+    cursor:pointer;
+    line-height:1;
+  }
+  .stepper button:hover{border-color:var(--accent);}
+  .stepper button:active{transform:translateY(1px);}
+  .stepper .value{
+    min-width:90px;
+    text-align:center;
+    font-size:28px;
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+  }
+  .stepper .value span{
+    display:block;
+    font-size:12px;
+    font-weight:400;
+    color:var(--ink-dim);
+    margin-top:2px;
+  }
+
+  .actions{
+    display:flex;
+    gap:10px;
+    margin-top:6px;
+  }
+  .btn{
+    border:none;
+    border-radius:8px;
+    padding:13px 20px;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+    transition:opacity .15s ease;
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:#1A1200;
+    flex:1;
+  }
+  .btn-primary:hover{opacity:.9;}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink-dim);
+    border:1px solid var(--line);
+  }
+  .btn-secondary:hover{color:var(--ink);border-color:var(--ink-dim);}
+
+  #error{
+    color:#E8746A;
+    font-size:13px;
+    margin-top:10px;
+    display:none;
+  }
+
+  #results{display:none;}
+  .results-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:16px;
+  }
+  .results-head h2{margin:0;color:var(--ink);font-size:18px;font-weight:700;}
+  .groups{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:14px;
+  }
+  .group{
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px;
+  }
+  .group-num{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:8px;
+    font-variant-numeric:tabular-nums;
+  }
+  .group ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .group li{
+    padding:5px 0;
+    border-bottom:1px dashed var(--line);
+    font-size:14px;
+  }
+  .group li:last-child{border-bottom:none;}
+
+  footer{
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:12px;
+    margin-top:40px;
+  }
+
+  @media (max-width:480px){
+    h1{font-size:26px;}
+    .card{padding:18px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Жеребьёвка</p>
+    <h1>Разделить людей на группы</h1>
+    <p class="sub">Вставьте имена (по одному в строке), выберите способ деления и нажмите «Разделить». Состав каждый раз случайный.</p>
+  </header>
+
+  <div class="card">
+    <h2>Список людей</h2>
+    <textarea id="names" placeholder="Айгерим&#10;Данияр&#10;Асель&#10;Тимур&#10;..."></textarea>
+    <div class="count-line">
+      <span>Введено имён: <strong id="nameCount">0</strong></span>
+      <span id="dupWarning" style="display:none;color:#E8746A;">есть повторы</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Способ деления</h2>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeGroups" onclick="setMode('groups')">По числу групп</button>
+      <button class="mode-btn" id="modeSize" onclick="setMode('size')">По числу людей в группе</button>
+    </div>
+
+    <div class="stepper">
+      <button onclick="changeValue(-1)">−</button>
+      <div class="value" id="stepperValue">
+        2
+        <span id="stepperLabel">групп</span>
+      </div>
+      <button onclick="changeValue(1)">+</button>
+    </div>
+
+    <div id="error"></div>
+
+    <div class="actions" style="margin-top:20px;">
+      <button class="btn btn-primary" onclick="split()">Разделить</button>
+      <button class="btn btn-secondary" onclick="split()" id="reshuffleBtn" style="display:none;">Ещё раз</button>
+    </div>
+  </div>
+
+  <div class="card" id="results">
+    <div class="results-head">
+      <h2>Результат</h2>
+      <button class="btn btn-secondary" onclick="copyResults()" style="padding:8px 14px;font-size:13px;">Скопировать</button>
+    </div>
+    <div class="groups" id="groups"></div>
+  </div>
+
+  <footer>Работает полностью в браузере — данные никуда не отправляются.</footer>
+</div>
+
+<script>
+let mode = 'groups';
+let value = 2;
+let lastResult = null;
+
+const namesEl = document.getElementById('names');
+const nameCountEl = document.getElementById('nameCount');
+const dupWarningEl = document.getElementById('dupWarning');
+
+function getNames(){
+  return namesEl.value
+    .split('\n')
+    .map(s => s.trim())
+    .filter(s => s.length > 0);
+}
+
+namesEl.addEventListener('input', () => {
+  const names = getNames();
+  nameCountEl.textContent = names.length;
+  const unique = new Set(names.map(n => n.toLowerCase()));
+  dupWarningEl.style.display = unique.size !== names.length ? 'inline' : 'none';
+});
+
+function setMode(newMode){
+  mode = newMode;
+  document.getElementById('modeGroups').classList.toggle('active', mode === 'groups');
+  document.getElementById('modeSize').classList.toggle('active', mode === 'size');
+  document.getElementById('stepperLabel').textContent = mode === 'groups' ? 'групп' : 'человек в группе';
+  if (value < 1) value = 1;
+  document.getElementById('stepperValue').firstChild.textContent = value + ' ';
+}
+
+function changeValue(delta){
+  value = Math.max(1, value + delta);
+  document.getElementById('stepperValue').firstChild.textContent = value + ' ';
+}
+
+function shuffle(arr){
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--){
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function split(){
+  const errorEl = document.getElementById('error');
+  errorEl.style.display = 'none';
+  const names = getNames();
+
+  if (names.length < 2){
+    errorEl.textContent = 'Добавьте хотя бы 2 имени.';
+    errorEl.style.display = 'block';
+    return;
+  }
+  if (value < 1){
+    errorEl.textContent = 'Число должно быть больше нуля.';
+    errorEl.style.display = 'block';
+    return;
+  }
+
+  let numGroups;
+  if (mode === 'groups'){
+    numGroups = Math.min(value, names.length);
+  } else {
+    numGroups = Math.max(1, Math.ceil(names.length / value));
+  }
+
+  const shuffled = shuffle(names);
+  const groups = Array.from({length: numGroups}, () => []);
+  shuffled.forEach((name, i) => {
+    groups[i % numGroups].push(name);
+  });
+
+  lastResult = groups;
+  renderResults(groups);
+}
+
+function renderResults(groups){
+  const container = document.getElementById('groups');
+  container.innerHTML = '';
+  groups.forEach((group, i) => {
+    const div = document.createElement('div');
+    div.className = 'group';
+    const num = document.createElement('div');
+    num.className = 'group-num';
+    num.textContent = 'Группа ' + (i + 1) + ' · ' + group.length;
+    const ul = document.createElement('ul');
+    group.forEach(name => {
+      const li = document.createElement('li');
+      li.textContent = name;
+      ul.appendChild(li);
+    });
+    div.appendChild(num);
+    div.appendChild(ul);
+    container.appendChild(div);
+  });
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('reshuffleBtn').style.display = 'inline-block';
+}
+
+function copyResults(){
+  if (!lastResult) return;
+  const text = lastResult
+    .map((g, i) => 'Группа ' + (i + 1) + ':\n' + g.join('\n'))
+    .join('\n\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const original = btn.textContent;
+    btn.textContent = 'Скопировано';
+    setTimeout(() => btn.textContent = original, 1500);
+  });
+}
+</script>
+</body>
+</html>
